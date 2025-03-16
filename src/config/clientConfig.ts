@@ -14,15 +14,16 @@ webClient.interceptors.response.use(
         return response
     },
     (error) => {
-        // const status = error.response?.status
-        //
-        // if (status === 401 || status === 302) {
-        //     console.warn('Unauthorized! Redirecting to login...')
-        //     if(window.location.pathname !== '/login') {
-        //         window.location.href = '/login'
-        //     }
-        //
-        // }
+        const status = error.response?.status
+
+        if (status === 401 || status === 302) {
+            console.warn('Unauthorized! Redirecting to login...')
+            if(window.location.pathname !== '/login') {
+                window.location.href = '/login'
+            }
+
+        }
+        console.log(error)
         return Promise.reject(error)
     }
 )
