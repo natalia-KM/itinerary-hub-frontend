@@ -1,0 +1,25 @@
+import {useCallback} from "react";
+import webClient from "../../config/clientConfig";
+import {useMutation} from "@tanstack/react-query";
+import {queryKeys} from "../../config/queryKeys";
+
+interface GuestUserDetails {
+    firstName: string,
+    lastName: string
+}
+
+export const useSignUpAsGuest = () => {
+
+    const signUp = useCallback(async ({ firstName, lastName }: GuestUserDetails) => {
+        await webClient.post('/v1/users/guest',
+            {
+                firstName: firstName,
+                lastName: lastName
+            })// add redirect on success
+    }, [])
+
+    return useMutation({
+        mutationKey: [queryKeys.signUpAsGuest],
+        mutationFn: signUp
+    })
+}
