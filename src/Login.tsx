@@ -48,6 +48,8 @@ export const Login = ({ isLogout = false }: { isLogout?: boolean }) => {
                 />
                 <button type="submit" className="bg-blue-500 text-white p-2 rounded">Submit</button>
             </form>
+
+            <button onClick={() => invalidateUserDetails()}>Get user details</button>
         </div>
     )
 }
