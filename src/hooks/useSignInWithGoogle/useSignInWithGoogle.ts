@@ -1,17 +1,12 @@
 import {useCallback} from "react";
-import webClient from "../../config/clientConfig";
 import {useMutation} from "@tanstack/react-query";
 import {queryKeys} from "../../config/queryKeys";
+import {BASE_API_PATH} from "../../config/envConfig";
 
 export const useSignInWithGoogle = () => {
 
     const signIn = useCallback(async () => {
-        await webClient.post('/oauth2/authorization/google')
-            .then((response) => {
-                if(response.request.responseURL) {
-                    window.location.href = response.request.responseURL;
-                }
-            })
+        window.location.href = `${BASE_API_PATH}/oauth2/authorization/google`;
     }, [])
 
     return useMutation({
