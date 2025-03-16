@@ -5,11 +5,11 @@ import {UserDetailsContext} from "./UserDetailsContext";
 import {useQueryClient} from "@tanstack/react-query";
 import {queryKeys} from "../../config/queryKeys";
 
-interface UserDetailsProvider {
+interface UserDetailsProviderProps {
     children: React.ReactNode
 }
 
-export const UserDetailsProvider = ({ children }: UserDetailsProvider) => {
+export const UserDetailsProvider = ({ children }: UserDetailsProviderProps) => {
     const { data: response } = useGetUserDetails();
     const [userDetails, setUserDetails] = useState<UserDetails | null>(null);
     const queryClient = useQueryClient();
