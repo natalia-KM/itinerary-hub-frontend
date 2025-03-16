@@ -8,9 +8,9 @@ const webClient = axios.create({
 
 webClient.interceptors.response.use(
     (response) => {
-        if(window.location.pathname === '/login') {
-            window.location.href = '/dashboard'
-        }
+        // if(window.location.pathname === '/login') {
+        //     window.location.href = '/dashboard'
+        // }
         return response
     },
     (error) => {

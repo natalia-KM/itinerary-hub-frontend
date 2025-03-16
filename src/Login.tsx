@@ -2,17 +2,19 @@ import { useState } from "react";
 import {useSignUpAsGuest} from "./hooks/useSignUpAsGuest/useSignUpAsGuest";
 import {useUserDetailsContext} from "./provider/UserDetailsProvider/useUserDetailsContext";
 import {BASE_API_PATH} from "./config/envConfig";
+import {useSignInWithGoogle} from "./hooks/useSignInWithGoogle/useSignInWithGoogle";
 
 export const Login = ({ isLogout = false }: { isLogout?: boolean }) => {
 
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
+    const { mutateAsync: signInWithGoogle } = useSignInWithGoogle()
     const { mutateAsync: signUpAsGuest } = useSignUpAsGuest()
     const { invalidateUserDetails } = useUserDetailsContext()
 
-    const signIn = () => {
-        window.location.href = `${BASE_API_PATH}/oauth2/authorization/google`
-    }
+    // const signIn = () => {
+    //     window.location.href = `${BASE_API_PATH}/oauth2/authorization/google`
+    // }
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -21,13 +23,14 @@ export const Login = ({ isLogout = false }: { isLogout?: boolean }) => {
             alert("Enter info")
             return
         }
-        await signUpAsGuest({ firstName, lastName }).then(() => invalidateUserDetails())
+        await signUpAsGuest({ firstName, lastName })
+            // .then(() => invalidateUserDetails())
     };
 
     return (
         <div style={{ minHeight: '80vh', padding: '20px', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
             {isLogout && <h1>Logged Out!!</h1>}
-            <button onClick={signIn}>Login with Google</button>
+            <button onClick={() => signInWithGoogle()}>Login with Google</button>
 
             <p>Or Continue as Guest</p>
 

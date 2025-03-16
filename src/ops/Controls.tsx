@@ -10,9 +10,9 @@ export const Controls = () => {
     const { userDetails, invalidateUserDetails } = useUserDetailsContext()
     const { mutateAsync: signInWithGoogle } = useSignInWithGoogle()
 
-    const signIn = () => {
-        window.location.href = `${BASE_API_PATH}/oauth2/authorization/google`
-    }
+    // const signIn = () => {
+    //     window.location.href = `${BASE_API_PATH}/oauth2/authorization/google`
+    // }
 
     const linkAccount = async () => {
         await signInWithGoogle().then(() => {
@@ -23,7 +23,7 @@ export const Controls = () => {
     return (
         <div>
             {userDetails?.isGuest && (
-                <button onClick={signIn}>Link Account to Google</button>
+                <button onClick={linkAccount}>Link Account to Google</button>
             )}
 
             <UpdateUserDetailsForm/>
