@@ -15,7 +15,9 @@ export const useSignUpAsGuest = () => {
             {
                 firstName: firstName,
                 lastName: lastName
-            })// add redirect on success
+            }).then(() => {
+                window.location.href = '/dashboard';
+        })
     }, [])
 
     return useMutation({

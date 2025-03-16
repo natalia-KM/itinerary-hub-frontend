@@ -1,7 +1,6 @@
 import { useState } from "react";
 import {useSignUpAsGuest} from "./hooks/useSignUpAsGuest/useSignUpAsGuest";
 import {useUserDetailsContext} from "./provider/UserDetailsProvider/useUserDetailsContext";
-import {BASE_API_PATH} from "./config/envConfig";
 import {useSignInWithGoogle} from "./hooks/useSignInWithGoogle/useSignInWithGoogle";
 
 export const Login = ({ isLogout = false }: { isLogout?: boolean }) => {

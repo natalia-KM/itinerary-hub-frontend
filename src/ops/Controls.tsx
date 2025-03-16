@@ -4,7 +4,6 @@ import {DeleteAccount} from "./DeleteAccount";
 import React from "react";
 import {useUserDetailsContext} from "../provider/UserDetailsProvider/useUserDetailsContext";
 import {useSignInWithGoogle} from "../hooks/useSignInWithGoogle/useSignInWithGoogle";
-import {BASE_API_PATH} from "../config/envConfig";
 
 export const Controls = () => {
     const { userDetails, invalidateUserDetails } = useUserDetailsContext()
