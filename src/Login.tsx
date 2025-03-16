@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useSignInWithGoogle } from "./hooks/useSignInWithGoogle/useSignInWithGoogle";
 import {useSignUpAsGuest} from "./hooks/useSignUpAsGuest/useSignUpAsGuest";
 import {useUserDetailsContext} from "./provider/UserDetailsProvider/useUserDetailsContext";
 import {BASE_API_PATH} from "./config/envConfig";
