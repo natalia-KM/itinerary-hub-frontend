@@ -1,6 +1,7 @@
 import { useState } from 'react'
-import { useUpdateUserDetails } from '../hooks/useUpdateUserDetails/useUpdateUserDetails'
-import { useUserDetailsContext } from '../provider/UserDetailsProvider/useUserDetailsContext'
+import { useUpdateUserDetails } from 'hooks/useUpdateUserDetails/useUpdateUserDetails'
+import { useUserDetailsContext } from 'provider/UserDetailsProvider/useUserDetailsContext'
+
 
 export const UpdateUserDetailsForm = () => {
     const [response, setResponse] = useState('')

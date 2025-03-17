@@ -1,4 +1,4 @@
-import { useLogout } from '../hooks/useLogout/useLogout'
+import { useLogout } from 'hooks/useLogout/useLogout'
 
 export const LogoutButton = () => {
     const { mutateAsync: logout } = useLogout()

@@ -8,6 +8,8 @@
 # testing
 /coverage
 
+/cypress/downloads
+
 # production
 /build
 

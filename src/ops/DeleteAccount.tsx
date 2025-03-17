@@ -1,5 +1,5 @@
-import { useDeleteAccount } from '../hooks/useDeleteAccount/useDeleteAccount'
-import { useUserDetailsContext } from '../provider/UserDetailsProvider/useUserDetailsContext'
+import { useDeleteAccount } from 'hooks/useDeleteAccount/useDeleteAccount'
+import { useUserDetailsContext } from 'provider/UserDetailsProvider/useUserDetailsContext'
 
 export const DeleteAccount = () => {
     const { mutateAsync } = useDeleteAccount()

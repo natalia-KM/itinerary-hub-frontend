@@ -1,6 +1,6 @@
 import React from 'react'
 import './App.css'
-import { Controls } from './ops/Controls'
+import { Controls } from 'ops/Controls'
 
 function App() {
   return (

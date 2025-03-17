@@ -1,8 +1,8 @@
 import { useCallback } from 'react'
-import webClient from '../../config/clientConfig'
-import { UserDetails } from '../useGetUserDetails/types'
+import webClient from 'config/clientConfig'
+import { UserDetails } from 'hooks/useGetUserDetails/types'
 import { useMutation } from '@tanstack/react-query'
-import { queryKeys } from '../../config/queryKeys'
+import { queryKeys } from 'config/queryKeys'
 
 interface UpdateUserDetailsRequest {
     firstName?: string,

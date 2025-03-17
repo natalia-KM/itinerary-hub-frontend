@@ -1,7 +1,7 @@
 import { useCallback } from 'react'
 import { useMutation } from '@tanstack/react-query'
-import { queryKeys } from '../../config/queryKeys'
-import { BASE_API_PATH } from '../../config/envConfig'
+import { queryKeys } from 'config/queryKeys'
+import { BASE_API_PATH } from 'config/envConfig'
 
 
 export const useSignInWithGoogle = () => {

@@ -53,7 +53,11 @@ export default tseslint.config(
                 { allowConstantExport: true}
             ],
             'no-only-tests/no-only-tests': ['error', { fix: true }],
-            'import/no-extraneous-dependencies': 'error'
+            'import/no-extraneous-dependencies': 'error',
+
+            "no-restricted-imports": ["error", {
+                "patterns": ["../*", "!./*"]
+            }]
         }
     }
 )

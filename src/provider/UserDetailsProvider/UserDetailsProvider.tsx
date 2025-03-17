@@ -1,9 +1,9 @@
-import { useEffect, useState } from 'react'
-import { useGetUserDetails } from '../../hooks/useGetUserDetails/useGetUserDetails'
-import { UserDetails } from '../../hooks/useGetUserDetails/types'
-import { UserDetailsContext } from './UserDetailsContext'
+import React, { useEffect, useState } from 'react'
+import { useGetUserDetails } from 'hooks/useGetUserDetails/useGetUserDetails'
+import { UserDetails } from 'hooks/useGetUserDetails/types'
+import { UserDetailsContext } from 'provider/UserDetailsProvider/UserDetailsContext'
 import { useQueryClient } from '@tanstack/react-query'
-import { queryKeys } from '../../config/queryKeys'
+import { queryKeys } from 'config/queryKeys'
 
 interface UserDetailsProviderProps {
     children: React.ReactNode
