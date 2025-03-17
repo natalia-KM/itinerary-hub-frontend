@@ -1,5 +1,3 @@
-import {useSignUpAsGuest} from "../hooks/useSignUpAsGuest/useSignUpAsGuest";
-
 export const queryKeys = {
     getUserDetails: 'getUserDetails',
     deleteUser: 'deleteUser',

@@ -1,30 +1,30 @@
-import { useState } from "react";
-import {useSignUpAsGuest} from "./hooks/useSignUpAsGuest/useSignUpAsGuest";
-import {useUserDetailsContext} from "./provider/UserDetailsProvider/useUserDetailsContext";
-import {useSignInWithGoogle} from "./hooks/useSignInWithGoogle/useSignInWithGoogle";
+import { useState } from 'react'
+import { useSignUpAsGuest } from './hooks/useSignUpAsGuest/useSignUpAsGuest'
+import { useUserDetailsContext } from './provider/UserDetailsProvider/useUserDetailsContext'
+import { useSignInWithGoogle } from './hooks/useSignInWithGoogle/useSignInWithGoogle'
 
 export const Login = ({ isLogout = false }: { isLogout?: boolean }) => {
 
-    const [firstName, setFirstName] = useState("");
-    const [lastName, setLastName] = useState("");
+    const [firstName, setFirstName] = useState('')
+    const [lastName, setLastName] = useState('')
     const { mutateAsync: signInWithGoogle } = useSignInWithGoogle()
     const { mutateAsync: signUpAsGuest } = useSignUpAsGuest()
     const { invalidateUserDetails } = useUserDetailsContext()
 
-    // const signIn = () => {
+// const signIn = () => {
     //     window.location.href = `${BASE_API_PATH}/oauth2/authorization/google`
     // }
 
     const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
+            e.preventDefault()
 
         if (firstName === '' || lastName === '') {
-            alert("Enter info")
+            alert('Enter info')
             return
         }
         await signUpAsGuest({ firstName, lastName })
             // .then(() => invalidateUserDetails())
-    };
+    }
 
     return (
         <div style={{ minHeight: '80vh', padding: '20px', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>

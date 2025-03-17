@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { BASE_API_PATH } from "./envConfig"
+import { BASE_API_PATH } from './envConfig'
 
 const webClient = axios.create({
     baseURL: BASE_API_PATH,

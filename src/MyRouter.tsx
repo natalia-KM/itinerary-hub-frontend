@@ -1,6 +1,6 @@
-import {BrowserRouter, Route, Routes} from "react-router";
-import App from "./App";
-import {Login} from "./Login";
+import { BrowserRouter, Route, Routes } from 'react-router'
+import App from './App'
+import { Login } from './Login'
 
 export const MyRouter = () => {
     return (

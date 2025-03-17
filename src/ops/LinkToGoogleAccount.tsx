@@ -1,4 +1,4 @@
-import {useSignInWithGoogle} from "../hooks/useSignInWithGoogle/useSignInWithGoogle";
+import { useSignInWithGoogle } from '../hooks/useSignInWithGoogle/useSignInWithGoogle'
 
 export const LinkToGoogleAccount = () => {
     const { mutateAsync: signInWithGoogle } = useSignInWithGoogle()
