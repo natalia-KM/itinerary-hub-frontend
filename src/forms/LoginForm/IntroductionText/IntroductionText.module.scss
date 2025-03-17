@@ -1,0 +1,13 @@
+.IntroductionText {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  padding: 5vh 3vw;
+
+  &_Subheading {
+    padding-top: 15px;
+    line-height: 1.2 !important;
+    color: #2A2A2A !important;
+  }
+}

@@ -1,9 +1,10 @@
 import { defineConfig } from 'vitest/config'
-import react from '@vitejs/plugin-react-swc'
+import tsconfigPaths from 'vite-tsconfig-paths'
+
 // if something fails: https://dev.to/henriquejensen/migrating-from-create-react-app-to-vite-a-quick-and-easy-guide-5e72
 export default defineConfig({
     base: '/',
-    plugins: [react()],
+    plugins: [tsconfigPaths()],
     server: {
       port: 3000
     },

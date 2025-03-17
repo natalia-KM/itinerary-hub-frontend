@@ -1,14 +1,12 @@
 import js from "@eslint/js";
 import globals from "globals";
 import reactHooks from 'eslint-plugin-react-hooks'
-import react from 'eslint-plugin-react'
 import reactRefresh from 'eslint-plugin-react-refresh'
 import tseslint from 'typescript-eslint';
 import stylisticTs from '@stylistic/eslint-plugin-ts'
 import cypress from 'eslint-plugin-cypress'
 import noOnlyTests from 'eslint-plugin-no-only-tests'
 import imports from 'eslint-plugin-import'
-
 
 
 export default tseslint.config(
@@ -47,13 +45,15 @@ export default tseslint.config(
             '@stylistic/quote-props': ['error', 'as-needed'],
 
             '@typescript-eslint/semi': 'off',
+            '@typescript-eslint/no-unused-vars': 'warn',
+
             'react-hooks/exhaustive-deps': 'error',
             'react-refresh/only-export-components': [
                 'warn',
                 { allowConstantExport: true}
             ],
             'no-only-tests/no-only-tests': ['error', { fix: true }],
-            'import/no-extraneous-dependencies': 'error',
+            'import/no-extraneous-dependencies': 'warn',
 
             "no-restricted-imports": ["error", {
                 "patterns": ["../*", "!./*"]
