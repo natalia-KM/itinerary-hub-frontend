@@ -1,0 +1,32 @@
+.Heading {
+  overflow: hidden;
+  text-align: center;
+  color: #1f1f1f;
+
+  &:before,
+  &:after {
+    background-color: rgba(149, 157, 165, 0.5);
+    content: "";
+    display: inline-block;
+    height: 1px;
+    position: relative;
+    vertical-align: middle;
+    width: 50%;
+  }
+
+
+  &:before {
+    right: 0.5em;
+    margin-left: -50%;
+  }
+
+  &:after {
+    left: 0.5em;
+    margin-right: -50%;
+  }
+}
+
+.Wrapper {
+  width: 100%;
+  margin: 20px 0;
+}

@@ -1,9 +1,9 @@
-import {UpdateUserDetailsForm} from "./UpdateUserDetailsForm";
-import {LogoutButton} from "./LogoutButton";
-import {DeleteAccount} from "./DeleteAccount";
-import React from "react";
-import {useUserDetailsContext} from "../provider/UserDetailsProvider/useUserDetailsContext";
-import {useSignInWithGoogle} from "../hooks/useSignInWithGoogle/useSignInWithGoogle";
+import { UpdateUserDetailsForm } from 'ops/UpdateUserDetailsForm'
+import { LogoutButton } from 'ops/LogoutButton'
+import { DeleteAccount } from 'ops/DeleteAccount'
+import React from 'react'
+import { useUserDetailsContext } from 'provider/UserDetailsProvider/useUserDetailsContext'
+import { useSignInWithGoogle } from 'hooks/useSignInWithGoogle/useSignInWithGoogle'
 
 export const Controls = () => {
     const { userDetails, invalidateUserDetails } = useUserDetailsContext()

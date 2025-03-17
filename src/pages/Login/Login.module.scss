@@ -1,0 +1,33 @@
+.LoginPage {
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 50% 50%;
+
+  &__ImageContainer {
+    background-image: url("../../assets/images/background-login.jpg");
+    background-size: cover;
+    background-position: center;
+  }
+
+  &__LoginSection {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__IntroductionWrapper {
+    width: inherit;
+  }
+
+  &__LoginFormWrapper {
+    display: flex;
+    justify-content: center;
+    width: inherit;
+    box-sizing: border-box;
+  }
+}

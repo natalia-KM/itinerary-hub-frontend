@@ -1,5 +1,5 @@
-import {createContext} from "react";
-import {UserDetails} from "../../hooks/useGetUserDetails/types";
+import { createContext } from 'react'
+import { UserDetails } from 'hooks/useGetUserDetails/types'
 
 export type UserDetailsContextType = {
     userDetails: UserDetails | null,

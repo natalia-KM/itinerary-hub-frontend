@@ -1,8 +1,8 @@
-import {useCallback} from "react";
-import webClient from "../../config/clientConfig";
-import {useQuery} from "@tanstack/react-query";
-import {UserDetails} from "./types";
-import {queryKeys} from "../../config/queryKeys";
+import { useCallback } from 'react'
+import webClient from 'config/clientConfig'
+import { useQuery } from '@tanstack/react-query'
+import { UserDetails } from 'hooks/useGetUserDetails/types'
+import { queryKeys } from 'config/queryKeys'
 
 export const useGetUserDetails = () => {
 

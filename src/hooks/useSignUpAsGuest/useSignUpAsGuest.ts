@@ -1,7 +1,7 @@
-import {useCallback} from "react";
-import webClient from "../../config/clientConfig";
-import {useMutation} from "@tanstack/react-query";
-import {queryKeys} from "../../config/queryKeys";
+import { useCallback } from 'react'
+import webClient from 'config/clientConfig'
+import { useMutation } from '@tanstack/react-query'
+import { queryKeys } from 'config/queryKeys'
 
 interface GuestUserDetails {
     firstName: string,
@@ -16,7 +16,7 @@ export const useSignUpAsGuest = () => {
                 firstName: firstName,
                 lastName: lastName
             }).then(() => {
-                window.location.href = '/dashboard';
+                window.location.href = '/dashboard'
         })
     }, [])
 
