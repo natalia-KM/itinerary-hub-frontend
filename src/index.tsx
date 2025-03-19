@@ -4,7 +4,7 @@ import './index.css'
 import reportWebVitals from './reportWebVitals'
 import { AppRouter } from './AppRouter'
 import { QueryClientProvider } from '@tanstack/react-query'
-import { queryClient } from './queryClient'
+import { queryClient } from './config/queryClient'
 import { UserDetailsProvider } from './provider/UserDetailsProvider/UserDetailsProvider'
 
 const root = ReactDOM.createRoot(

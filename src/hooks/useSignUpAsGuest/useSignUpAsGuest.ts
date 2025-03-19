@@ -2,11 +2,7 @@ import { useCallback } from 'react'
 import webClient from 'config/clientConfig'
 import { useMutation } from '@tanstack/react-query'
 import { queryKeys } from 'config/queryKeys'
-
-interface GuestUserDetails {
-    firstName: string,
-    lastName: string
-}
+import { GuestUserDetails } from './types'
 
 export const useSignUpAsGuest = () => {
 
