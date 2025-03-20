@@ -13,6 +13,7 @@ export const InputErrorMessage = ({ error }: InputErrorMessageProps) => {
                 alignSelf='start'
                 fontSize='12px'
                 className={classes.InputErrorMessage}
+                aria-label="Input error"
             >
                 <ErrorOutlineIcon className={classes.InputErrorMessage__Icon}/>
                 {error}
