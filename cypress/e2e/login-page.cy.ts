@@ -4,6 +4,7 @@ import { tripsViewPage } from '../fixtures/pages/TripsView'
 
 describe('Login Page', () => {
     beforeEach(() => {
+        // eslint-disable-next-line cypress/no-unnecessary-waiting
         cy.wait(4000) // for the server to load
         cy.visit('http://localhost:3000/login')
 
