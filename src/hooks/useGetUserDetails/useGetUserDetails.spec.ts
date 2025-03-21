@@ -25,6 +25,8 @@ describe('useGetUserDetails hook', () => {
             wrapper: userContextAndQueryWrapper
         })
 
+        await result.current.mutateAsync()
+
         await waitFor(() => {
             expect(result.current.isSuccess).toBe(true)
         })
@@ -40,6 +42,12 @@ describe('useGetUserDetails hook', () => {
         const { result } = renderHook(() => useGetUserDetails(), {
             wrapper: userContextAndQueryWrapper
         })
+
+        try {
+           await result.current.mutateAsync()
+        } catch {
+           // empty
+        }
 
         await waitFor(() => {
             expect(result.current.isError).toBe(true)

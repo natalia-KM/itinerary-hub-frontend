@@ -22,8 +22,6 @@ describe('useSignUpAsGuest hook', () => {
         await waitFor(() => {
             expect(result.current.isSuccess).toBe(true)
         })
-
-        expect(window.location.href).toEqual('/dashboard')
     })
 
     it('should not redirect if the request failed', async () => {

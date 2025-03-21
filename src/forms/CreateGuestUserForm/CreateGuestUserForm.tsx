@@ -6,6 +6,7 @@ import { schema } from './createUserFormSchema'
 import { yupResolver } from '@hookform/resolvers/yup'
 import classes from './CreateGuestUserForm.module.scss'
 import { InputErrorMessage } from 'components/InputErrorMessage/InputErrorMessage'
+import { toast } from 'react-toastify'
 
 export const CreateGuestUserForm = () => {
     const { register, handleSubmit, formState: { errors } } = useForm<CreateGuestUserFormFields>({
@@ -17,6 +18,14 @@ export const CreateGuestUserForm = () => {
     const createGuestUser = handleSubmit(
         async ({ firstName, lastName }) => {
             await signUpAsGuest({ firstName, lastName })
+                .then(() => {
+                    window.location.href = '/dashboard'
+                })
+                .catch(() => {
+                    toast('Something went wrong! Unable to create a guest account.', {
+                        toastId: 'create-guest-error-toast'
+                    })
+                })
         })
 
     return (

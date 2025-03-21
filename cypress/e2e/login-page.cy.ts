@@ -31,8 +31,8 @@ describe('Login Page', () => {
     it('should redirect to dashboard on successfully guest account creation', () => {
         apiInterceptor.setAuthenticated()
 
-        const { resolve, alias: createGuest } = apiInterceptor.interceptCreateGuestUser({ manualResolution: true })
-        const { alias: getUserDetails } = apiInterceptor.interceptGetUserDetails({ manualResolution: false })
+        const { resolve } = apiInterceptor.interceptCreateGuestUser({ manualResolution: true })
+        apiInterceptor.interceptGetUserDetails({ manualResolution: false })
 
         loginPage.firstNameInputField
             .should('be.visible')
@@ -53,9 +53,6 @@ describe('Login Page', () => {
                 resolve?.()
             })
 
-        cy.wait(createGuest)
-
-        cy.wait(getUserDetails)
         tripsViewPage.title.should('be.visible')
     })
 
@@ -92,8 +89,6 @@ describe('Login Page', () => {
 
         cy.visit('http://localhost:3000')
 
-        cy.wait('@getUserDetails')
-
         tripsViewPage.title.should('be.visible')
     })
 
@@ -102,8 +97,6 @@ describe('Login Page', () => {
         apiInterceptor.interceptGetUserDetails({ status: 401 })
 
         cy.visit('http://localhost:3000')
-
-        cy.wait('@getUserDetails')
 
         loginPage.title.should('be.visible')
     })

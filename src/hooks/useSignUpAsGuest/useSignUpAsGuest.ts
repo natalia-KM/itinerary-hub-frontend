@@ -3,7 +3,6 @@ import webClient from 'config/clientConfig'
 import { useMutation } from '@tanstack/react-query'
 import { queryKeys } from 'config/queryKeys'
 import { GuestUserDetails } from './types'
-import { toast } from 'react-toastify'
 
 export const useSignUpAsGuest = () => {
 
@@ -12,13 +11,7 @@ export const useSignUpAsGuest = () => {
             {
                 firstName: firstName,
                 lastName: lastName
-            }).then(() => {
-                window.location.href = '/dashboard'
-        }).catch(() => {
-            toast('Something went wrong! Unable to create a guest account.', {
-                toastId: 'create-guest-error-toast'
             })
-        })
     }, [])
 
     return useMutation({
