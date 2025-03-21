@@ -29,7 +29,7 @@ describe('Login Page', () => {
     })
 
     it('should redirect to dashboard on successfully guest account creation', () => {
-        const { resolve } = apiInterceptor.interceptCreateGuestUser({ manualResolution: true })
+        const { resolve, alias } = apiInterceptor.interceptCreateGuestUser({ manualResolution: true })
         apiInterceptor.interceptGetUserDetails({ manualResolution: false })
         apiInterceptor.setAuthenticated()
 
@@ -52,6 +52,7 @@ describe('Login Page', () => {
                 resolve?.()
             })
 
+        cy.wait(alias)
         cy.url().should('include', '/dashboard')
 
         tripsViewPage.title.should('be.visible')
@@ -85,10 +86,12 @@ describe('Login Page', () => {
     })
 
     it('should call getUser and redirect to app when valid cookies exist', () => {
-        apiInterceptor.interceptGetUserDetails({})
+        const { alias } = apiInterceptor.interceptGetUserDetails({})
         apiInterceptor.setAuthenticated()
 
         cy.visit('http://localhost:3000')
+
+        cy.wait(alias)
 
         cy.url().should('include', '/dashboard')
 
