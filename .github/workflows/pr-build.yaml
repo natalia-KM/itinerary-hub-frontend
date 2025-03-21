@@ -53,10 +53,14 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
+      - name: Start App
+        run: npm run start &
+        env:
+          API_URL: ${{ secrets.VITE_API_URL }}
+          NODE_ENV: test
+
       - name: Run Cypress Tests
         uses: cypress-io/github-action@v6
-        with:
-          start: npm run start
 
   unit-tests:
     runs-on: ubuntu-latest
