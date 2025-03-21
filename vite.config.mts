@@ -5,7 +5,7 @@ import vercel from 'vite-plugin-vercel'
 // if something fails: https://dev.to/henriquejensen/migrating-from-create-react-app-to-vite-a-quick-and-easy-guide-5e72
 export default defineConfig({
     base: '/',
-    plugins: [tsconfigPaths()],
+    plugins: [tsconfigPaths(), vercel()],
     server: {
       port: 3000
     },
