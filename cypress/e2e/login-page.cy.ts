@@ -54,7 +54,8 @@ describe('Login Page', () => {
                 resolve?.()
             })
 
-        cy.url().should('include', '/dashboard')
+        cy.location('pathname', { timeout: 60000 })
+            .should('include', '/dashboard')
 
         tripsViewPage.title.should('be.visible')
     })
@@ -95,7 +96,8 @@ describe('Login Page', () => {
         // eslint-disable-next-line cypress/no-unnecessary-waiting
         cy.wait(2000)
 
-        cy.url().should('include', '/dashboard')
+        cy.location('pathname', { timeout: 60000 })
+            .should('include', '/dashboard')
 
         tripsViewPage.title.should('be.visible')
     })
@@ -106,9 +108,8 @@ describe('Login Page', () => {
 
         cy.visit('http://localhost:3000')
 
-        // eslint-disable-next-line cypress/no-unnecessary-waiting
-        cy.wait(2000)
-        cy.url().should('include', '/login')
+        cy.location('pathname', { timeout: 60000 })
+            .should('include', '/login')
 
         loginPage.title.should('be.visible')
     })
