@@ -12,7 +12,7 @@ export const CreateGuestUserForm = () => {
         resolver: yupResolver(schema)
     })
     const { mutateAsync: signUpAsGuest, isPending } = useSignUpAsGuest()
-    const testIdKey = 'create-guest-user-form'
+    const testIdKey = 'login-page'
 
     const createGuestUser = handleSubmit(
         async ({ firstName, lastName }) => {
@@ -24,7 +24,7 @@ export const CreateGuestUserForm = () => {
             <div className={classes.CreateGuestUserForm__FormField}>
                 <TextField
                     className={classes.CreateGuestUserForm__FormField}
-                    id="create-user-firstname-input"
+                    id={`${testIdKey}-firstname`}
                     data-testid={`${testIdKey}-firstname`}
                     label="First Name"
                     defaultValue=""
@@ -33,13 +33,16 @@ export const CreateGuestUserForm = () => {
                     {...register('firstName')}
                 />
                 {errors.firstName &&
-                    <InputErrorMessage error={errors.firstName.message}/>
+                    <InputErrorMessage
+                        dataTestId={`${testIdKey}-firstname-error`}
+                        error={errors.firstName.message}
+                    />
                 }
             </div>
             <div className={classes.CreateGuestUserForm__FormField}>
                 <TextField
                     className={classes.CreateGuestUserForm__FormField}
-                    id="create-user-lastname-input"
+                    id={`${testIdKey}-lastname`}
                     data-testid={`${testIdKey}-lastname`}
                     label="Last Name"
                     defaultValue=""
@@ -48,7 +51,10 @@ export const CreateGuestUserForm = () => {
                     {...register('lastName')}
                 />
                 {errors.lastName &&
-                    <InputErrorMessage error={errors.lastName.message}/>
+                    <InputErrorMessage
+                        dataTestId={`${testIdKey}-lastname-error`}
+                        error={errors.lastName.message}
+                    />
                 }
             </div>
 
@@ -57,6 +63,8 @@ export const CreateGuestUserForm = () => {
                 variant="contained"
                 type='submit'
                 loading={isPending}
+                disabled={Boolean(errors.firstName || errors.lastName)}
+                data-testid={`${testIdKey}-submit-button`}
             >
                 <Typography textTransform='none'>
                     Continue as a Guest

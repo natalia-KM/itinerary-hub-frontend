@@ -45,6 +45,20 @@ jobs:
       - name: Build
         run: npm run build
 
+  cypress:
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Run Cypress Tests
+        uses: cypress-io/github-action@v6
+        with:
+          start: npm start
+          browser: chrome
+
   unit-tests:
     runs-on: ubuntu-latest
     needs: build

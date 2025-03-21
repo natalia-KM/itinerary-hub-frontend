@@ -12,7 +12,8 @@ import imports from 'eslint-plugin-import'
 export default tseslint.config(
     {
         ignores: [
-            'dist'
+            'dist',
+            '.vercel'
         ]
     },
     {
@@ -52,11 +53,15 @@ export default tseslint.config(
                 'warn',
                 { allowConstantExport: true}
             ],
-            'no-only-tests/no-only-tests': ['error', { fix: true }],
+            'no-only-tests/no-only-tests': ['error', { fix: false }],
             'import/no-extraneous-dependencies': 'warn',
 
-            "no-restricted-imports": ["error", {
-                "patterns": ["../*", "!./*"]
+            "no-restricted-imports": ["warn", {
+                "patterns": [
+                    "../*",
+                    "!./*",
+                    "!cypress/*"
+                ]
             }]
         }
     }

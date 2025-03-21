@@ -10,15 +10,25 @@ interface UserDetailsProviderProps {
 }
 
 export const UserDetailsProvider = ({ children }: UserDetailsProviderProps) => {
-    const { data: response } = useGetUserDetails()
+    const { mutateAsync: getUserDetails } = useGetUserDetails()
     const [userDetails, setUserDetails] = useState<UserDetails | null>(null)
     const queryClient = useQueryClient()
 
     useEffect(() => {
-        if (response) {
-            setUserDetails(response)
+        const hasCookies = document.cookie && document.cookie.length > 0
+
+        if (hasCookies) {
+            getUserDetails().then((response) => {
+                setUserDetails(response)
+            }).catch((error) => {
+                console.log(error)
+            })
+        } else {
+            if(window.location.pathname !== '/login') {
+                window.location.href = '/login'
+            }
         }
-    }, [response])
+    }, [getUserDetails])
 
     const invalidateUserDetails = () => {
         queryClient.invalidateQueries({ queryKey: [queryKeys.getUserDetails] })
