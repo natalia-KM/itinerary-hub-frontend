@@ -56,12 +56,13 @@ jobs:
       - name: Run Cypress Tests
         uses: cypress-io/github-action@v6
         with:
-          start: npm start
+          start: npm run start
+          record: true
           browser: chrome
 
       - name: Upload Cypress Videos
-        if: always()  # Ensures this runs even if tests fail
-        uses: actions/upload-artifact@v3
+        if: always()
+        uses: actions/upload-artifact@v4
         with:
           name: cypress-videos
           path: cypress/videos
