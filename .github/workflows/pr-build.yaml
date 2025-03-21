@@ -59,6 +59,9 @@ jobs:
           API_URL: ${{ secrets.VITE_API_URL }}
           NODE_ENV: test
 
+      - name: Wait for app to be ready
+        run: npx wait-on http://localhost:3000
+
       - name: Run Cypress Tests
         uses: cypress-io/github-action@v6
 
