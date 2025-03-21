@@ -29,10 +29,9 @@ describe('Login Page', () => {
     })
 
     it('should redirect to dashboard on successfully guest account creation', () => {
-        apiInterceptor.setAuthenticated()
-
         const { resolve } = apiInterceptor.interceptCreateGuestUser({ manualResolution: true })
         apiInterceptor.interceptGetUserDetails({ manualResolution: false })
+        apiInterceptor.setAuthenticated()
 
         loginPage.firstNameInputField
             .should('be.visible')
@@ -52,6 +51,8 @@ describe('Login Page', () => {
             .then(() => {
                 resolve?.()
             })
+
+        cy.url().should('include', '/dashboard')
 
         tripsViewPage.title.should('be.visible')
     })
@@ -84,19 +85,23 @@ describe('Login Page', () => {
     })
 
     it('should call getUser and redirect to app when valid cookies exist', () => {
-        apiInterceptor.setAuthenticated()
         apiInterceptor.interceptGetUserDetails({})
+        apiInterceptor.setAuthenticated()
 
         cy.visit('http://localhost:3000')
+
+        cy.url().should('include', '/dashboard')
 
         tripsViewPage.title.should('be.visible')
     })
 
     it('should call getUser but not redirect to app when invalid cookies exist', () => {
-        apiInterceptor.setAuthenticated()
         apiInterceptor.interceptGetUserDetails({ status: 401 })
+        apiInterceptor.setAuthenticated()
 
         cy.visit('http://localhost:3000')
+
+        cy.url().should('include', '/login')
 
         loginPage.title.should('be.visible')
     })

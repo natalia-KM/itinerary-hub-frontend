@@ -20,8 +20,13 @@ export const UserDetailsProvider = ({ children }: UserDetailsProviderProps) => {
         if (hasCookies) {
             getUserDetails().then((response) => {
                 setUserDetails(response)
-            }).catch((error) => {
-                console.log(error)
+                if(window.location.pathname === '/login' || window.location.pathname === '/') {
+                    window.location.href = '/dashboard'
+                }
+            }).catch(() => {
+                if(window.location.pathname !== '/login') {
+                    window.location.href = '/login'
+                }
             })
         } else {
             if(window.location.pathname !== '/login') {
