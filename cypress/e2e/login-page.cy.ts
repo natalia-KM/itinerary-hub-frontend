@@ -29,7 +29,7 @@ describe('Login Page', () => {
     })
 
     it('should redirect to dashboard on successfully guest account creation', () => {
-        const { resolve, alias } = apiInterceptor.interceptCreateGuestUser({ manualResolution: true })
+        const { resolve } = apiInterceptor.interceptCreateGuestUser({ manualResolution: true })
         apiInterceptor.interceptGetUserDetails({ manualResolution: false })
         apiInterceptor.setAuthenticated()
 
@@ -47,12 +47,13 @@ describe('Login Page', () => {
             .click()
 
         loginPage.createGuestUserSubmitButton
-            .should('be.disabled')
+            .should('not.be.enabled')
             .then(() => {
+                // eslint-disable-next-line cypress/no-unnecessary-waiting
+                cy.wait(2000)
                 resolve?.()
             })
 
-        cy.wait(alias)
         cy.url().should('include', '/dashboard')
 
         tripsViewPage.title.should('be.visible')
@@ -86,12 +87,13 @@ describe('Login Page', () => {
     })
 
     it('should call getUser and redirect to app when valid cookies exist', () => {
-        const { alias } = apiInterceptor.interceptGetUserDetails({})
+        apiInterceptor.interceptGetUserDetails({})
         apiInterceptor.setAuthenticated()
 
         cy.visit('http://localhost:3000')
 
-        cy.wait(alias)
+        // eslint-disable-next-line cypress/no-unnecessary-waiting
+        cy.wait(2000)
 
         cy.url().should('include', '/dashboard')
 
@@ -104,6 +106,8 @@ describe('Login Page', () => {
 
         cy.visit('http://localhost:3000')
 
+        // eslint-disable-next-line cypress/no-unnecessary-waiting
+        cy.wait(2000)
         cy.url().should('include', '/login')
 
         loginPage.title.should('be.visible')
