@@ -4,8 +4,9 @@ import './index.css'
 import reportWebVitals from './reportWebVitals'
 import { AppRouter } from './AppRouter'
 import { QueryClientProvider } from '@tanstack/react-query'
-import { queryClient } from './queryClient'
+import { queryClient } from './config/queryClient'
 import { UserDetailsProvider } from './provider/UserDetailsProvider/UserDetailsProvider'
+import { ToastContainer } from 'react-toastify'
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -15,6 +16,10 @@ root.render(
       <QueryClientProvider client={queryClient}>
           <UserDetailsProvider>
             <AppRouter />
+              <ToastContainer
+                  position='top-right'
+                  theme='light'
+              />
           </UserDetailsProvider>
       </QueryClientProvider>
   </React.StrictMode>

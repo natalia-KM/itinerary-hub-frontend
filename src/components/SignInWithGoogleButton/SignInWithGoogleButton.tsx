@@ -6,7 +6,7 @@ export const SignInWithGoogleButton = () => {
     const { mutateAsync: signInWithGoogle } = useSignInWithGoogle()
 
     return (
-            <button className={classes.SignInWithGoogleButton} onClick={() => signInWithGoogle()}>
+            <button className={classes.SignInWithGoogleButton} onClick={() => signInWithGoogle()} data-testid='sign-in-with-google-button'>
                 <div className={classes.SignInWithGoogleButton__State} />
                 <div className={classes.SignInWithGoogleButton__Wrapper}>
                     <div className={classes.SignInWithGoogleButton__Icon}>
