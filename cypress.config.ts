@@ -4,6 +4,7 @@ import path from 'path'
 
 export default defineConfig({
   e2e: {
+      video: true,
       excludeSpecPattern: ['**/.vercel/**'],
       viewportWidth: 1920,
       viewportHeight: 1080,
