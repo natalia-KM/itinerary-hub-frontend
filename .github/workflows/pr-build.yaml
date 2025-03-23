@@ -60,6 +60,13 @@ jobs:
           wait-on: 'http://localhost:3000/'
           wait-on-timeout: 120
 
+      - name: Upload Cypress coverage
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage
+          path: coverage/
+
+
   unit-tests:
     runs-on: ubuntu-latest
     needs: build
@@ -74,6 +81,37 @@ jobs:
       - name: Run Tests
         run: npm run test -- --coverage
 
+      - name: Upload unit test coverage
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-unit
+          path: coverage-unit/
+
+  combine-coverage:
+    needs: [cypress, unit-tests]
+
+    steps:
+      - name: Download unit coverage
+        uses: actions/download-artifact@v4
+        with:
+          name: coverage-unit
+          path: coverage-unit/
+
+      - name: Download Cypress coverage
+        uses: actions/download-artifact@v4
+        with:
+          name: coverage
+          path: coverage/
+
+      - name: Merge coverage reports
+        run: |
+          npm install -g nyc
+          mkdir coverage
+          nyc merge coverage-unit coverage-unit.json
+          nyc merge coverage coverage.json
+          nyc merge coverage-unit coverage/coverage-final.json
+
+
   coverage:
     runs-on: ubuntu-latest
     needs: unit-tests
@@ -83,3 +121,4 @@ jobs:
         uses: codecov/codecov-action@v4
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
+          files: ./coverage/coverage-final.json

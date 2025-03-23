@@ -3,7 +3,12 @@ import vitePreprocessor from 'cypress-vite'
 import path from 'path'
 
 export default defineConfig({
-  e2e: {
+    env: {
+        codeCoverage: {
+            exclude: 'cypress/**/*.*'
+        }
+    },
+    e2e: {
       video: true,
       excludeSpecPattern: ['**/.vercel/**'],
       viewportWidth: 1920,
@@ -11,7 +16,9 @@ export default defineConfig({
       env: {
           VITE_API_URL: 'http://localhost:8080'
       },
-      setupNodeEvents(on) {
+      setupNodeEvents(on, config) {
+          // eslint-disable-next-line @typescript-eslint/no-require-imports
+          require('@cypress/code-coverage/task')(on, config)
           on(
               'file:preprocessor',
               vitePreprocessor({
@@ -19,6 +26,7 @@ export default defineConfig({
                   mode: 'development',
               }),
           )
+          return config
       },
   }
 })
