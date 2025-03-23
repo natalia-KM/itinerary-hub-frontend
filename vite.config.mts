@@ -39,7 +39,7 @@ export default defineConfig({
         reporters: ['verbose'],
         coverage: {
             provider: 'istanbul',
-            reporter: ['text', 'html', 'lcov'],
+            reporter: ['text', 'json', 'html'],
             include: ['src/**/*'],
             reportsDirectory: './coverage-unit',
             exclude: [
