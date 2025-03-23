@@ -66,8 +66,8 @@ jobs:
       - name: Upload Cypress coverage
         uses: actions/upload-artifact@v4
         with:
-          name: coverage
-          path: coverage/
+          name: coverage-e2e
+          path: coverage/coverage-final.json
 
 
   unit-tests:
@@ -88,7 +88,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: coverage-unit
-          path: coverage-unit/
+          path: coverage-unit/coverage-final.json
 
 #  combine-coverage:
 #    runs-on: ubuntu-latest
@@ -121,6 +121,18 @@ jobs:
 #    needs: combine-coverage
 
     steps:
+      - name: Download unit test coverage artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: coverage-unit
+          path: coverage-unit
+
+      - name: Download Cypress coverage artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: coverage-e2e
+          path: coverage
+
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v4
         with:
