@@ -1,11 +1,33 @@
 import { defineConfig } from 'vitest/config'
 import tsconfigPaths from 'vite-tsconfig-paths'
 import vercel from 'vite-plugin-vercel'
+import istanbul from 'vite-plugin-istanbul'
+
+import path from "path";
 
 // if something fails: https://dev.to/henriquejensen/migrating-from-create-react-app-to-vite-a-quick-and-easy-guide-5e72
 export default defineConfig({
     base: '/',
-    plugins: [tsconfigPaths(), vercel()],
+    resolve: {
+        alias: {
+            '@': path.resolve(__dirname, './src'),
+        },
+    },
+    css: {
+      preprocessorOptions: {
+          scss: {
+              additionalData: `@use "@/assets/styles/global.scss" as *;`
+          }
+      }
+    },
+    plugins: [
+        tsconfigPaths(),
+        vercel(),
+        istanbul({
+            cypress: true,
+            requireEnv: false
+        })
+    ],
     server: {
       port: 3000
     },
@@ -16,9 +38,13 @@ export default defineConfig({
         css: true,
         reporters: ['verbose'],
         coverage: {
-            reporter: ['text', 'json', 'html'],
+            provider: 'istanbul',
+            reporter: ['text', 'html', 'lcov'],
             include: ['src/**/*'],
-            exclude: [],
+            reportsDirectory: './coverage-unit',
+            exclude: [
+                'src/**/*.{handlers.ts, .module.scss}'
+            ],
         }
     },
 })
