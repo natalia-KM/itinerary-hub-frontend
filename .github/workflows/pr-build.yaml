@@ -112,9 +112,8 @@ jobs:
           npm install -g nyc
           mkdir merged-coverage
           nyc merge coverage-unit coverage-unit.json
-          nyc merge coverage coverage.json
+          nyc merge coverage coverage/coverage-final.json
           nyc merge merged-coverage coverage/coverage-final.json
-
 
   coverage:
     runs-on: ubuntu-latest
