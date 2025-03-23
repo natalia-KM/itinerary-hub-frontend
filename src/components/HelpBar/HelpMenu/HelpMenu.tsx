@@ -12,13 +12,13 @@ export const HelpMenu = ({
 
     const redirectToHelpPage = () => {
         closeMenu()
-        window.open('/help', '_blank')
+        window.open('/help')
     }
 
     return (
-        <Paper className={classes.HelpMenu}>
+        <Paper className={classes.HelpMenu} data-testid='top-bar-help-menu'>
             <MenuList>
-                <MenuItem onClick={redirectToHelpPage}>
+                <MenuItem onClick={redirectToHelpPage} data-testid='top-bar-help-redirect-btn'>
                     <ListItemText>Open Help Page in a new tab</ListItemText>
                     <Typography variant="body2" sx={{ color: 'text.secondary' }}>
                         <OpenInNewIcon fontSize='small'/>

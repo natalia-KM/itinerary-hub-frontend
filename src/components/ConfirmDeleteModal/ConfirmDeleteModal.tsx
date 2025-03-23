@@ -13,12 +13,14 @@ export const ConfirmDeleteModal = ({
 
     return (
         <CustomModal
+            testId='confirm-delete-modal'
             isOpen={isOpen}
             modalTitle={`Delete ${itemType}`}
-            actionButtonsProps={actionButtonsProps}>
+            actionButtonsProps={actionButtonsProps}
+        >
 
-            <WarningIcon className={classes.Icon}/>
-            <Typography className={classes.Text}>
+            <WarningIcon className={classes.Icon} data-testid='confirm-delete-modal-warning-icon'/>
+            <Typography className={classes.Text}  data-testid='confirm-delete-modal-text'>
                 Are you sure you want to delete {itemToDelete}? <br/>
                 This action cannot be undone.
             </Typography>

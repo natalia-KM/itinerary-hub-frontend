@@ -20,38 +20,43 @@ export const AccountMenu = ({
     const { userDetails } = useUserDetailsContext()
     const { mutateAsync: logout } = useLogout()
     const { mutateAsync: signInWithGoogle } = useSignInWithGoogle()
+    const testIdPrefix = 'top-bar-account-menu'
 
     return (
-        <Paper className={classes.AccountMenu}>
+        <Paper className={classes.AccountMenu} data-testid={testIdPrefix}>
             <MenuList>
                 <MenuItem>
                     <ListItemIcon>
                        <UserAvatar firstName={userDetails?.firstName} lastName={userDetails?.lastName} />
                     </ListItemIcon>
-                    <ListItemText>{userDetails?.firstName} {userDetails?.lastName}</ListItemText>
+                    <ListItemText data-testid={`${testIdPrefix}-name`}>{userDetails?.firstName} {userDetails?.lastName}</ListItemText>
                     {userDetails?.isGuest && (
-                        <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                        <Typography variant="body2" sx={{ color: 'text.secondary' }} data-testid={`${testIdPrefix}-guest-badge`}>
                             Guest Account
                         </Typography>
                     )}
                 </MenuItem>
                 {userDetails?.isGuest && (
-                    <MenuItem onClick={() => signInWithGoogle()}>
+                    <MenuItem onClick={() => signInWithGoogle()} data-testid={`${testIdPrefix}-link-google-account`}>
                         <ListItemIcon>
                             <GoogleIcon fontSize="small" />
                         </ListItemIcon>
                         <ListItemText>Connect With Google</ListItemText>
                     </MenuItem>
                 )}
+                {!userDetails?.isGuest && (
+                    <>
+                        <Divider />
+                        <MenuItem onClick={() => logout()} data-testid={`${testIdPrefix}-logout`}>
+                            <ListItemIcon>
+                                <LogoutIcon fontSize="small" />
+                            </ListItemIcon>
+                            <ListItemText>Log out</ListItemText>
+                        </MenuItem>
+                    </>
+                )}
                 <Divider />
-                <MenuItem onClick={() => logout()}>
-                    <ListItemIcon>
-                        <LogoutIcon fontSize="small" />
-                    </ListItemIcon>
-                    <ListItemText>Log out</ListItemText>
-                </MenuItem>
-                <Divider />
-                <DeleteAccount modalOpen={modalOpen} setModalOpen={setModalOpen}/>
+                <DeleteAccount testId={testIdPrefix} modalOpen={modalOpen} setModalOpen={setModalOpen}/>
             </MenuList>
         </Paper>
     )

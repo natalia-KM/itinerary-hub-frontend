@@ -22,7 +22,7 @@ export default defineConfig({
     },
     plugins: [
         tsconfigPaths(),
-        vercel(),
+        // vercel(),
         istanbul({
             cypress: true,
             requireEnv: false

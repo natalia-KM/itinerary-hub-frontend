@@ -8,6 +8,7 @@ interface CustomModalProps {
     isOpen: boolean,
     modalTitle: string
     actionButtonsProps: ModalActionButtonsProps
+    testId: string
     size?: 'small' | 'medium' | 'large'
     children: React.ReactNode
 }
@@ -16,12 +17,15 @@ export const CustomModal = ({
     isOpen,
     children,
     modalTitle,
+    testId,
     actionButtonsProps,
     size = 'medium'
 }: CustomModalProps) => {
     return (
         <Modal open={isOpen}>
-            <Box className={classnames(
+            <Box
+                data-testid={testId}
+                className={classnames(
                 classes.Modal,
                 size === 'small' && classes.Modal_small,
                 size === 'large' && classes.Modal_large

@@ -32,8 +32,30 @@ export class ApiInterceptor extends ApiInterceptorBase {
         })
     }
 
-    setAuthenticated() {
-        cy.setCookie('session_id', 'abc123')
+    interceptLogout({
+        status = 204,
+        manualResolution
+    }: InterceptRequestOptions): ApiInterceptorResponse {
+        return apiInterceptor.interceptRequest({
+            url: 'http://localhost:8080/logout',
+            status,
+            method: 'GET',
+            alias: InterceptorAlias.LOGOUT,
+            manualResolution
+        })
+    }
+
+    interceptDeleteAccount({
+        status = 204,
+        manualResolution
+    }: InterceptRequestOptions): ApiInterceptorResponse {
+        return apiInterceptor.interceptRequest({
+            url: 'http://localhost:8080/v1/users',
+            status,
+            method: 'DELETE',
+            alias: InterceptorAlias.DELETE_ACCOUNT,
+            manualResolution
+        })
     }
 }
 

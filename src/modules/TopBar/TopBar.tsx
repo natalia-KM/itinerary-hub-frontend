@@ -12,9 +12,14 @@ export const TopBar = ({
         window.location.href = '/dashboard'
     }
     return(
-        <AppBar position="static" className={classes.TopBar}>
+        <AppBar position="static" className={classes.TopBar} data-testid='top-bar'>
             <Toolbar>
-                <Box sx={{ md: 'flex' }} onClick={redirectToHome} className={classes.TopBar__Logo}>
+                <Box
+                    sx={{ md: 'flex' }}
+                    onClick={redirectToHome}
+                    className={classes.TopBar__Logo}
+                    data-testid='top-bar-logo'
+                >
                     <img src="./src/assets/logo.png" alt="logo"/>
                 </Box>
                 <Box sx={{ flexGrow: 1 }} />
@@ -26,6 +31,7 @@ export const TopBar = ({
                             aria-label="Home button"
                             color="inherit"
                             onClick={redirectToHome}
+                            data-testid='top-bar-home-btn'
                         >
                             <HomeOutlinedIcon/>
                         </IconButton>

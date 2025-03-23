@@ -21,7 +21,7 @@ export const UserAvatar = ({
         return `${firstLetter}${secondLetter}`
     }
     return (
-        <Avatar sx={{ width: 24, height: 24 }}>
+        <Avatar sx={{ width: 24, height: 24 }} data-testid='user-avatar'>
             <Typography fontSize='12px' fontWeight='600'>
                 {initials()}
             </Typography>

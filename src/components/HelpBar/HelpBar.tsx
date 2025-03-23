@@ -23,6 +23,7 @@ export const HelpBar = () => {
                     aria-label="Show Help Popup"
                     color="inherit"
                     onClick={handleOpenMenu}
+                    data-testid='top-bar-help-btn'
                 >
                     <HelpOutlineIcon/>
                 </IconButton>

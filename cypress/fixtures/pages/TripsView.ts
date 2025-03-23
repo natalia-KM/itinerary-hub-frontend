@@ -1,6 +1,6 @@
 export class TripsView {
-    get title() {
-        return cy.getById('dashboard-title')
+    get topBar() {
+        return cy.getById('top-bar')
     }
 }
 

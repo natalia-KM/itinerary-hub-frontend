@@ -15,7 +15,9 @@ export interface InterceptRequestOptions extends InterceptOptions {
 
 export enum InterceptorAlias {
     GET_USER_DETAILS = 'getUserDetails',
-    CREATE_GUEST_USER = 'createGuestUser'
+    CREATE_GUEST_USER = 'createGuestUser',
+    LOGOUT = 'logout',
+    DELETE_ACCOUNT = 'deleteAccount'
 }
 
 export type CypressThenable = (

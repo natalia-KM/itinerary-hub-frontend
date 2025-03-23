@@ -14,6 +14,7 @@ export const ModalActionButtons = ({
     return (
         <Box className={classes.Container}>
             <Button
+                data-testid='modal-cancel-button'
                 variant='outlined'
                 onClick={onCancel}
                 className={classnames(
@@ -29,6 +30,7 @@ export const ModalActionButtons = ({
             <Box sx={{ flexGrow: '1' }} />
 
             <Button
+                data-testid='modal-confirm-button'
                 variant='contained'
                 onClick={onConfirm}
                 className={classnames(

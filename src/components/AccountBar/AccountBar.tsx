@@ -26,6 +26,7 @@ export const AccountBar = () => {
                     aria-haspopup="true"
                     onClick={handleOpenMenu}
                     color="inherit"
+                    data-testid='top-bar-account-btn'
                 >
                     <AccountCircleIcon/>
                 </IconButton>

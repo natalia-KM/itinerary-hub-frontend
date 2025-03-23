@@ -5,11 +5,13 @@ import { useDeleteAccount } from 'hooks/useDeleteAccount'
 import { ConfirmDeleteModal } from 'components/ConfirmDeleteModal'
 
 interface DeleteAccountProps {
+    testId: string
     modalOpen: boolean,
     setModalOpen: (value: boolean) => void
 }
 
 export const DeleteAccount = ({
+    testId,
     modalOpen,
     setModalOpen
 }: DeleteAccountProps) => {
@@ -17,7 +19,7 @@ export const DeleteAccount = ({
 
     return (
         <>
-        <MenuItem onClick={() => setModalOpen(true)}>
+        <MenuItem onClick={() => setModalOpen(true)} data-testid={`${testId}-delete-account-button`}>
             <ListItemIcon>
                 <HighlightOffIcon fontSize="small" className={classes.AccountMenu_error}/>
             </ListItemIcon>
@@ -25,7 +27,7 @@ export const DeleteAccount = ({
         </MenuItem>
         <ConfirmDeleteModal
             itemType='Account'
-            itemToDelete='account'
+            itemToDelete='this account'
             isOpen={modalOpen}
             actionButtonsProps={{
                 onCancel: () => setModalOpen(false),
