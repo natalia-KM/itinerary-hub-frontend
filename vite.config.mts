@@ -3,9 +3,23 @@ import tsconfigPaths from 'vite-tsconfig-paths'
 import vercel from 'vite-plugin-vercel'
 import istanbul from 'vite-plugin-istanbul'
 
+import path from "path";
+
 // if something fails: https://dev.to/henriquejensen/migrating-from-create-react-app-to-vite-a-quick-and-easy-guide-5e72
 export default defineConfig({
     base: '/',
+    resolve: {
+        alias: {
+            '@': path.resolve(__dirname, './src'),
+        },
+    },
+    css: {
+      preprocessorOptions: {
+          scss: {
+              additionalData: `@use "@/assets/styles/global.scss" as *;`
+          }
+      }
+    },
     plugins: [
         tsconfigPaths(),
         vercel(),
@@ -29,7 +43,7 @@ export default defineConfig({
             include: ['src/**/*'],
             reportsDirectory: './coverage-unit',
             exclude: [
-                'sec/**/*.{handlers.ts, .module.scss}'
+                'src/**/*.{handlers.ts, .module.scss}'
             ],
         }
     },

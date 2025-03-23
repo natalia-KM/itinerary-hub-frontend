@@ -1,0 +1,25 @@
+.Modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 500px;
+  background-color: $white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 50px 40px;
+
+  &__Title {
+    padding-bottom: 20px;
+  }
+
+  &_small {
+    width: 400px !important;
+  }
+
+  &_large {
+    width: 600px !important;
+  }
+}

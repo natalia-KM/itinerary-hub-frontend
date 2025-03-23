@@ -4,8 +4,6 @@ import { tripsViewPage } from '../fixtures/pages/TripsView'
 
 describe('Login Page', () => {
     beforeEach(() => {
-        // eslint-disable-next-line cypress/no-unnecessary-waiting
-        cy.wait(4000) // for the server to load
         cy.visit('http://localhost:3000/login')
 
     })
@@ -31,9 +29,10 @@ describe('Login Page', () => {
     })
 
     it('should redirect to dashboard on successfully guest account creation', () => {
-        const { resolve } = apiInterceptor.interceptCreateGuestUser({ manualResolution: true })
-        apiInterceptor.interceptGetUserDetails({ manualResolution: false })
-        apiInterceptor.setAuthenticated()
+        apiInterceptor.interceptGetUserDetails({ manualResolution: false, status: 401 })
+
+        const { resolve: resolveCreateUser } = apiInterceptor.interceptCreateGuestUser({ manualResolution: true })
+        const { resolve: resolveGetUserDetailsSuccess } = apiInterceptor.interceptGetUserDetails({ manualResolution: true })
 
         loginPage.firstNameInputField
             .should('be.visible')
@@ -51,15 +50,14 @@ describe('Login Page', () => {
         loginPage.createGuestUserSubmitButton
             .should('not.be.enabled')
             .then(() => {
-                // eslint-disable-next-line cypress/no-unnecessary-waiting
-                cy.wait(2000)
-                resolve?.()
+                resolveCreateUser?.()
+                resolveGetUserDetailsSuccess?.()
             })
 
         cy.location('pathname', { timeout: 60000 })
             .should('include', '/dashboard')
 
-        tripsViewPage.title.should('be.visible')
+        tripsViewPage.topBar.should('be.visible')
     })
 
     it('should show error toast on unsuccessful guest account creation', () => {
@@ -91,22 +89,17 @@ describe('Login Page', () => {
 
     it('should call getUser and redirect to app when valid cookies exist', () => {
         apiInterceptor.interceptGetUserDetails({})
-        apiInterceptor.setAuthenticated()
 
         cy.visit('http://localhost:3000')
-
-        // eslint-disable-next-line cypress/no-unnecessary-waiting
-        cy.wait(2000)
 
         cy.location('pathname', { timeout: 60000 })
             .should('include', '/dashboard')
 
-        tripsViewPage.title.should('be.visible')
+        tripsViewPage.topBar.should('be.visible')
     })
 
     it('should call getUser but not redirect to app when invalid cookies exist', () => {
         apiInterceptor.interceptGetUserDetails({ status: 401 })
-        apiInterceptor.setAuthenticated()
 
         cy.visit('http://localhost:3000')
 

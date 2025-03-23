@@ -1,0 +1,8 @@
+.TopBar {
+  background-color: $primary-bg-bar !important;
+  padding: 10px;
+
+  &__Logo {
+    cursor: pointer;
+  }
+}

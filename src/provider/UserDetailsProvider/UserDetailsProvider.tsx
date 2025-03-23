@@ -15,24 +15,17 @@ export const UserDetailsProvider = ({ children }: UserDetailsProviderProps) => {
     const queryClient = useQueryClient()
 
     useEffect(() => {
-        const hasCookies = document.cookie && document.cookie.length > 0
 
-        if (hasCookies) {
-            getUserDetails().then((response) => {
-                setUserDetails(response)
-                if(window.location.pathname === '/login' || window.location.pathname === '/') {
-                    window.location.href = '/dashboard'
-                }
-            }).catch(() => {
-                if(window.location.pathname !== '/login') {
-                    window.location.href = '/login'
-                }
-            })
-        } else {
+        getUserDetails().then((response) => {
+            setUserDetails(response)
+            if(window.location.pathname === '/login' || window.location.pathname === '/') {
+                window.location.href = '/dashboard'
+            }
+        }).catch(() => {
             if(window.location.pathname !== '/login') {
                 window.location.href = '/login'
             }
-        }
+        })
     }, [getUserDetails])
 
     const invalidateUserDetails = () => {
