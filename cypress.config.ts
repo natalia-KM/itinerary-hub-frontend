@@ -9,7 +9,7 @@ export default defineConfig({
         }
     },
     e2e: {
-      video: true,
+      video: false,
       excludeSpecPattern: ['**/.vercel/**'],
       viewportWidth: 1920,
       viewportHeight: 1080,

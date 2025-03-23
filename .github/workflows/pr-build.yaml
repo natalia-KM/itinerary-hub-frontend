@@ -110,10 +110,10 @@ jobs:
       - name: Merge coverage reports
         run: |
           npm install -g nyc
-          mkdir coverage
+          mkdir merged-coverage
           nyc merge coverage-unit coverage-unit.json
           nyc merge coverage coverage.json
-          nyc merge coverage-unit coverage/coverage-final.json
+          nyc merge merged-coverage coverage/coverage-final.json
 
 
   coverage:
@@ -125,4 +125,4 @@ jobs:
         uses: codecov/codecov-action@v4
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          files: ./coverage/coverage-final.json
+          files: ./merged-coverage/coverage-final.json
