@@ -1,24 +1,28 @@
 import { Box, Button, Typography } from '@mui/material'
-import { ModalActionButtonsProps } from './types'
-import classes from './ModalActionButtons.module.scss'
+import classes from './DrawerActionButton.module.scss'
 import classnames from 'classnames'
 
-export const ModalActionButtons = ({
-    onCancel,
-    onConfirm,
-    confirmErrorColor = false,
-    cancelTitle = 'Cancel',
-    confirmTitle = 'Confirm',
-    isLoading,
-    isDisabled
-} :ModalActionButtonsProps) => {
+interface DrawerActionButtonsProps {
+    confirmDisabled?: boolean
+    confirmLoading?: boolean
+    onCancel: () => void
+    cancelTitle?: string
+    confirmTitle?: string
+}
+
+export const DrawerActionButtons = ({
+   onCancel,
+   confirmLoading,
+   confirmDisabled,
+   cancelTitle = 'Cancel',
+   confirmTitle = 'Confirm'
+} :DrawerActionButtonsProps) => {
 
     return (
         <Box className={classes.Container}>
             <Button
-                data-testid='modal-cancel-button'
+                data-testid='drawer-cancel-button'
                 variant='outlined'
-                disabled={isLoading}
                 onClick={onCancel}
                 className={classnames(
                     classes.Container__Button,
@@ -33,15 +37,14 @@ export const ModalActionButtons = ({
             <Box sx={{ flexGrow: '1' }} />
 
             <Button
-                data-testid='modal-confirm-button'
+                data-testid='drawer-confirm-button'
+                type='submit'
                 variant='contained'
-                onClick={onConfirm}
-                loading={isLoading}
-                disabled={isDisabled}
+                loading={confirmLoading}
+                disabled={confirmDisabled}
                 className={classnames(
                     classes.Container__Button,
-                    !confirmErrorColor && classes.Container__ConfirmButton,
-                    confirmErrorColor && classes.Container_errorColor
+                    classes.Container__ConfirmButton
                 )}
             >
                 <Typography textTransform='none'>

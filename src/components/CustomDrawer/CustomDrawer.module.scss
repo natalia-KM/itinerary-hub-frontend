@@ -1,0 +1,26 @@
+.Drawer {
+  width: 100%;
+
+  &__Container {
+    height: 100%;
+    width: 25vw;
+    padding: 3vh 2vw;
+
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__IntroText {
+    padding-bottom: 25px;
+  }
+
+  &__Desc {
+    color: $lighter-gray !important;
+  }
+
+  &__Body {
+    flex-grow: 1;
+  }
+}
+
+

@@ -7,6 +7,10 @@ import { QueryClientProvider } from '@tanstack/react-query'
 import { queryClient } from './config/queryClient'
 import { UserDetailsProvider } from './provider/UserDetailsProvider/UserDetailsProvider'
 import { ToastContainer } from 'react-toastify'
+import '@fontsource/roboto/300.css'
+import '@fontsource/roboto/400.css'
+import '@fontsource/roboto/500.css'
+import '@fontsource/roboto/700.css'
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement

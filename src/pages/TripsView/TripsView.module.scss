@@ -1,0 +1,15 @@
+.TripsView {
+  background-color: $primary-bg;
+  min-height: 100vh;
+
+  &__TripsContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    gap: 2vw;
+
+    padding: 5vh 3vw;
+  }
+}
+

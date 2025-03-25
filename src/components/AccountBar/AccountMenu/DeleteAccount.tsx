@@ -11,29 +11,31 @@ interface DeleteAccountProps {
 }
 
 export const DeleteAccount = ({
-    testId,
-    modalOpen,
-    setModalOpen
+  testId,
+  modalOpen,
+  setModalOpen
 }: DeleteAccountProps) => {
-    const { mutateAsync: deleteAccount } = useDeleteAccount()
+    const { mutateAsync: deleteAccount, isPending } = useDeleteAccount()
 
     return (
         <>
-        <MenuItem onClick={() => setModalOpen(true)} data-testid={`${testId}-delete-account-button`}>
-            <ListItemIcon>
-                <HighlightOffIcon fontSize="small" className={classes.AccountMenu_error}/>
-            </ListItemIcon>
-            <ListItemText className={classes.AccountMenu_error}>Delete Account</ListItemText>
-        </MenuItem>
-        <ConfirmDeleteModal
-            itemType='Account'
-            itemToDelete='this account'
-            isOpen={modalOpen}
-            actionButtonsProps={{
-                onCancel: () => setModalOpen(false),
-                onConfirm: () => deleteAccount(),
-                confirmErrorColor: true
-            }} />
+            <MenuItem onClick={() => setModalOpen(true)} data-testid={`${testId}-delete-account-button`}>
+                <ListItemIcon>
+                    <HighlightOffIcon fontSize="small" className={classes.AccountMenu_error}/>
+                </ListItemIcon>
+                <ListItemText className={classes.AccountMenu_error}>Delete Account</ListItemText>
+            </MenuItem>
+            <ConfirmDeleteModal
+                itemType="Account"
+                itemToDelete="this account"
+                isOpen={modalOpen}
+                actionButtonsProps={{
+                    onCancel: () => setModalOpen(false),
+                    onConfirm: () => deleteAccount(),
+                    confirmErrorColor: true,
+                    isLoading: isPending
+                }}
+            />
         </>
     )
 }

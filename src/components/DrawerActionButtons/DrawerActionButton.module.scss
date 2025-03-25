@@ -1,0 +1,20 @@
+.Container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  margin-top: 30px;
+
+  &__CancelButton {
+    border-color: $primary-bg-button !important;
+    color: $primary-bg-button !important;
+  }
+
+  &__ConfirmButton {
+    background-color: $primary-bg-button !important;
+  }
+
+  &__Button {
+    border-radius: 25px !important;
+    padding: 6px 25px !important;
+  }
+}

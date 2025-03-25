@@ -1,0 +1,19 @@
+.Selected {
+  border: 4px solid $selected-bg-button;
+}
+
+.Unselected {
+  filter: brightness(60%);
+
+  &:hover {
+    filter: brightness(100%);
+  }
+}
+
+.Title {
+  letter-spacing: -0.01em !important;
+}
+
+.ImagePicker {
+  margin-top: 8px !important;
+}

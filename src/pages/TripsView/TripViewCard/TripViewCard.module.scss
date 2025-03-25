@@ -1,0 +1,59 @@
+.Card {
+  width: 300px;
+  height: 320px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 3px 15px !important;
+  border-radius: 15px !important;
+  transition: background-color 0.3s, filter 0.3s !important;
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+
+  box-sizing: border-box;
+
+  &:hover {
+    background-color: $dirty-white;
+
+    .Card__Image {
+      filter: brightness(90%);
+    }
+  }
+
+  &__Icon {
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.1);
+      border-radius: 50%;
+    }
+  }
+
+  &__ActivationArea {
+    box-sizing: border-box;
+  }
+
+  &__Content {
+    box-sizing: border-box;
+    display: flex;
+    padding: 0 !important;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  &__Image {
+    height: 65%;
+    background-position: center;
+    border-radius: 15px 0 0 !important;
+  }
+
+  &__InfoContainer {
+    width: 100%;
+    margin-top: 5px;
+    padding: 15px;
+  }
+
+  &_Title {
+    cursor: pointer;
+  }
+}
