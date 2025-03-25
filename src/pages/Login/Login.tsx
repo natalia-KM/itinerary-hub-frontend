@@ -8,7 +8,10 @@ export const Login = ({ isLogout = false }: { isLogout?: boolean }) => {
 
     return (
         <div className={classes.LoginPage}>
-            <div className={classes.LoginPage__ImageContainer} />
+            <div className={classes.LoginPage__ImageContainer}>
+                <img src="/images/background-login.jpg" loading="lazy" alt="Background" />
+            </div>
+
             <div className={classes.LoginPage__LoginSection}>
                 <div className={classes.LoginPage__IntroductionWrapper}>
                     <IntroductionText/>

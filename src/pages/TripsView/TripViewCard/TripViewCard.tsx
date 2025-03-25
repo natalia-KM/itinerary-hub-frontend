@@ -59,7 +59,7 @@ export const TripViewCard = ({
                         <CardContent className={classes.Card__Content}>
                             <img
                                 className={classes.Card__Image}
-                                src={`src/assets/backgrounds/${tripInfo.imageRef}.jpg`}
+                                src={`/backgrounds/${tripInfo.imageRef}.jpg`}
                                 loading="lazy"
                                 alt="Trip Cover Image"
                                 data-testid={`${testIdPrefix}-image`}

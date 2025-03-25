@@ -6,9 +6,17 @@
   grid-template-columns: 50% 50%;
 
   &__ImageContainer {
-    background-image: url("../../assets/images/background-login.jpg");
-    background-size: cover;
-    background-position: center;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+
+    img {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
   }
 
   &__LoginSection {

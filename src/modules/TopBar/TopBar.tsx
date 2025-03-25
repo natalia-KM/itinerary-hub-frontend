@@ -20,7 +20,7 @@ export const TopBar = ({
                     className={classes.TopBar__Logo}
                     data-testid='top-bar-logo'
                 >
-                    <img src="./src/assets/logo.png" alt="logo"/>
+                    <img src="logo.png" alt="logo"/>
                 </Box>
                 <Box sx={{ flexGrow: 1 }} />
                 <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
