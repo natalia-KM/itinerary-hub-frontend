@@ -32,7 +32,7 @@ export const ImagePicker = ({
                        )}
                    >
                        <img
-                           src={`src/assets/backgrounds/${item.img}.jpg`}
+                           src={`/backgrounds/${item.img}.jpg`}
                            alt={item.title}
                            loading="lazy"
                         />
