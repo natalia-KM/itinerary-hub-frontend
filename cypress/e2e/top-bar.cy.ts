@@ -1,12 +1,13 @@
 import { topBar } from '../fixtures/pages/TopBar'
 import { apiInterceptor } from '../api/ApiInterceptor'
 import { useGetUserDetailsResponses } from 'hooks/useGetUserDetails'
-import { BASE_API_PATH } from 'config/envConfig'
+import { modals } from '../fixtures/modules/Modals'
 
 describe('Top Bar', () => {
 
     beforeEach(() => {
         apiInterceptor.interceptGetUserDetails({ manualResolution: false })
+        apiInterceptor.interceptGetAllTrips({})
     })
 
     it('should have all elements visible', () => {
@@ -98,15 +99,15 @@ describe('Top Bar', () => {
                 .should('be.visible')
                 .click()
 
-            topBar.confirmDeleteModal.should('be.visible')
-            topBar.modalWarningIcon.should('be.visible')
+            modals.confirmDeleteModal.should('be.visible')
+            modals.modalWarningIcon.should('be.visible')
 
-            topBar.modalText
+            modals.modalText
                 .should('be.visible')
                 .should('contain.text', 'Are you sure you want to delete this account?')
                 .should('contain.text', 'This action cannot be undone.')
 
-            topBar.modalConfirmButton
+            modals.modalConfirmButton
                 .should('be.visible')
                 .click()
 
@@ -119,16 +120,16 @@ describe('Top Bar', () => {
                 .should('be.visible')
                 .click()
 
-            topBar.confirmDeleteModal.should('be.visible')
-            topBar.modalWarningIcon.should('be.visible')
+            modals.confirmDeleteModal.should('be.visible')
+            modals.modalWarningIcon.should('be.visible')
 
-            topBar.modalText.should('be.visible')
+            modals.modalText.should('be.visible')
 
-            topBar.modalCancelButton
+            modals.modalCancelButton
                 .should('be.visible')
                 .click()
 
-            topBar.confirmDeleteModal.should('not.exist')
+            modals.confirmDeleteModal.should('not.exist')
 
             cy.location('pathname', { timeout: 60000 })
                 .should('include', '/dashboard')

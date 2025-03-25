@@ -4,5 +4,9 @@ export const queryKeys = {
     signInWithGoogle: 'signInWithGoogle',
     signUpAsGuest: 'signUpAsGuest',
     logout: 'logout',
-    updateUserDetails: 'updateUserDetails'
+    updateUserDetails: 'updateUserDetails',
+    getAllTrips: 'getAllTrips',
+    createTrip: 'createTrip',
+    updateTrip: 'updateTrip',
+    deleteTrip: 'deleteTrip'
 }

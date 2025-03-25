@@ -9,7 +9,6 @@ import { DUMMY_URL } from 'testUtils/mockValues'
 describe('useDeleteAccount hook', () => {
     afterEach(() => {
         server.restoreHandlers()
-
     })
 
     it('should return 204 on success', async () => {

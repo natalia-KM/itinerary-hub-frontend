@@ -12,7 +12,7 @@ describe('useSignUpAsGuest hook', () => {
         server.use(...useSignUpAsGuestSuccessHandler)
     })
 
-    it('should redirect on success', async () => {
+    it('should expect isSuccess to be true', async () => {
         const { result } = renderHook(() => useSignUpAsGuest(), {
             wrapper: userContextAndQueryWrapper
         })

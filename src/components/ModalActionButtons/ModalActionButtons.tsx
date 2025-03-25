@@ -8,7 +8,9 @@ export const ModalActionButtons = ({
     onConfirm,
     confirmErrorColor = false,
     cancelTitle = 'Cancel',
-    confirmTitle = 'Confirm'
+    confirmTitle = 'Confirm',
+    isLoading,
+    isDisabled
 } :ModalActionButtonsProps) => {
 
     return (
@@ -16,6 +18,7 @@ export const ModalActionButtons = ({
             <Button
                 data-testid='modal-cancel-button'
                 variant='outlined'
+                disabled={isLoading}
                 onClick={onCancel}
                 className={classnames(
                     classes.Container__Button,
@@ -33,6 +36,8 @@ export const ModalActionButtons = ({
                 data-testid='modal-confirm-button'
                 variant='contained'
                 onClick={onConfirm}
+                loading={isLoading}
+                disabled={isDisabled}
                 className={classnames(
                     classes.Container__Button,
                     !confirmErrorColor && classes.Container__ConfirmButton,

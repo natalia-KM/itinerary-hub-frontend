@@ -4,4 +4,6 @@ export interface ModalActionButtonsProps {
     confirmErrorColor?: boolean
     cancelTitle?: string
     confirmTitle?: string
+    isLoading?: boolean
+    isDisabled?: boolean
 }

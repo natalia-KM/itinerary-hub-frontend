@@ -1,0 +1,43 @@
+.CreateTripForm {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  &__Section {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+  }
+
+  &__FormField {
+    width: 100%;
+
+    div {
+      border-radius: 0 !important;
+    }
+  }
+
+  &__DatePicker {
+    width: 100%;
+
+    div {
+      border-radius: 0 !important;
+    }
+  }
+
+  &__SubmitButton {
+    width: 100%;
+    text-transform: none;
+    border-radius: 0 !important;
+    background-color: $primary-bg-button !important;
+    padding: 12px 0 !important;
+
+    &:hover {
+      opacity: 90%;
+    }
+  }
+}

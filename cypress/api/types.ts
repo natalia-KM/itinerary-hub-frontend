@@ -13,11 +13,19 @@ export interface InterceptRequestOptions extends InterceptOptions {
     manualResolution?: boolean
 }
 
+export interface TripsRequestOptions extends InterceptRequestOptions {
+    tripId?: string
+}
+
 export enum InterceptorAlias {
     GET_USER_DETAILS = 'getUserDetails',
     CREATE_GUEST_USER = 'createGuestUser',
     LOGOUT = 'logout',
-    DELETE_ACCOUNT = 'deleteAccount'
+    DELETE_ACCOUNT = 'deleteAccount',
+    CREATE_TRIP = 'createTrip',
+    UPDATE_TRIP = 'updateTrip',
+    DELETE_TRIP = 'deleteTrip',
+    GET_ALL_TRIPS = 'getAllTrips'
 }
 
 export type CypressThenable = (
