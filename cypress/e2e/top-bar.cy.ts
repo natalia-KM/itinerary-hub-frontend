@@ -7,6 +7,7 @@ describe('Top Bar', () => {
 
     beforeEach(() => {
         apiInterceptor.interceptGetUserDetails({ manualResolution: false })
+        apiInterceptor.interceptGetAllTrips({})
     })
 
     it('should have all elements visible', () => {
