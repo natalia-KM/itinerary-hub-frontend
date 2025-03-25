@@ -27,7 +27,7 @@ describe('useMutateAllTrips hook', () => {
             tripId: TRIP_ID,
             tripName: 'Paris Trip',
             createdAt: new Date('2025-03-22T00:00:00'),
-            imageRef: 'image-1',
+            imageRef: 'trip-1',
             startDate: new Date('2025-03-24T00:00:00'),
             endDate: new Date('2025-03-28T00:00:00')
         }
@@ -36,7 +36,7 @@ describe('useMutateAllTrips hook', () => {
             tripId: TRIP_ID_2,
             tripName: 'London Trip',
             createdAt: new Date('2025-03-15T00:00:00'),
-            imageRef: 'image-1',
+            imageRef: 'trip-1',
             startDate: undefined,
             endDate: undefined
         }

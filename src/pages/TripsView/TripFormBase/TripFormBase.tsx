@@ -10,6 +10,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import { ImagePicker } from 'pages/TripsView/CreateTripModal/ImagePicker/ImagePicker'
 import { DrawerActionButtons } from 'components/DrawerActionButtons/DrawerActionButtons'
 import { TripDetails } from 'utils/types'
+import 'dayjs/locale/en-gb'
 
 import classes from './TripFormBase.module.scss'
 import dayjs from 'dayjs'
@@ -32,7 +33,6 @@ export const TripFormBase = ({
     const initialStartDate = defaultValues?.startDate ? dayjs(defaultValues.startDate) : undefined
     const initialEndDate = defaultValues?.endDate ? dayjs(defaultValues.endDate) : undefined
 
-
     const { register, control, handleSubmit, formState: { errors } } = useForm<TripFormFields>({
         resolver: yupResolver(schema),
         defaultValues: defaultValues ? {
@@ -53,17 +53,18 @@ export const TripFormBase = ({
                     <TextField
                         className={classes.TripForm__FormField}
                         id={`${testIdKey}-trip-name`}
-                        data-testid={`${testIdKey}-trip-name`}
+                        data-testid={'trip-form-trip-name'}
                         label="Trip Name"
                         placeholder="Paris Trip"
                         defaultValue={defaultValues?.tripName ?? ''}
                         variant="outlined"
                         size="small"
+                        slotProps={{ input: { id: 'trip-form-trip-name' } }}
                         {...register('tripName')}
                     />
                     {errors.tripName &&
                         <InputErrorMessage
-                            dataTestId={`${testIdKey}-trip-name-error`}
+                            dataTestId={'trip-form-trip-name-error'}
                             error={errors.tripName.message}
                         />
                     }
@@ -75,7 +76,7 @@ export const TripFormBase = ({
                         control={control}
                         render={({ field }) => {
                             return (
-                                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                                <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="en-gb">
                                     <DatePicker
                                         label="Start Date"
                                         defaultValue={initialStartDate}
@@ -84,7 +85,7 @@ export const TripFormBase = ({
                                         onChange={(date) => {
                                             field.onChange(date)
                                         }}
-                                        slotProps={{ textField: { size: 'small' } }}
+                                        slotProps={{ textField: { size: 'small', id: 'trip-form-start-date' } }}
                                     />
                                 </LocalizationProvider>
                             )
@@ -98,7 +99,7 @@ export const TripFormBase = ({
                         control={control}
                         render={({ field }) => {
                             return (
-                                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                                <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="en-gb">
                                     <DatePicker
                                         label="End Date"
                                         defaultValue={initialEndDate}
@@ -107,7 +108,7 @@ export const TripFormBase = ({
                                         onChange={(date) => {
                                             field.onChange(date)
                                         }}
-                                        slotProps={{ textField: { size: 'small' } }}
+                                        slotProps={{ textField: { size: 'small',  id: 'trip-form-end-date' } }}
                                     />
                                 </LocalizationProvider>
                             )
@@ -115,7 +116,7 @@ export const TripFormBase = ({
                     />
                     {errors.endDate &&
                         <InputErrorMessage
-                            dataTestId={`${testIdKey}-end-date-error`}
+                            dataTestId={'trip-form-end-date-error'}
                             error={errors.endDate.message}
                         />
                     }

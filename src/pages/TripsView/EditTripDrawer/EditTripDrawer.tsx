@@ -23,6 +23,7 @@ export const EditTripDrawer = ({
         <CustomDrawer
             isOpen={isOpen}
             setClosed={setClosed}
+            testId='edit-trip-drawer'
             title={`Edit ${existingTripDetails.tripName}`}
             desc='Modify an existing trip'
         >

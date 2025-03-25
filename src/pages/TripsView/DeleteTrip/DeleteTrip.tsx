@@ -1,6 +1,3 @@
-import { ListItemIcon, ListItemText, MenuItem } from '@mui/material'
-import HighlightOffIcon from '@mui/icons-material/HighlightOff'
-import classes from './DeleteTrip.module.scss'
 import { ConfirmDeleteModal } from 'components/ConfirmDeleteModal'
 import { useDeleteTrip } from 'hooks/useDeleteTrip/useDeleteTrip'
 import { toast } from 'react-toastify'
@@ -27,13 +24,13 @@ export const DeleteTrip = ({
         deleteTrip(tripId)
             .then(() => {
                 toast('Trip successfully deleted.', {
-                    toastId: 'delete-trip-success-modal'
+                    toastId: 'delete-trip-success-toast'
                 })
                 client.invalidateQueries({ queryKey: [queryKeys.getAllTrips] })
             })
             .catch(() => {
                 toast('There was an error deleting your trip.', {
-                    toastId: 'delete-trip-error-modal'
+                    toastId: 'delete-trip-error-toast'
                 })
             })
             .finally(() => {
@@ -41,16 +38,8 @@ export const DeleteTrip = ({
             })
     }
 
-    const testId = 'delete-trip-modal'
-
     return (
         <>
-            <MenuItem onClick={() => setModalOpen(true)} data-testid={`${testId}-delete-trip-button`}>
-                <ListItemIcon>
-                    <HighlightOffIcon fontSize="small" className={classes.Error}/>
-                </ListItemIcon>
-                <ListItemText className={classes.Error}>Delete Trip</ListItemText>
-            </MenuItem>
             <ConfirmDeleteModal
                 itemType="Trip"
                 itemToDelete={tripName}

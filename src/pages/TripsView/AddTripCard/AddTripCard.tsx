@@ -17,7 +17,7 @@ export const AddTripCard = () => {
 
     return (
         <>
-            <Card className={classes.Card} onClick={openDrawer}>
+            <Card className={classes.Card} onClick={openDrawer} data-testid='add-trip-card'>
                 <CiCirclePlus className={classes.Card__Icon}/>
                 <Typography variant="h6" component="div" fontWeight={400}>
                     Add new trip

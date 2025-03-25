@@ -23,12 +23,13 @@ export const ActionPanel = ({
     setDeleteModalOpen,
     closeActionMenu
 }: ActionPanelProps) => {
+    const testIdPrefix = 'trip-card-action-panel'
 
     return (
         <>
-        <Paper className={classes.ActionPanel}>
+        <Paper className={classes.ActionPanel} data-testid={testIdPrefix}>
             <MenuList>
-                <MenuItem onClick={() => setEditTripDrawerOpen(true)}>
+                <MenuItem onClick={() => setEditTripDrawerOpen(true)} data-testid={`${testIdPrefix}-edit-trip-btn`}>
                     <ListItemIcon>
                         <EditIcon />
                     </ListItemIcon>
@@ -36,7 +37,7 @@ export const ActionPanel = ({
                         Edit Trip
                     </ListItemText>
                 </MenuItem>
-                <MenuItem onClick={() => setDeleteModalOpen(true)}>
+                <MenuItem onClick={() => setDeleteModalOpen(true)} data-testid={`${testIdPrefix}-delete-trip-btn`}>
                     <ListItemIcon>
                         <DeleteIcon />
                     </ListItemIcon>

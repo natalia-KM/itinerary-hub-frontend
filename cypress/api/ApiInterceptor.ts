@@ -1,6 +1,8 @@
 import { ApiInterceptorBase } from './ApiInterceptorBase'
-import { ApiInterceptorResponse, InterceptorAlias, InterceptRequestOptions } from './types'
+import { ApiInterceptorResponse, InterceptorAlias, InterceptRequestOptions, TripsRequestOptions } from './types'
 import { useGetUserDetailsResponses } from 'hooks/useGetUserDetails'
+import { TRIP_ID } from 'testUtils/mockValues'
+import { useGetAllTripsResponses } from 'hooks/useGetAllTrips/useGetAllTrips.responses'
 
 export class ApiInterceptor extends ApiInterceptorBase {
 
@@ -55,6 +57,62 @@ export class ApiInterceptor extends ApiInterceptorBase {
             method: 'DELETE',
             alias: InterceptorAlias.DELETE_ACCOUNT,
             manualResolution
+        })
+    }
+
+    interceptCreateTrip({
+         status = 201,
+         manualResolution
+     }: InterceptRequestOptions): ApiInterceptorResponse {
+        return apiInterceptor.interceptRequest({
+            url: 'http://localhost:8080/v1/trips',
+            status,
+            method: 'POST',
+            alias: InterceptorAlias.CREATE_TRIP,
+            manualResolution
+        })
+    }
+
+    interceptUpdateTrip({
+        tripId = TRIP_ID,
+        status = 204,
+        manualResolution
+    }: TripsRequestOptions): ApiInterceptorResponse {
+        return apiInterceptor.interceptRequest({
+            url: `http://localhost:8080/v1/trips/${tripId}`,
+            status,
+            method: 'PUT',
+            alias: InterceptorAlias.UPDATE_TRIP,
+            manualResolution
+        })
+    }
+
+    interceptDeleteTrip({
+        tripId = TRIP_ID,
+        status = 204,
+        manualResolution
+    }: TripsRequestOptions): ApiInterceptorResponse {
+        return apiInterceptor.interceptRequest({
+            url: `http://localhost:8080/v1/trips/${tripId}`,
+            status,
+            method: 'DELETE',
+            alias: InterceptorAlias.DELETE_TRIP,
+            manualResolution
+        })
+    }
+
+    interceptGetAllTrips({
+        status = 200,
+        manualResolution,
+        responseBody = useGetAllTripsResponses.multipleTrips
+    }: InterceptRequestOptions): ApiInterceptorResponse {
+        return apiInterceptor.interceptRequest({
+            url: 'http://localhost:8080/v1/trips',
+            status,
+            method: 'GET',
+            alias: InterceptorAlias.GET_ALL_TRIPS,
+            manualResolution,
+            responseBody
         })
     }
 }

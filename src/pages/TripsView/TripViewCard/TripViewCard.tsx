@@ -10,10 +10,12 @@ import { useNavigate } from 'react-router'
 
 interface TripViewCardProps {
     tripInfo: TripDetails
+    index: number
 }
 
 export const TripViewCard = ({
-     tripInfo
+    tripInfo,
+    index
 }: TripViewCardProps) => {
     const navigate = useNavigate()
     
@@ -48,31 +50,42 @@ export const TripViewCard = ({
         navigate(`/trip?tripId=${tripInfo.tripId}`)
     }
 
+    const testIdPrefix = `trip-view-card-${index}`
+
     return (
         <>
             <OutsideAlerter onClickOutside={handleCloseMenu}>
-                <Card className={classes.Card}>
+                <Card className={classes.Card} data-testid={testIdPrefix}>
                         <CardContent className={classes.Card__Content}>
                             <img
                                 className={classes.Card__Image}
                                 src={`src/assets/backgrounds/${tripInfo.imageRef}.jpg`}
                                 loading="lazy"
                                 alt="Trip Cover Image"
+                                data-testid={`${testIdPrefix}-image`}
                             />
                             <Grid2 container className={classes.Card__InfoContainer}>
                                 <Grid2 size={11} onClick={redirectToTripDetails}>
                                     <Tooltip
+                                        id={`${testIdPrefix}-tooltip`}
                                         title="Click to open this itinerary"
+                                        data-testid={`${testIdPrefix}-tooltip`}
                                         placement='bottom'
                                         arrow={true}
                                     >
-                                        <Typography variant="h5" component="div" className={classes.Card_Title}>
+                                        <Typography
+                                            variant="h5"
+                                            component="div"
+                                            className={classes.Card_Title}
+                                            data-testid={`${testIdPrefix}-trip-name`}
+                                        >
                                             {tripInfo.tripName}
                                         </Typography>
                                     </Tooltip>
                                 </Grid2>
                                 <Grid2 size={1}>
                                     <MoreVertOutlinedIcon
+                                        data-testid={`${testIdPrefix}-action-menu-button`}
                                         className={classes.Card__Icon}
                                         onClick={() => {
                                             handleOpenMenu()
@@ -81,7 +94,11 @@ export const TripViewCard = ({
                                 </Grid2>
                                 <Grid2 size={12}>
                                     {datesDisplayText && (
-                                        <Typography variant="body2" color="text.secondary">
+                                        <Typography
+                                            variant="body2"
+                                            color="text.secondary"
+                                            data-testid={`${testIdPrefix}-dates`}
+                                        >
                                             {datesDisplayText}
                                         </Typography>
                                     )}

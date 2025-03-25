@@ -5,6 +5,7 @@ import classes from './CustomDrawer.module.scss'
 export const CustomDrawer = ({
     isOpen,
     setClosed,
+    testId,
     title,
     desc,
     children
@@ -15,6 +16,7 @@ export const CustomDrawer = ({
             open={isOpen}
             onClose={setClosed}
             className={classes.Drawer}
+            data-testid={testId}
         >
             <Box className={classes.Drawer__Container}>
                 <Box className={classes.Drawer__IntroText}>

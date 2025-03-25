@@ -5,6 +5,7 @@ import { UpdateTripRequest, UpdateTripRequestValues, useUpdateTrip } from 'hooks
 import { TripFormFields } from 'pages/TripsView/shared'
 import { toast } from 'react-toastify'
 import { queryKeys } from 'config/queryKeys'
+import dayjs from 'dayjs'
 
 interface EditTripFormProps {
     tripDetails: TripDetails
@@ -21,11 +22,28 @@ export const EditTripForm = ({
     const updateExistingTrip = (
         async ({ tripName, startDate, endDate, imageRef }: TripFormFields
     ) => {
+            const isTripNameUnchanged = tripDetails.tripName === tripName
+            const isStartDateUnchanged = dayjs(tripDetails.startDate).isSame(startDate)
+            const isEndDateUnchanged = dayjs(tripDetails.endDate).isSame(endDate)
+            const isImageRefUnchanged = tripDetails.imageRef === imageRef
+
+            const isUnchanged =
+                isTripNameUnchanged &&
+                isStartDateUnchanged &&
+                isEndDateUnchanged &&
+                isImageRefUnchanged
+
+            if (isUnchanged) {
+                onClose()
+                toast('Nothing to update!', { toastId: 'no-updates-edit-trip-form' })
+                return
+            }
+
             const values: UpdateTripRequestValues = {
-                tripName,
-                startDate: transformDayJsToString(startDate),
-                endDate: transformDayJsToString(endDate),
-                imageRef
+                tripName: !isTripNameUnchanged ? tripName : undefined,
+                startDate: !isStartDateUnchanged ? transformDayJsToString(startDate) : undefined,
+                endDate: !isEndDateUnchanged ? transformDayJsToString(endDate) : undefined,
+                imageRef: !isImageRefUnchanged ? imageRef : undefined
             }
 
             const request: UpdateTripRequest = {

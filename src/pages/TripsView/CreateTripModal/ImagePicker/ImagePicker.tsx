@@ -19,10 +19,11 @@ export const ImagePicker = ({
             <DrawerSectionTitle>
                 Select Trip Cover Image
             </DrawerSectionTitle>
-           <ImageList cols={3} gap={10} className={classes.ImagePicker}>
+           <ImageList cols={3} gap={10} className={classes.ImagePicker} data-testid='trip-form-image-picker'>
                {itemData.map((item) => (
                    <ImageListItem
                        key={item.img}
+                       data-testid={item.img}
                        onClick={() => onChange(item.img)}
                        className={classNames(
                            item.img === currentValue
