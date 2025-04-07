@@ -1,3 +1,5 @@
 export * from './types'
 export * from './OutsideAlerter'
 export * from './DateHelper'
+export * from './TripNormalizer'
+export * from './useTripId'

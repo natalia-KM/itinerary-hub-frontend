@@ -1,6 +1,6 @@
 import { apiInterceptor } from '../api/ApiInterceptor'
 import { tripsViewPage } from '../fixtures/pages/TripsView'
-import { useGetAllTripsResponses } from 'hooks/useGetAllTrips/useGetAllTrips.responses'
+import { useGetAllTripsResponses } from 'hooks/trips/useGetAllTrips/useGetAllTrips.responses'
 import { modals } from '../fixtures/modules/Modals'
 
 describe('Trips View - Sad Paths', () => {

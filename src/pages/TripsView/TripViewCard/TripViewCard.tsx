@@ -1,5 +1,5 @@
-import { Card, CardContent, Grid2, Tooltip, Typography } from '@mui/material'
-import { prettifyDate, TripDetails } from 'utils'
+import { Card, CardContent, Grid, Tooltip, Typography } from '@mui/material'
+import { getDatesText, TripDetails } from 'utils'
 import OutsideAlerter from 'utils/OutsideAlerter'
 
 import classes from './TripViewCard.module.scss'
@@ -32,18 +32,7 @@ export const TripViewCard = ({
     }
 
     const datesDisplayText = useMemo(() => {
-        const startDate = tripInfo.startDate
-        const endDate = tripInfo.endDate
-
-        if (startDate && endDate) {
-            return `${prettifyDate(startDate)} - ${prettifyDate(endDate)}`
-        }
-
-        if (startDate) {
-            return prettifyDate(startDate)
-        }
-
-        return undefined
+        return getDatesText(tripInfo.startDate, tripInfo.endDate)
     }, [tripInfo.startDate, tripInfo.endDate])
 
     const redirectToTripDetails = () => {
@@ -64,8 +53,8 @@ export const TripViewCard = ({
                                 alt="Trip Cover Image"
                                 data-testid={`${testIdPrefix}-image`}
                             />
-                            <Grid2 container className={classes.Card__InfoContainer}>
-                                <Grid2 size={11} onClick={redirectToTripDetails}>
+                            <Grid container className={classes.Card__InfoContainer}>
+                                <Grid size={11} onClick={redirectToTripDetails}>
                                     <Tooltip
                                         id={`${testIdPrefix}-tooltip`}
                                         title="Click to open this itinerary"
@@ -82,8 +71,8 @@ export const TripViewCard = ({
                                             {tripInfo.tripName}
                                         </Typography>
                                     </Tooltip>
-                                </Grid2>
-                                <Grid2 size={1}>
+                                </Grid>
+                                <Grid size={1}>
                                     <MoreVertOutlinedIcon
                                         data-testid={`${testIdPrefix}-action-menu-button`}
                                         className={classes.Card__Icon}
@@ -91,8 +80,8 @@ export const TripViewCard = ({
                                             handleOpenMenu()
                                         }}
                                     />
-                                </Grid2>
-                                <Grid2 size={12}>
+                                </Grid>
+                                <Grid size={12}>
                                     {datesDisplayText && (
                                         <Typography
                                             variant="body2"
@@ -102,8 +91,8 @@ export const TripViewCard = ({
                                             {datesDisplayText}
                                         </Typography>
                                     )}
-                                </Grid2>
-                            </Grid2>
+                                </Grid>
+                            </Grid>
                         </CardContent>
                     {actionMenuOpen && (
                         <ActionPanel

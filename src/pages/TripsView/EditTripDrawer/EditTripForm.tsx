@@ -1,7 +1,7 @@
 import { TripFormBase } from 'pages/TripsView/TripFormBase'
 import { transformDayJsToString, TripDetails } from 'utils'
 import { useQueryClient } from '@tanstack/react-query'
-import { UpdateTripRequest, UpdateTripRequestValues, useUpdateTrip } from 'hooks/useUpdateTrip'
+import { UpdateTripRequest, UpdateTripRequestValues, useUpdateTrip } from 'hooks/trips/useUpdateTrip'
 import { TripFormFields } from 'pages/TripsView/shared'
 import { toast } from 'react-toastify'
 import { queryKeys } from 'config/queryKeys'

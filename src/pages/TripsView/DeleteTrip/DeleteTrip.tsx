@@ -1,5 +1,5 @@
 import { ConfirmDeleteModal } from 'components/ConfirmDeleteModal'
-import { useDeleteTrip } from 'hooks/useDeleteTrip/useDeleteTrip'
+import { useDeleteTrip } from 'hooks/trips/useDeleteTrip/useDeleteTrip'
 import { toast } from 'react-toastify'
 import { useQueryClient } from '@tanstack/react-query'
 import { queryKeys } from 'config/queryKeys'

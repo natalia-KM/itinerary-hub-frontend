@@ -91,6 +91,12 @@ export const TripFormBase = ({
                             )
                         }}
                     />
+                    {errors.startDate &&
+                        <InputErrorMessage
+                            dataTestId={'trip-form-start-date-error'}
+                            error={errors.startDate.message}
+                        />
+                    }
                 </div>
 
                 <div className={classes.TripForm__DatePicker}>

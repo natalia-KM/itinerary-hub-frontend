@@ -1,6 +1,6 @@
 import { apiInterceptor } from '../api/ApiInterceptor'
 import { tripsViewPage } from '../fixtures/pages/TripsView'
-import { useGetAllTripsResponses } from 'hooks/useGetAllTrips/useGetAllTrips.responses'
+import { useGetAllTripsResponses } from 'hooks/trips/useGetAllTrips/useGetAllTrips.responses'
 import { TRIP_ID, TRIP_ID_2 } from 'testUtils/mockValues'
 import { modals } from '../fixtures/modules/Modals'
 

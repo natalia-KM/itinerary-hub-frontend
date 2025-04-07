@@ -2,7 +2,7 @@ import { ApiInterceptorBase } from './ApiInterceptorBase'
 import { ApiInterceptorResponse, InterceptorAlias, InterceptRequestOptions, TripsRequestOptions } from './types'
 import { useGetUserDetailsResponses } from 'hooks/useGetUserDetails'
 import { TRIP_ID } from 'testUtils/mockValues'
-import { useGetAllTripsResponses } from 'hooks/useGetAllTrips/useGetAllTrips.responses'
+import { useGetAllTripsResponses } from 'hooks/trips/useGetAllTrips/useGetAllTrips.responses'
 
 export class ApiInterceptor extends ApiInterceptorBase {
 

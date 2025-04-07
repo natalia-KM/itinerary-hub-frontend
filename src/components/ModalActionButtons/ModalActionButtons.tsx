@@ -9,26 +9,29 @@ export const ModalActionButtons = ({
     confirmErrorColor = false,
     cancelTitle = 'Cancel',
     confirmTitle = 'Confirm',
+    showCancel = true,
     isLoading,
     isDisabled
 } :ModalActionButtonsProps) => {
 
     return (
         <Box className={classes.Container}>
-            <Button
-                data-testid='modal-cancel-button'
-                variant='outlined'
-                disabled={isLoading}
-                onClick={onCancel}
-                className={classnames(
-                    classes.Container__Button,
-                    classes.Container__CancelButton
-                )}
-            >
-                <Typography textTransform='none'>
-                    {cancelTitle}
-                </Typography>
-            </Button>
+            {showCancel && (
+                <Button
+                    data-testid='modal-cancel-button'
+                    variant='outlined'
+                    disabled={isLoading}
+                    onClick={onCancel}
+                    className={classnames(
+                        classes.Container__Button,
+                        classes.Container__CancelButton
+                    )}
+                >
+                    <Typography textTransform='none'>
+                        {cancelTitle}
+                    </Typography>
+                </Button>
+            )}
 
             <Box sx={{ flexGrow: '1' }} />
 

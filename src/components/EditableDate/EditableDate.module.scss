@@ -1,0 +1,16 @@
+.DisplayDate {
+  color: $secondary-text !important;
+  font-size: 18px !important;
+  width: 100%;
+
+  &:hover {
+    cursor: url('public/icons/edit.svg'), pointer;
+    background-color: $lightest-gray !important;
+  }
+
+  &__InputSize {
+    input {
+      width: 90px !important;
+    }
+  }
+}
