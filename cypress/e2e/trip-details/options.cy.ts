@@ -45,8 +45,6 @@ describe('Options', () => {
         tripDetailsPage.optionTab(S2_OPTION_1_ID)
             .should('be.visible')
             .should('have.text', 'Option 1')
-
-        // TODO: check elements in tab panel
     })
 
     describe('Manage Options Modal', () => {
