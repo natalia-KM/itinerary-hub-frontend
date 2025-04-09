@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react'
 export const useHydrateTrip = () => {
     const { tripId } = useTripId()
     const [isInitializing, setIsInitializing] = useState(false)
-    const { data, isPending, isError } = useGetTrip({ tripId: tripId })
+    const { data, isLoading, isError } = useGetTrip({ tripId: tripId })
     const queryClient = useQueryClient()
 
     useEffect(() => {
@@ -38,6 +38,6 @@ export const useHydrateTrip = () => {
 
     }, [data, queryClient, tripId])
 
-    return { trip: data, isPending: isPending || isInitializing, isError }
+    return { trip: data, isPending: isLoading || isInitializing, isError }
 
 }

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Box, Typography } from '@mui/material'
 import classes from './EditableDate.module.scss'
 import classnames from 'classnames'
@@ -24,15 +24,30 @@ export const EditableDate = ({
 }: EditableDateProps) => {
     const [isEditing, setIsEditing] = useState(false)
     const [isCalendarOpen, setIsCalendarOpen] = useState(false)
+    const [value, setValue] = useState(initialValue)
 
-    const handleSave = (newDate: Dayjs | null) => {
+    useEffect(() => {
+        setValue(initialValue)
+    }, [initialValue])
+
+    const handleSave = (e: Dayjs | null) => {
         setIsEditing(false)
-        onSave(newDate)
+        setIsCalendarOpen(false)
+        onSave(e)
     }
 
     const onClickOutside = () => {
         if(isCalendarOpen) return
         setIsEditing(false)
+        setIsCalendarOpen(false)
+        onSave(value)
+    }
+
+    const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+        if (event.key === 'Enter') {
+            setIsEditing(false)
+            onSave(value)
+        }
     }
 
     return (
@@ -64,12 +79,19 @@ export const EditableDate = ({
                         <DatePicker
                             className={classes.InputComponent}
                             label={label}
-                            value={initialValue}
-                            onChange={(e) => handleSave(e)}
+                            value={value}
+                            onChange={(e) => setValue(e)}
+                            onAccept={(e) => handleSave(e)}
                             onClose={() => setIsEditing(false)}
                             onOpen={() => setIsCalendarOpen(true)}
                             open={isCalendarOpen}
-                            slotProps={{ textField: { size: 'small', id: `${testId}-input`, className: classes.DisplayDate__InputSize } }}
+                            slotProps={{
+                                textField: {
+                                    size: 'small',
+                                    id: `${testId}-input`,
+                                    onKeyDown: (e) => handleKeyDown(e),
+                                    className: classes.DisplayDate__InputSize }
+                        }}
                             autoFocus
                         />
                     </LocalizationProvider>

@@ -8,8 +8,8 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import classnames from 'classnames'
 import { useNavigate } from 'react-router'
 import { useQuery } from '@tanstack/react-query'
-import { normalizeTripData, useTripId } from 'utils'
-import webClient from 'config/clientConfig'
+import { useTripId } from 'utils'
+import { getSections } from 'hooks/sections'
 
 export const TripDetails = () => {
     const navigate = useNavigate()
@@ -17,10 +17,10 @@ export const TripDetails = () => {
     const { tripId } = useTripId()
 
     const { data: sectionIds } = useQuery<string[]>({ queryKey: ['sectionIds', tripId], enabled: false,
-        queryFn: async () => {
-            const { data } = await webClient.get(`/v1/trips/${tripId}`)
-            return normalizeTripData(data).trip.sectionIds
-        },
+        queryFn: () => getSections(tripId)
+            .then((response) => {
+                return response.map((section) => section.sectionId)
+             })
     })
 
     const redirectToTripList = () => {

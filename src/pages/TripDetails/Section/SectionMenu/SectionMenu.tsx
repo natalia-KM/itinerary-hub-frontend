@@ -24,7 +24,7 @@ export const SectionMenu = ({
     }
 
     return (
-        <Paper className={classes.OptionMenu}>
+        <Paper className={classes.OptionMenu} data-testid='section-menu'>
             <MenuList>
                 <MenuItem>
                     <ListItemIcon>
@@ -34,7 +34,10 @@ export const SectionMenu = ({
                         Add New Element
                     </ListItemText>
                 </MenuItem>
-                <MenuItem onClick={() => setModalOpen(true)}>
+                <MenuItem
+                    data-testid='section-menu-manage-options-button'
+                    onClick={() => setModalOpen(true)}
+                >
                     <ListItemIcon>
                        <EditIcon/>
                     </ListItemIcon>

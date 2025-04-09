@@ -1,11 +1,16 @@
 import { Backdrop, CircularProgress } from '@mui/material'
 import classes from './LoadingBackdrop.module.scss'
 
-export const LoadingBackdrop = ({ isOpen } : { isOpen: boolean }) => {
+interface LoadingBackdropProps {
+    isOpen: boolean
+    testId: string
+}
+
+export const LoadingBackdrop = ({ isOpen, testId }: LoadingBackdropProps) => {
 
     return (
         <Backdrop
-            data-testid='trips-view-loading'
+            data-testid={testId}
             className={classes.LoadingBackdrop}
             sx={(theme) => ({ zIndex: theme.zIndex.drawer + 1 })}
             open={isOpen}

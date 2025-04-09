@@ -7,11 +7,10 @@ import { SectionMenu } from './SectionMenu'
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz'
 import classNames from 'classnames'
 import { toast } from 'react-toastify'
-import { SectionDetails, useUpdateSection } from 'hooks/sections'
-import { normalizeTripData, useTripId } from 'utils'
+import { getSection, SectionDetails, useUpdateSection } from 'hooks/sections'
+import { useTripId } from 'utils'
 import { EditableText } from 'components/EditableText'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
-import webClient from 'config/clientConfig'
 
 interface SectionProps {
     sectionId: string
@@ -26,11 +25,10 @@ export const Section = ({
     const { mutateAsync: updateSectionCall } = useUpdateSection()
     const { tripId } = useTripId()
 
-    const { data: section } = useQuery<SectionDetails>({ queryKey: ['sectionDetails', sectionId], enabled: false,
-    queryFn: async () => {
-        const { data } = await webClient.get(`/v1/trips/${tripId}`)
-        return normalizeTripData(data).sections[sectionId].sectionDetails
-    } })
+    const { data: section } = useQuery<SectionDetails>({
+        queryKey: ['sectionDetails', sectionId], enabled: false,
+        queryFn: () => getSection({ tripId, sectionId })
+    })
 
     const queryClient = useQueryClient()
 
@@ -38,8 +36,8 @@ export const Section = ({
     const [currentSectionName, setSectionName] = useState(section?.sectionName)
 
     const handleMenuClose = async () => {
-        setMenuOpen(false)
         await queryClient.invalidateQueries({ queryKey: ['sectionOptionIds', sectionId] })
+        setMenuOpen(false)
     }
 
     const updateSectionName = async () => {
@@ -64,46 +62,46 @@ export const Section = ({
                 toast('Couldn\'t update the section name. Try again later.', { toastId: 'failed-section-name-update-toast' })
             })
     }
-    
+
 
     const onOutsideClick = () => {
-        if(!modalOpen) setMenuOpen(false)
+        if (!modalOpen) setMenuOpen(false)
     }
 
     return (
         <Box className={classes.Section}>
             <Box className={classes.Section__Header}>
                 <EditableText
-                    testId='trip-view-section-name'
+                    testId={`trip-view-section-${sectionId}`}
                     value={currentSectionName}
                     setValue={setSectionName}
                     isEditing={isEditingSectionName}
                     setIsEditing={setIsEditingSectionName}
                     onSave={updateSectionName}
-                    size='medium'
+                    size="medium"
                     withIcon
                 />
-                <Box sx={{ flexGrow: 1 }} />
-                 <Box>
-                     <OutsideAlerter onClickOutside={onOutsideClick}>
-                         <MoreHorizIcon
-                             data-testid='section-menu-icon'
-                             className={classNames(
-                                 classes.Section__Icon,
-                                 menuOpen && classes.Section__Icon__Open
-                             )}
-                             onClick={() => setMenuOpen(!menuOpen)}
-                         />
-                         {menuOpen && (
-                                 <SectionMenu
-                                     sectionId={sectionId}
-                                     closeMenu={handleMenuClose}
-                                     modalOpen={modalOpen}
-                                     setModalOpen={setModalOpen}
-                                 />
-                         )}
-                     </OutsideAlerter>
-                 </Box>
+                <Box sx={{ flexGrow: 1 }}/>
+                <Box>
+                    <OutsideAlerter onClickOutside={onOutsideClick}>
+                        <MoreHorizIcon
+                            data-testid={`section-menu-icon-${sectionId}`}
+                            className={classNames(
+                                classes.Section__Icon,
+                                menuOpen && classes.Section__Icon__Open
+                            )}
+                            onClick={() => setMenuOpen(!menuOpen)}
+                        />
+                        {menuOpen && (
+                            <SectionMenu
+                                sectionId={sectionId}
+                                closeMenu={handleMenuClose}
+                                modalOpen={modalOpen}
+                                setModalOpen={setModalOpen}
+                            />
+                        )}
+                    </OutsideAlerter>
+                </Box>
             </Box>
             <Option sectionId={sectionId}/>
         </Box>

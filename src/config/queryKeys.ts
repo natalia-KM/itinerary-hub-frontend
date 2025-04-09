@@ -13,6 +13,8 @@ export const queryKeys = {
     deleteTrip: 'deleteTrip',
     createSection: 'createSection',
     getSection: 'getSection',
+    getSections: 'getSections',
+    updateSectionOrder: 'updateSectionOrder',
     updateSection: 'updateSection',
     deleteSection: 'deleteSection',
     createOption: 'createOption',

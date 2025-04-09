@@ -1,7 +1,7 @@
 import { ManageOptionsModalProps } from './types'
 import { CustomModal } from 'components/CustomModal'
 import { arrayMove, List } from 'react-movable'
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import classes from './ManageOptionsModal.module.scss'
 import { OptionListItem } from './OptionListItem'
 import { Box, Button, TextField, Tooltip, Typography } from '@mui/material'
@@ -62,9 +62,12 @@ export const ManageOptionsModal = ({
                 order: items.length + 1
             }
         }).then(async () => {
+            await queryClient.invalidateQueries({ queryKey: ['sectionOptionIds', sectionId] })
             await queryClient.invalidateQueries({ queryKey: [queryKeys.getOptions, sectionId] })
         }).catch(() => {
-            toast.error('There was an issue creating new option. Try again later.')
+            toast.error('There was an issue creating new option. Try again later.', {
+                toastId: 'option-error-toast'
+            })
         })
     }
 
@@ -83,7 +86,9 @@ export const ManageOptionsModal = ({
             setItems(updatedItems)
             await queryClient.invalidateQueries({ queryKey: [queryKeys.getOptions, sectionId] })
         }).catch(() => {
-            toast.error('There was a problem updating the order. Try again later.')
+            toast.error('There was a problem updating the order. Try again later.', {
+                toastId: 'option-error-toast'
+            })
         })
     }
 
@@ -106,6 +111,7 @@ export const ManageOptionsModal = ({
                 renderList={({ children, props, isDragged }) => (
                     <ul
                         {...props}
+                        data-testid='manage-options-list'
                         className={classes.SectionContainer}
                         style={{
                             cursor: isDragged ? 'grabbing' : 'inherit'
@@ -148,20 +154,21 @@ export const ManageOptionsModal = ({
                             fullWidth
                         />
                         <Tooltip title="Confirm">
-                            <CheckIcon onClick={addNewOption}/>
+                            <CheckIcon onClick={addNewOption} data-testid='confirm-new-option-icon'/>
                         </Tooltip>
                         <Tooltip title="Cancel">
-                            <CancelOutlinedIcon onClick={() => setIsAddingNew(false)}/>
+                            <CancelOutlinedIcon onClick={() => setIsAddingNew(false)} data-testid='cancel-new-option-icon'/>
                         </Tooltip>
                     </Box>
                     {inputError && (
-                        <InputErrorMessage error={inputError}/>
+                        <InputErrorMessage error={inputError} dataTestId='new-option-invalid-input-error'/>
                     )}
                 </>
 
             )}
             <Box className={classes.SectionContainer}>
                 <Button
+                    data-testid='manage-options-add-button'
                     disabled={isAddingNew}
                     className={classnames(
                         classes.ListItem,

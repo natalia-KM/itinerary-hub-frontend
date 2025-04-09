@@ -3,6 +3,7 @@ import classes from './EditableText.module.scss'
 import classnames from 'classnames'
 import EditIcon from '@mui/icons-material/Edit'
 import { ControlledEditableTextProps } from './types'
+import React from 'react'
 
 export const EditableText = ({
     value,
@@ -46,6 +47,7 @@ export const EditableText = ({
                     </Typography>
                     {withIcon && (
                         <EditIcon
+                            data-testid={`${testId}-edit-icon`}
                             className={
                                 classnames(
                                     classes.Icon,
@@ -57,9 +59,9 @@ export const EditableText = ({
             )}
             {isEditing && (
                 <TextField
+                    id={`${testId}-input`}
                     data-testid={`${testId}-input`}
                     className={classes[`InputComponent_${size}`]}
-                    id="outlined-basic"
                     variant="outlined"
                     value={value}
                     onChange={(e) => setValue(e.target.value)}

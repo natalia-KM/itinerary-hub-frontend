@@ -26,6 +26,8 @@ export const OptionListItem = ({
     const [value, setValue] = useState(optionDetails.optionName)
     const queryClient = useQueryClient()
 
+    const testId = `manage-options-${optionDetails.optionId}`
+
     const { mutateAsync: updateOption } = useUpdateOption()
     const { mutateAsync: deleteOption } = useDeleteOption()
 
@@ -50,7 +52,9 @@ export const OptionListItem = ({
             }))
         }).catch(() => {
             setValue(optionDetails?.optionName)
-            toast.error('There was a problem updating the option name. Try again later.')
+            toast.error('There was a problem updating the option name. Try again later.', {
+                toastId: 'option-error-toast'
+            })
         })
     }
 
@@ -60,12 +64,14 @@ export const OptionListItem = ({
                 await queryClient.invalidateQueries({ queryKey: [queryKeys.getOptions, sectionId] })
             })
             .catch(() => {
-                toast.error('There was a problem deleting an option. Try again later.')
+                toast.error('There was a problem deleting an option. Try again later.', {
+                    toastId: 'option-error-toast'
+                })
             })
     }
 
     return (
-        <Box className={classes.ItemContainer}>
+        <Box className={classes.ItemContainer} data-testid={`${testId}-item`}>
             <button
                 data-movable-handle
                 className={classes.Button}
@@ -74,12 +80,13 @@ export const OptionListItem = ({
                 }}
                 tabIndex={-1}
             >
-                <DragIndicatorIcon />
+                <DragIndicatorIcon data-testid={`${testId}-drag-icon`} />
             </button>
             <EditableText
                 value={value}
                 setValue={setValue}
                 key={`${optionDetails.optionId}-text`}
+                testId={testId}
                 isEditing={isEditing}
                 setIsEditing={setIsEditing}
                 onSave={handleSaveOptionName}
@@ -90,16 +97,16 @@ export const OptionListItem = ({
             <Box sx={{ flexGrow: 1 }} />
             {!isEditing && (
                 <Tooltip title='Edit Option Name'>
-                    <EditIcon className={classes.UpdateIcon} onClick={() => setIsEditing(true)}/>
+                    <EditIcon className={classes.UpdateIcon} onClick={() => setIsEditing(true)} data-testid={`${testId}-edit-icon`}/>
                 </Tooltip>
             )}
             {isEditing && (
                 <Tooltip title='Confirm'>
-                    <CheckIcon className={classes.UpdateIcon} onClick={handleSaveOptionName}/>
+                    <CheckIcon className={classes.UpdateIcon} onClick={handleSaveOptionName} data-testid={`${testId}-check-icon`}/>
                 </Tooltip>
             )}
             <Tooltip title='Delete Option'>
-                <DeleteIcon className={classes.DeleteIcon} onClick={handleDeleteOption}/>
+                <DeleteIcon className={classes.DeleteIcon} onClick={handleDeleteOption} data-testid={`${testId}-delete-icon`}/>
             </Tooltip>
         </Box>
     )

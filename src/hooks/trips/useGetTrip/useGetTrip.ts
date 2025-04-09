@@ -14,6 +14,7 @@ export const useGetTrip = ({ tripId }: GetTripRequest) => {
     return useQuery({
       queryKey: [queryKeys.getTrip, tripId],
       queryFn: getTrip,
-      enabled: !!tripId
+      enabled: !!tripId,
+      refetchOnMount: 'always'
     })
 }

@@ -2,22 +2,19 @@ import { Box } from '@mui/material'
 import { EditableDate } from 'components/EditableDate'
 import dayjs, { Dayjs } from 'dayjs'
 import classes from './TripHeader.module.scss'
-import { useUpdateTrip } from 'hooks/trips'
+import { getTripDetails, useUpdateTrip } from 'hooks/trips'
 import { useEffect, useState } from 'react'
 import { EditableText } from 'components/EditableText'
 import { toast } from 'react-toastify'
-import { normalizeTripData, transformDayJsToString, TripDetails, useTripId } from 'utils'
+import { transformDayJsToString, TripDetails, useTripId } from 'utils'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
-import webClient from 'config/clientConfig'
 
 export const TripHeader = () => {
     const { tripId } = useTripId()
 
     const { data: tripDetails } = useQuery<TripDetails>({ queryKey: ['tripDetails', tripId], enabled: false,
-        queryFn: async () => {
-            const { data } = await webClient.get(`/v1/trips/${tripId}`)
-            return normalizeTripData(data).trip.tripDetails
-        } })
+        queryFn: () => getTripDetails(tripId)
+    })
 
     const queryClient = useQueryClient()
 
@@ -91,7 +88,7 @@ export const TripHeader = () => {
                 }))
             })
             .catch(() => {
-                toast('Couldn\'t update the end date. Try again later.', { toastId: 'failed-trip-start-date-update-toast' })
+                toast('Couldn\'t update the end date. Try again later.', { toastId: 'failed-trip-end-date-update-toast' })
             })
     }
 

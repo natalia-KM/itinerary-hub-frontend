@@ -17,11 +17,11 @@ export const TripNotFoundError = () => {
             <Box className={classes.Page__Container}>
                 <ErrorOutlineIcon fontSize="large"/>
 
-                <Typography variant="h4">
+                <Typography variant="h4" data-testid='error-page-message'>
                     Couldn't find your trip
                 </Typography>
 
-                <Button onClick={redirectToTrips}>
+                <Button onClick={redirectToTrips} data-testid='error-page-button'>
                     Go to your trips
                 </Button>
             </Box>

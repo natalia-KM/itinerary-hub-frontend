@@ -6,15 +6,15 @@ import { TripNotFoundError } from 'modules/TripNotFoundError'
 export const TripDetailsPage = () => {
     const { trip, isPending, isError } = useHydrateTrip()
 
-    if (isError || !trip) {
+    if(isPending) {
         return (
-            <TripNotFoundError/>
+            <LoadingBackdrop isOpen={true} testId='trip-details-page-loading'/>
         )
     }
 
-    if(isPending) {
+    if (isError || !trip) {
         return (
-            <LoadingBackdrop isOpen={true}/>
+            <TripNotFoundError/>
         )
     }
 
