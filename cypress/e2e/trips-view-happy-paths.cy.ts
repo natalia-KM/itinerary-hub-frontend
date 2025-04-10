@@ -18,6 +18,9 @@ describe('Trips View - Happy Paths', () => {
 
         cy.visit('http://localhost:3000/dashboard')
 
+        // eslint-disable-next-line cypress/no-unnecessary-waiting
+        cy.wait(2000)
+
         tripsViewPage.tripsViewLoading
             .should('be.visible')
             .then(() => {
