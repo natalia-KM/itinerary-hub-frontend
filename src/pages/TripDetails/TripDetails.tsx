@@ -1,24 +1,65 @@
 import { TopBar } from 'modules/TopBar'
-import { useSearchParams } from 'react-router'
-import { Box, Typography } from '@mui/material'
+import { Box, Fab, Typography } from '@mui/material'
+import { Section } from './Section'
+import classes from './TripDetails.module.scss'
+import { TripHeader } from './TripHeader/TripHeader'
+import AddIcon from '@mui/icons-material/Add'
+import ArrowBackIcon from '@mui/icons-material/ArrowBack'
+import classnames from 'classnames'
+import { useNavigate } from 'react-router'
+import { useQuery } from '@tanstack/react-query'
+import { useTripId } from 'utils'
+import { getSections } from 'hooks/sections'
 
 export const TripDetails = () => {
-    const [searchParams] = useSearchParams()
-    const tripId = searchParams.get('tripId')
+    const navigate = useNavigate()
 
-    if(!tripId) {
-        return (
-            <div>Cannot load the trip</div>
-        )
+    const { tripId } = useTripId()
+
+    const { data: sectionIds } = useQuery<string[]>({ queryKey: ['sectionIds', tripId], enabled: false,
+        queryFn: () => getSections(tripId)
+            .then((response) => {
+                return response.map((section) => section.sectionId)
+             })
+    })
+
+    const redirectToTripList = () => {
+        navigate('/dashboard')
     }
 
     return (
-        <div>
+        <div className={classes.Page}>
             <TopBar/>
-            <Box>
-                <Typography>
-                    TripId: {tripId}
-                </Typography>
+            <Box className={classes.TripDetails}>
+                <Box className={classnames(
+                    classes.TripDetails__Sidebar,
+                    classes.TripDetails__LinkContainer
+                )}>
+                    <Box
+                        data-testid='trip-details-go-back-link'
+                        onClick={redirectToTripList}
+                        className={classes.TripDetails__TextWithLink}
+                    >
+                        <ArrowBackIcon fontSize={'small'}/>
+                        <Typography>
+                            Go back to trips
+                        </Typography>
+                    </Box>
+                </Box>
+                <Box className={classes.TripDetails__TripView}>
+                    <TripHeader />
+
+                    {sectionIds?.map((sectionId) => (
+                        <Section key={sectionId} sectionId={sectionId}/>
+                    ))}
+                </Box>
+                <Box className={classes.TripDetails__Sidebar}>
+                    <Box className={classes.TripDetails__Fab}>
+                        <Fab color="primary" aria-label="Manage Trip Button">
+                            <AddIcon />
+                        </Fab>
+                    </Box>
+                </Box>
             </Box>
         </div>
     )

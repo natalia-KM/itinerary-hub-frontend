@@ -1,0 +1,48 @@
+.Page {
+  background-color: $primary-bg;
+  min-height: 100vh;
+}
+
+.TripDetails {
+  display: flex;
+  flex-direction: row;
+  padding-top: 1.5%;
+  justify-content: center;
+
+  &__TripView {
+    padding-top: 1.5%;
+    min-width: 70%;
+    max-width: 80%;
+    box-sizing: border-box;
+  }
+
+  &__Sidebar {
+    width: 10%;
+  }
+
+  &__LinkContainer {
+    display: flex;
+    justify-content: right;
+  }
+
+  &__TextWithLink {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 24px;
+    padding-left: 15px;
+    gap: 3px;
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
+      color: $primary-bg-button;
+    }
+  }
+
+  &__Fab {
+    position: absolute;
+    right: 3vw;
+    bottom: 5vh;
+  }
+}

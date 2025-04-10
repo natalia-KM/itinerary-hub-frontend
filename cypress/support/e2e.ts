@@ -16,6 +16,7 @@
 // Import commands.js using ES2015 syntax:
 import './commands'
 import '@cypress/code-coverage/support'
+import 'cypress-real-events'
 
 before(() => {
     // eslint-disable-next-line cypress/no-unnecessary-waiting

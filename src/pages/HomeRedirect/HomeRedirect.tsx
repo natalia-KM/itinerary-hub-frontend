@@ -1,12 +1,7 @@
-import { Backdrop, CircularProgress } from '@mui/material'
+import { LoadingBackdrop } from 'modules/LoadingBackdrop'
 
 export const HomeRedirect = () => {
     return (
-        <Backdrop
-            sx={(theme) => ({ color: '#fff', zIndex: theme.zIndex.drawer + 1 })}
-            open={true}
-        >
-            <CircularProgress color="inherit" />
-        </Backdrop>
+        <LoadingBackdrop isOpen={true} testId='home-redirect-loading'/>
     )
 }

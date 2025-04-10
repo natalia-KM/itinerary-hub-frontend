@@ -1,5 +1,5 @@
-import { useCreateTrip } from 'hooks/useCreateTrip/useCreateTrip'
-import { CreateTripRequest } from 'hooks/useCreateTrip/types'
+import { useCreateTrip } from 'hooks/trips/useCreateTrip'
+import { CreateTripRequest } from 'hooks/trips/useCreateTrip/types'
 import { transformDayJsToString } from 'utils/DateHelper'
 import { toast } from 'react-toastify'
 import { useQueryClient } from '@tanstack/react-query'

@@ -58,7 +58,7 @@ export default tseslint.config(
 
             "no-restricted-imports": ["warn", {
                 "patterns": [
-                    "../*",
+                    "../.*",
                     "!./*",
                     "!cypress/*"
                 ]

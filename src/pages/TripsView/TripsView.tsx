@@ -1,5 +1,5 @@
 import { TopBar } from 'modules/TopBar'
-import { useMutateAllTrips } from 'hooks/useGetAllTrips/useMutateAllTrips'
+import { useMutateAllTrips } from 'hooks/trips/useGetAllTrips/useMutateAllTrips'
 import { Backdrop, Box, CircularProgress } from '@mui/material'
 import { AddTripCard } from './AddTripCard/AddTripCard'
 import classes from './TripsView.module.scss'

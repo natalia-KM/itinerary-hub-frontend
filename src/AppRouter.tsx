@@ -3,7 +3,7 @@ import { Login } from './pages/Login'
 import { HomeRedirect } from './pages/HomeRedirect/HomeRedirect'
 import { TripsView } from './pages/TripsView/TripsView'
 import { HelpPage } from './pages/HelpPage/HelpPage'
-import { TripDetails } from './pages/TripDetails/TripDetails'
+import { TripDetailsPage } from './pages/TripDetails/TripDetailsPage'
 
 export const AppRouter = () => {
     return (
@@ -14,7 +14,7 @@ export const AppRouter = () => {
                 <Route path="/login" element={<Login/>}/>
                 <Route path="/logout" element={<Login isLogout={true}/>}/>
                 <Route path="/help" element={<HelpPage/>}/>
-                <Route path="/trip" element={<TripDetails/>}/>
+                <Route path="/trip" element={<TripDetailsPage/>}/>
             </Routes>
         </BrowserRouter>
     )

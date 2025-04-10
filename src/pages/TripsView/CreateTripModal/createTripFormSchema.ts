@@ -10,7 +10,18 @@ export const schema = yup.object({
         .max(50)
         .label('Trip name')
         .matches(/^[A-Za-z]+([ '][A-Za-z]+)*$/, 'Only letters, spaces, and apostrophes are allowed.'),
-    startDate: mixed<dayjs.Dayjs>(),
+    startDate: mixed<dayjs.Dayjs>()
+        .test({
+            name: 'isAfter',
+            message: 'Start date must be before end date',
+            test: (value, context) => {
+                const endDate = context.parent.endDate
+
+                if(!endDate || !value) return true
+
+                return !value.isAfter(endDate)
+            }
+        }),
     endDate: mixed<dayjs.Dayjs>()
         .test({
             name: 'isBefore',

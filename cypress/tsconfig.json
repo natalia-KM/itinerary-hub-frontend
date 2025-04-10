@@ -5,7 +5,7 @@
     "jsx": "react-jsx",
     "sourceMap": true,
     "allowSyntheticDefaultImports": true,
-    "types": ["cypress", "node"],
+    "types": ["cypress", "node", "cypress-real-events"],
     "baseUrl": ".",
     "paths": {
       "*": ["../src/*"]

@@ -1,0 +1,71 @@
+.DisplayText {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  gap: 8px;
+
+  &__Text {
+    padding: 0 8px;
+    transition: background-color 0.2s ease-in-out;
+
+    &:hover {
+      cursor: pointer;
+      background-color: $lightest-gray !important;
+    }
+  }
+
+  &_small {
+    font-size: 18px !important;
+  }
+
+  &_medium {
+    font-size: 22px !important;
+  }
+
+  &_large {
+    font-size: 32px !important;
+  }
+}
+
+.InputComponent {
+
+  &_small {
+    input {
+      font-size: 16px !important;
+      padding: 6.5px 14px !important;
+    }
+  }
+
+  &_medium {
+    input {
+      font-size: 18px !important;
+    }
+  }
+
+  &_large {
+    input {
+      font-size: 26px !important;
+    }
+  }
+}
+
+.Icon {
+  cursor: pointer;
+
+  &:hover {
+    color: $lighter-gray !important;
+  }
+
+  &_small {
+    font-size: 14px !important;
+  }
+
+  &_medium {
+    font-size: 18px !important;
+  }
+
+  &_large {
+    font-size: 24px !important;
+  }
+}

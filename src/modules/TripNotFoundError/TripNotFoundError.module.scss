@@ -1,0 +1,14 @@
+.Page {
+  background-color: $primary-bg;
+  min-height: 100vh;
+
+  &__Container {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 10% 0;
+  }
+}
