@@ -4,7 +4,7 @@
   width: 100%;
 
   &:hover {
-    cursor: url('public/icons/edit.svg'), pointer;
+    cursor: url('/icons/edit.svg'), pointer;
     background-color: $lightest-gray !important;
   }
 

@@ -7,6 +7,16 @@ import path from "path";
 
 // if something fails: https://dev.to/henriquejensen/migrating-from-create-react-app-to-vite-a-quick-and-easy-guide-5e72
 export default defineConfig({
+    build: {
+        rollupOptions: {
+            onwarn(warning, warn) {
+                if (warning.code === 'MODULE_LEVEL_DIRECTIVE') {
+                    return
+                }
+                warn(warning)
+            }
+        }
+    },
     base: '/',
     resolve: {
         alias: {
