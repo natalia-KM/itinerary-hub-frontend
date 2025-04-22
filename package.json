@@ -60,7 +60,7 @@
     "build": "tsc && vite build",
     "serve": "vite preview",
     "test": "vitest",
-    "start:cy": "VITE_API_URL=http://localhost:8080 npm start",
+    "start:cy": "VITE_API_URL=http://localhost:8080 CYPRESS_RUN=true npm start",
     "cypress:open": "cypress open",
     "cypress:run": "cypress run",
     "test:coverage": "vitest run --coverage --watch=false",
