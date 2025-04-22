@@ -14,6 +14,9 @@ export default defineConfig({
                 if (warning.code === 'MODULE_LEVEL_DIRECTIVE') {
                     return
                 }
+                if(warning.loc?.file?.includes('node_modules/@mui/material')) {
+                    return
+                }
                 warn(warning)
             }
         }
