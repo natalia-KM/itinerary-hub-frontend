@@ -6,13 +6,13 @@
 .TripDetails {
   display: flex;
   flex-direction: row;
-  padding-top: 1.5%;
+  padding-top: 20px;
   justify-content: center;
+  box-sizing: border-box;
 
   &__TripView {
     padding-top: 1.5%;
-    min-width: 70%;
-    max-width: 80%;
+    width: 75%;
     box-sizing: border-box;
   }
 
@@ -30,7 +30,7 @@
     flex-direction: row;
     align-items: center;
     height: 24px;
-    padding-left: 15px;
+    padding-left: 5%;
     gap: 3px;
     cursor: pointer;
 

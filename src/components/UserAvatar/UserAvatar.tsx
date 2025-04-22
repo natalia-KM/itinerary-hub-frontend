@@ -1,14 +1,16 @@
-import { Avatar, Typography } from '@mui/material'
+import { Avatar, Tooltip, Typography } from '@mui/material'
 
 interface UserAvatarProps {
     firstName?: string
     lastName?: string
+    showTooltip? :boolean
     // image?:string // TODO: to be implemented
 }
 
 export const UserAvatar = ({
     firstName,
-    lastName
+    lastName,
+    showTooltip = false
 }: UserAvatarProps) => {
     const initials = () => {
         const firstLetter = firstName && firstName.substring(0, 1)
@@ -16,15 +18,30 @@ export const UserAvatar = ({
 
         if(!firstLetter && !secondLetter) {
             return 'UN'
+        } else if(!firstLetter) {
+            return secondLetter
+        } else if(!secondLetter) {
+            return firstLetter
         }
 
         return `${firstLetter}${secondLetter}`
     }
+
+    const name = `${firstName} ${lastName}`
+
     return (
+        <Tooltip title={name} hidden={showTooltip}>
         <Avatar sx={{ width: 24, height: 24 }} data-testid='user-avatar'>
-            <Typography fontSize='12px' fontWeight='600'>
+            <Typography
+                fontSize='10px'
+                fontWeight='600'
+                letterSpacing={'0.1em'}
+                paddingLeft={'1px'}
+                paddingTop={'1px'}
+            >
                 {initials()}
             </Typography>
         </Avatar>
+        </Tooltip>
     )
 }

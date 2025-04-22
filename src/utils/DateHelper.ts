@@ -1,6 +1,6 @@
 import dayjs, { Dayjs } from 'dayjs'
 
-export const transformDayJsToString = (date?: Dayjs) => {
+export const transformDayJsToString = (date?: Dayjs | null) => {
     return date ? date.format('YYYY-MM-DDTHH:mm:ss') : undefined
 }
 
@@ -18,4 +18,16 @@ export const getDatesText = (startDate?: Date, endDate?: Date) => {
     }
 
     return undefined
+}
+
+export const mergeDates = ({
+    date,
+    time
+}: { date?: Dayjs | null, time?: Dayjs | null }) => {
+    if (!date || !time) {
+        return null
+    }
+    return date
+        .hour(time.hour())
+        .minute(time.minute())
 }

@@ -2,9 +2,7 @@ import classes from './Login.module.scss'
 import { LoginForm } from 'forms/LoginForm/LoginForm'
 import { IntroductionText } from 'forms/LoginForm/IntroductionText/IntroductionText'
 
-export const Login = ({ isLogout = false }: { isLogout?: boolean }) => {
-
-    //TODO: do something about logging out
+export const Login = () => {
 
     return (
         <div className={classes.LoginPage}>

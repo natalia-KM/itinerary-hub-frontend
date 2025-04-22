@@ -9,10 +9,6 @@ export const Controls = () => {
     const { userDetails, invalidateUserDetails } = useUserDetailsContext()
     const { mutateAsync: signInWithGoogle } = useSignInWithGoogle()
 
-    // const signIn = () => {
-    //     window.location.href = `${BASE_API_PATH}/oauth2/authorization/google`
-    // }
-
     const linkAccount = async () => {
         await signInWithGoogle().then(() => {
             invalidateUserDetails()

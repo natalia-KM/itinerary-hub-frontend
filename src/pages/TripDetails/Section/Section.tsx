@@ -11,6 +11,7 @@ import { getSection, SectionDetails, useUpdateSection } from 'hooks/sections'
 import { useTripId } from 'utils'
 import { EditableText } from 'components/EditableText'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
+import { SectionContextProvider } from 'provider/SectionProvider/SectionContextProvider'
 
 interface SectionProps {
     sectionId: string
@@ -21,6 +22,7 @@ export const Section = ({
 }: SectionProps) => {
     const [menuOpen, setMenuOpen] = useState(false)
     const [modalOpen, setModalOpen] = useState(false)
+    const [elementDrawerOpen, setElementDrawerOpen] = useState(false)
 
     const { mutateAsync: updateSectionCall } = useUpdateSection()
     const { tripId } = useTripId()
@@ -34,6 +36,11 @@ export const Section = ({
 
     const [isEditingSectionName, setIsEditingSectionName] = useState(false)
     const [currentSectionName, setSectionName] = useState(section?.sectionName)
+
+    if(!section) {
+        // TODO: implement error & loading state
+        return null
+    }
 
     const handleMenuClose = async () => {
         await queryClient.invalidateQueries({ queryKey: ['sectionOptionIds', sectionId] })
@@ -63,12 +70,12 @@ export const Section = ({
             })
     }
 
-
     const onOutsideClick = () => {
-        if (!modalOpen) setMenuOpen(false)
+        if (!modalOpen && !elementDrawerOpen) setMenuOpen(false)
     }
 
     return (
+        <SectionContextProvider>
         <Box className={classes.Section}>
             <Box className={classes.Section__Header}>
                 <EditableText
@@ -94,10 +101,12 @@ export const Section = ({
                         />
                         {menuOpen && (
                             <SectionMenu
-                                sectionId={sectionId}
+                                sectionDetails={section}
                                 closeMenu={handleMenuClose}
                                 modalOpen={modalOpen}
                                 setModalOpen={setModalOpen}
+                                elementDrawerOpen={elementDrawerOpen}
+                                setElementDrawerOpen={setElementDrawerOpen}
                             />
                         )}
                     </OutsideAlerter>
@@ -105,5 +114,6 @@ export const Section = ({
             </Box>
             <Option sectionId={sectionId}/>
         </Box>
+        </SectionContextProvider>
     )
 }

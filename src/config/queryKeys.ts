@@ -26,6 +26,7 @@ export const queryKeys = {
     createTransportElement: 'createTransportElement',
     createActivityElement: 'createActivityElement',
     createAccommodationElement: 'createAccommodationElement',
+    getElements: 'getElements',
     getTransportElement: 'getTransportElement',
     getActivityElement: 'getActivityElement',
     getAccommodationElement: 'getAccommodationElement',
@@ -33,5 +34,7 @@ export const queryKeys = {
     updateActivityElement: 'updateActivityElement',
     updateAccommodationElement: 'updateAccommodationElement',
     updateElementOrder: 'updateElementOrder',
-    deleteElement: 'deleteElement'
+    deleteElement: 'deleteElement',
+    createPassenger: 'createPassenger',
+    getAllPassengers: 'getAllPassengers'
 }

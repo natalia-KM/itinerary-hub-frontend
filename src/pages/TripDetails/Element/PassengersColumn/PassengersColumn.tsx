@@ -1,0 +1,34 @@
+import { Passenger, PassengersColumnProps } from '../types'
+import { InformationColumn } from '../InformationColumn'
+import { UserAvatar } from 'components/UserAvatar'
+import { Box } from '@mui/material'
+
+const PassengersAvatars = ({ passengers }: { passengers: Passenger[] }) => {
+    return (
+        <Box>
+            {passengers.map((passenger, index) => {
+                return (
+                    <UserAvatar
+                        key={`${passenger.lastName}-${index}`}
+                        firstName={passenger.firstName}
+                        lastName={passenger.lastName}
+                        showTooltip
+                    />
+                )
+            })}
+        </Box>
+    )
+}
+
+export const PassengersColumn = ({
+    passengerLabel,
+    passengers
+}: PassengersColumnProps) => {
+
+    return (
+        <InformationColumn
+            label={passengerLabel}
+            value={<PassengersAvatars passengers={passengers} />}
+        />
+    )
+}

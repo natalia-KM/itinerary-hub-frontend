@@ -17,6 +17,11 @@ export const CustomDrawer = ({
             onClose={setClosed}
             className={classes.Drawer}
             data-testid={testId}
+            onKeyDown={(e) => {
+                if (e.key.toLowerCase() === 'm') {
+                    e.stopPropagation()
+                }
+            }}
         >
             <Box className={classes.Drawer__Container}>
                 <Box className={classes.Drawer__IntroText}>
