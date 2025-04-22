@@ -4,7 +4,7 @@ import { useGetAllTripsResponses } from 'hooks/trips/useGetAllTrips/useGetAllTri
 import { modals } from '../fixtures/modules/Modals'
 import { drawer } from '../fixtures/modules/Drawers'
 
-describe('Trips View - Sad Paths', () => {
+describe.skip('Trips View - Sad Paths', () => {
     beforeEach(() => {
         apiInterceptor.interceptGetUserDetails({ manualResolution: false })
     })

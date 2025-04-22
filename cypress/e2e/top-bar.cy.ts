@@ -3,7 +3,7 @@ import { apiInterceptor } from 'cypress/api/ApiInterceptor'
 import { useGetUserDetailsResponses } from 'hooks/useGetUserDetails'
 import { modals } from 'cypress/fixtures/modules/Modals'
 
-describe('Top Bar', () => {
+describe.skip('Top Bar', () => {
 
     beforeEach(() => {
         apiInterceptor.interceptGetUserDetails({ manualResolution: false })

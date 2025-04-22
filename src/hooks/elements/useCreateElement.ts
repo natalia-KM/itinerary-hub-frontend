@@ -14,7 +14,6 @@ interface CreateElementProps {
     sectionId: string
     optionId: string
     order: number
-    onClose: () => void
 }
 
 export const useCreateElement = () => {
@@ -26,8 +25,7 @@ export const useCreateElement = () => {
         formValues,
         sectionId,
         optionId,
-        order,
-        onClose
+        order
     }: CreateElementProps) => {
         const elementType = formValues.elementType
 

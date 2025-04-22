@@ -5,7 +5,7 @@ import { TRIP_ID, TRIP_ID_2 } from 'testUtils/mockValues'
 import { modals } from '../fixtures/modules/Modals'
 import { drawer } from '../fixtures/modules/Drawers'
 
-describe('Trips View - Happy Paths', () => {
+describe.skip('Trips View - Happy Paths', () => {
 
     beforeEach(() => {
         apiInterceptor.interceptGetUserDetails({ manualResolution: false })

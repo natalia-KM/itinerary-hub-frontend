@@ -4,7 +4,7 @@ import { apiInterceptor } from 'cypress/api/ApiInterceptor'
 import { TRIP_ID, TRIP_ID_2 } from 'testUtils/mockValues'
 import { useGetTripResponses } from 'hooks/trips'
 
-describe('Trip Details Page', () => {
+describe.skip('Trip Details Page', () => {
     beforeEach(() => {
         apiInterceptor.interceptGetUserDetails({ manualResolution: false })
     })

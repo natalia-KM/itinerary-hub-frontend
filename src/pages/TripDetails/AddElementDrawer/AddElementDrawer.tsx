@@ -93,8 +93,7 @@ export const AddElementDrawer = ({
                 formValues,
                 sectionId,
                 optionId,
-                order,
-                onClose: closeDrawer
+                order
             }).then(async () => {
                 await queryClient.invalidateQueries({ queryKey: ['elementInfo', optionId] })
             }).catch((e) => {

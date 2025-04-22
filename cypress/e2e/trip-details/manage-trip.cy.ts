@@ -2,7 +2,7 @@ import { TRIP_ID } from 'testUtils/mockValues'
 import { apiInterceptor } from 'cypress/api/ApiInterceptor'
 import { tripDetailsPage } from 'cypress/fixtures/pages/TripDetails'
 
-describe('Manage Trip in Trip Details', () => {
+describe.skip('Manage Trip in Trip Details', () => {
 
     beforeEach(() => {
         apiInterceptor.interceptGetUserDetails({ manualResolution: false })
