@@ -31,7 +31,7 @@ export const UserAvatar = ({
 
     return (
         <Tooltip title={name} hidden={showTooltip}>
-        <Avatar sx={{ width: 24, height: 24 }} data-testid='user-avatar'>
+        <Avatar sx={{ width: 24, height: 24, border: '1px solid white' }} data-testid='user-avatar'>
             <Typography
                 fontSize='10px'
                 fontWeight='600'

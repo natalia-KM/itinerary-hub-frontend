@@ -9,12 +9,14 @@ const PassengersAvatars = ({ passengers }: { passengers: Passenger[] }) => {
         <Box className={classes.PassengersRow}>
             {passengers.map((passenger, index) => {
                 return (
+                    // <span>
                     <UserAvatar
                         key={`${passenger.lastName}-${index}`}
                         firstName={passenger.firstName}
                         lastName={passenger.lastName}
                         showTooltip
                     />
+                        // </span>
                 )
             })}
         </Box>
