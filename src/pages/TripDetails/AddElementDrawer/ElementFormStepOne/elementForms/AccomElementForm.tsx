@@ -42,7 +42,7 @@ export const AccomElementForm = () => {
                     />
                     {placeErrorMessage &&
                         <InputErrorMessage
-                            dataTestId={`${testId}-name-error`}
+                            dataTestId={`${testId}-place-error`}
                             error={placeErrorMessage}
                         />
                     }
@@ -71,7 +71,7 @@ export const AccomElementForm = () => {
             </DrawerSectionTitle>
             <Box className={classes.AddElementForm__Section}>
                 <DateTimeInputBox
-                    testId={testId}
+                    testId={`${testId}-checkin`}
                     dateFieldName='elementInformation.checkInDate'
                     timeFieldName='elementInformation.checkInTime'
                     dateLabel='Check In Date'
@@ -84,7 +84,7 @@ export const AccomElementForm = () => {
             </DrawerSectionTitle>
             <Box className={classes.AddElementForm__Section}>
                 <DateTimeInputBox
-                    testId={testId}
+                    testId={`${testId}-checkout`}
                     dateFieldName='elementInformation.checkOutDate'
                     timeFieldName='elementInformation.checkOutTime'
                     dateLabel='Check Out Date'

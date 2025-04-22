@@ -110,6 +110,7 @@ export const ElementFormStepTwo = () => {
                                         key={status}
                                         value={status}
                                         color="secondary"
+                                        data-testid={`status-item-${status.toLowerCase()}`}
                                     >
                                         {status}
                                     </ToggleButton>
@@ -119,7 +120,7 @@ export const ElementFormStepTwo = () => {
                     }}
                 />
             </Box>
-            <DrawerSectionTitle>
+            <DrawerSectionTitle testId={'passengers-label'}>
                 {passengersLabel}s
             </DrawerSectionTitle>
             <Typography fontSize={'0.9em'} fontWeight={400} color={'textSecondary'}>

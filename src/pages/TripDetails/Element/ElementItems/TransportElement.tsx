@@ -63,6 +63,7 @@ export const TransportElement = ({
     return (
         <ElementCard
             elementCategory={elementDetails.elementCategory}
+            elementId={elementId}
             price={prettifyPrice(userDetails?.currency ?? 'USD', elementDetails.price)}
             notes={elementDetails.notes}
             elementStatus={elementDetails.status}
@@ -74,7 +75,7 @@ export const TransportElement = ({
                     <Typography variant="body2" sx={{ color: 'text.secondary' }}>
                         {dayjs(elementDetails.originDateTime).format('DD/MM/YYYY')}
                     </Typography>
-                    <Typography fontSize={'22px'}>
+                    <Typography fontSize={'18px'}>
                         {elementDetails.originPlace}
                     </Typography>
                     <Typography variant="body2"  fontSize={'16px'}>
@@ -86,7 +87,7 @@ export const TransportElement = ({
                     <Typography variant="body2" sx={{ color: 'text.secondary' }}>
                         {dayjs(elementDetails.destinationDateTime).format('DD/MM/YYYY')}
                     </Typography>
-                    <Typography fontSize={'22px'}>
+                    <Typography fontSize={'18px'}>
                         {elementDetails.destinationPlace}
                     </Typography>
                     <Typography variant="body2" fontSize={'16px'}>

@@ -2,10 +2,11 @@ import { Passenger, PassengersColumnProps } from '../types'
 import { InformationColumn } from '../InformationColumn'
 import { UserAvatar } from 'components/UserAvatar'
 import { Box } from '@mui/material'
+import classes from './PassengersColumn.module.scss'
 
 const PassengersAvatars = ({ passengers }: { passengers: Passenger[] }) => {
     return (
-        <Box>
+        <Box className={classes.PassengersRow}>
             {passengers.map((passenger, index) => {
                 return (
                     <UserAvatar

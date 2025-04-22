@@ -71,6 +71,10 @@ export class TripDetails {
         return cy.getById('section-menu')
     }
 
+    get sectionMenuAddElement() {
+        return cy.getById('section-menu-add-element-button')
+    }
+
     get sectionMenuManageOptions() {
         return cy.getById('section-menu-manage-options-button')
     }

@@ -1,7 +1,7 @@
-import { topBar } from '../fixtures/pages/TopBar'
-import { apiInterceptor } from '../api/ApiInterceptor'
+import { topBar } from 'cypress/fixtures/pages/TopBar'
+import { apiInterceptor } from 'cypress/api/ApiInterceptor'
 import { useGetUserDetailsResponses } from 'hooks/useGetUserDetails'
-import { modals } from '../fixtures/modules/Modals'
+import { modals } from 'cypress/fixtures/modules/Modals'
 
 describe('Top Bar', () => {
 

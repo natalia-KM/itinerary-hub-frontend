@@ -13,6 +13,7 @@ import classes from './AddElementDrawer.module.scss'
 import { ElementType, useGetElements, useCreateElement } from 'hooks/elements'
 import { toast } from 'react-toastify'
 import { useSectionContext } from 'provider/SectionProvider/SectionContext'
+import { useQueryClient } from '@tanstack/react-query'
 
 interface AddElementDrawerProps {
     isOpen: boolean
@@ -28,6 +29,7 @@ export const AddElementDrawer = ({
     sectionId
 }: AddElementDrawerProps) => {
     const { openOptionId: optionId } = useSectionContext()
+    const queryClient = useQueryClient()
 
     const methods = useForm<FormSchema>({
         resolver: zodResolver(formSchema),
@@ -64,20 +66,22 @@ export const AddElementDrawer = ({
     }
 
     const handleStepSubmit = async () => {
-        if(!elements) {
+        if (!elements) {
             await getElements()
         }
 
         if (step === 1) {
             const isStepOneValid = await methods.trigger(stepOneFields)
-            if(!isStepOneValid) return
+            if (!isStepOneValid) return
 
             onNext()
         } else {
             const isValid = await methods.trigger()
-            if (!isValid) return
+            if (!isValid) {
+                return
+            }
 
-            if(!elements || !optionId) {
+            if (!elements || !optionId) {
                 toast.error('Something went wrong. Try again later.')
                 return
             }
@@ -91,6 +95,13 @@ export const AddElementDrawer = ({
                 optionId,
                 order,
                 onClose: closeDrawer
+            }).then(async () => {
+                await queryClient.invalidateQueries({ queryKey: ['elementInfo', optionId] })
+            }).catch((e) => {
+                console.error(e)
+                toast.error('Couldn\'t create an element. Try again later.', { toastId: 'create-element-error-toast' })
+            }).finally(() => {
+                closeDrawer()
             })
         }
     }

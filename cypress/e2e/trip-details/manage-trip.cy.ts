@@ -1,6 +1,6 @@
 import { TRIP_ID } from 'testUtils/mockValues'
-import { apiInterceptor } from '../../api/ApiInterceptor'
-import { tripDetailsPage } from '../../fixtures/pages/TripDetails'
+import { apiInterceptor } from 'cypress/api/ApiInterceptor'
+import { tripDetailsPage } from 'cypress/fixtures/pages/TripDetails'
 
 describe('Manage Trip in Trip Details', () => {
 

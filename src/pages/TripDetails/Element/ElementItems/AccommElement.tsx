@@ -50,10 +50,11 @@ export const AccommElement = ({
     return (
         <ElementCard
             elementCategory={elementDetails.elementCategory}
+            elementId={elementId}
             price={prettifyPrice(userDetails?.currency ?? 'USD', elementDetails.price)}
             notes={elementDetails.notes}
             elementStatus={elementDetails.status}
-            passengerProps={elementDetails.passengerDetailsList.length > 0 ? passengerProps : undefined}
+            passengerProps={elementDetails.passengerDetailsList?.length > 0 ? passengerProps : undefined}
         >
             <Box className={classes.TwoColumnContainer}>
                 <Box>

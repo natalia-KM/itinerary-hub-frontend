@@ -1,5 +1,4 @@
 import { Box, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Skeleton, Typography } from '@mui/material'
-import { useState } from 'react'
 import { UserAvatar } from 'components/UserAvatar'
 import classnames from 'classnames'
 import classes from './PassengersTable.module.scss'
@@ -14,13 +13,13 @@ interface PassengersTableProps {
 export const PassengersTable = ({
     label
 }: PassengersTableProps) => {
-    const [checked, setChecked] = useState<string[]>([])
     const { data: passengerDetailsList, isLoading } = useGetPassengers()
-    const { setValue } = useFormContext<FormSchema>()
+    const { setValue, watch } = useFormContext<FormSchema>()
+    const checkedPassengers = watch('passengerIds')
 
     const handleToggle = (value: string) => () => {
-        const currentIndex = checked.indexOf(value)
-        const newChecked = [...checked]
+        const currentIndex = checkedPassengers.indexOf(value)
+        const newChecked = [...checkedPassengers]
 
         if (currentIndex === -1) {
             newChecked.push(value)
@@ -29,7 +28,6 @@ export const PassengersTable = ({
         }
 
         setValue('passengerIds', newChecked)
-        setChecked(newChecked)
     }
 
     if(isLoading) {
@@ -56,10 +54,11 @@ export const PassengersTable = ({
                             disablePadding
                         >
                             <ListItemButton
+                                data-testid={`passenger-${passenger.passengerId}`}
                                 onClick={handleToggle(passenger.passengerId)}
                                 className={classnames(
                                     index === 0 ? classes.FirstItem : classes.ListItem,
-                                    checked.includes(passenger.passengerId) && classes.Selected
+                                    checkedPassengers.includes(passenger.passengerId) && classes.Selected
                                 )}
                                 dense
                             >
@@ -79,7 +78,7 @@ export const PassengersTable = ({
                 })}
             </List>
             <Typography variant="body2" sx={{ color: 'text.secondary' }} textAlign={'right'}>
-                Selected {label}s: {checked.length}
+                Selected {label}s: {checkedPassengers.length}
             </Typography>
         </Box>
     )

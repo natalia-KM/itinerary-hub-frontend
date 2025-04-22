@@ -6,20 +6,21 @@ interface ElementBadgeProps {
     tooltipText: string
     color: string,
     whiteIcon?: boolean
+    testId?: string
 }
 
 export const ElementBadge = ({
     Icon,
     color,
     tooltipText,
-    whiteIcon = false
+    whiteIcon = false,
+    testId
 }: ElementBadgeProps) => {
 
-
     return (
-        <Tooltip title={tooltipText} placement={'right'}>
+        <Tooltip title={tooltipText} placement={'right'} id={`${testId}-tooltip`}>
             <Box sx={{ backgroundColor: color }} className={classes.ElementBadge}>
-                <Icon sx={{ color: whiteIcon ? 'white' : 'inherit' }} />
+                <Icon sx={{ color: whiteIcon ? 'white' : 'inherit' }} data-testid={`${testId}-icon`} />
             </Box>
         </Tooltip>
     )

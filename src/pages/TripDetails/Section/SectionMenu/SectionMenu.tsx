@@ -36,7 +36,10 @@ export const SectionMenu = ({
     return (
         <Paper className={classes.OptionMenu} data-testid='section-menu'>
             <MenuList>
-                <MenuItem onClick={() => setElementDrawerOpen(true)}>
+                <MenuItem
+                    data-testid='section-menu-add-element-button'
+                    onClick={() => setElementDrawerOpen(true)}
+                >
                     <ListItemIcon>
                         <AddIcon/>
                     </ListItemIcon>

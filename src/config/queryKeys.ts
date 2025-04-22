@@ -36,5 +36,6 @@ export const queryKeys = {
     updateElementOrder: 'updateElementOrder',
     deleteElement: 'deleteElement',
     createPassenger: 'createPassenger',
-    getAllPassengers: 'getAllPassengers'
+    getAllPassengers: 'getAllPassengers',
+    getPassenger: 'getPassenger'
 }

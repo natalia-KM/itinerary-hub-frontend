@@ -51,27 +51,16 @@ export const ElementFormStepOne = () => {
                                 fullWidth
                                 exclusive
                             >
-                                <ToggleButton
-                                    value={ElementType.TRANSPORT}
-                                    className={classes.AddElementForm__ToggleType}
-                                    color={'secondary'}
-                                >
-                                    Transport
-                                </ToggleButton>
-                                <ToggleButton
-                                    value={ElementType.ACTIVITY}
-                                    className={classes.AddElementForm__ToggleType}
-                                    color={'secondary'}
-                                >
-                                    Activity
-                                </ToggleButton>
-                                <ToggleButton
-                                    value={ElementType.ACCOMMODATION}
-                                    className={classes.AddElementForm__ToggleType}
-                                    color={'secondary'}
-                                >
-                                    Accommodation
-                                </ToggleButton>
+                                {Object.values(ElementType).map((type) => (
+                                    <ToggleButton
+                                        key={`${elementType.toLowerCase()}-el-type-item`}
+                                        data-testid={`${type.toLowerCase()}-radio-btn`}
+                                        value={type}
+                                        color={'secondary'}
+                                    >
+                                        {type.toString()}
+                                    </ToggleButton>
+                                ))}
                             </ToggleButtonGroup>
                         )
                     }}
@@ -96,6 +85,7 @@ export const ElementFormStepOne = () => {
                             renderInput={params => (
                                 <TextField
                                     {...params}
+                                    data-testid='category-input-field'
                                     label="Choose category"
                                     variant="outlined"
                                 />
@@ -104,8 +94,15 @@ export const ElementFormStepOne = () => {
                                 const config = elementCategoryIcons[option]
                                 const Icon = config?.icon
 
+                                const testOptionId = option.replace('& ', '').replace(' ', '-')
+
+                                const { key, ...rest } = props // React is not happy without a separate key :)
                                 return (
-                                    <li {...props}>
+                                    <li
+                                        key={key}
+                                        {...rest}
+                                        data-testid={`category-list-item-${testOptionId}`}
+                                    >
                                         {Icon && (
                                             <Box sx={{ mr: 1, display: 'flex', alignItems: 'center' }}>
                                                 <Icon fontSize="small" htmlColor={config.color} />
@@ -130,7 +127,7 @@ export const ElementFormStepOne = () => {
                 />
                 {errors.elementCategory &&
                     <InputErrorMessage
-                        dataTestId={`${testId}-element-cat-error`}
+                        dataTestId={`${testId}-cat-error`}
                         error={errors.elementCategory.message}
                     />
                 }

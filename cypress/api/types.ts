@@ -42,7 +42,13 @@ export enum InterceptorAlias {
     UPDATE_OPTION = 'updateOption',
     UPDATE_OPTION_ORDER = 'updateOptionOrder',
     DELETE_OPTION = 'deleteOption',
-    CREATE_OPTION = 'createOption'
+    CREATE_OPTION = 'createOption',
+    GET_PASSENGERS = 'getPassengers',
+    GET_ELEMENTS = 'getElements',
+    GET_TRANSPORT_ELEMENT = 'getTransportElement',
+    CREATE_TRANSPORT_ELEMENT = 'createTransportElement',
+    CREATE_ACTIVITY_ELEMENT = 'createActivityElement',
+    CREATE_ACCOMM_ELEMENT = 'createAccommElement'
 }
 
 export type CypressThenable = (

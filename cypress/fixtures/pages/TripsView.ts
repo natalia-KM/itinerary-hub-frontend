@@ -45,14 +45,6 @@ export class TripsView {
         return cy.getById('trip-form-image-picker')
     }
 
-    get tripFormCancelButton() {
-        return cy.getById('drawer-cancel-button')
-    }
-
-    get tripFormSubmitButton() {
-        return cy.getById('drawer-confirm-button')
-    }
-
     get createTripSuccessToast() {
         return cy.get('[id="create-trip-success-toast"]')
     }

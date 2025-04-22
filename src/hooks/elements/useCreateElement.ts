@@ -8,7 +8,6 @@ import {
     getActivityRequestFromForm,
     getTransportRequestFromForm
 } from 'pages/TripDetails/AddElementDrawer'
-import { toast } from 'react-toastify'
 
 interface CreateElementProps {
     formValues: FormSchema
@@ -44,16 +43,6 @@ export const useCreateElement = () => {
                 }
 
                 await createTransport(request)
-                    .then(() => {
-                        // todos
-                    })
-                    .catch((e) => {
-                        console.error(e)
-                        toast.error('Couldn\'t create an element. Try again later.')
-                    })
-                    .finally(() => {
-                        onClose()
-                    })
                 break
             }
             case ElementType.ACTIVITY: {
@@ -67,16 +56,6 @@ export const useCreateElement = () => {
                 }
 
                 await createActivity(request)
-                    .then(() => {
-                        // todos
-                    })
-                    .catch((e) => {
-                        console.error(e)
-                        toast.error('Couldn\'t create an element. Try again later.')
-                    })
-                    .finally(() => {
-                        onClose()
-                    })
                 break
             }
             case ElementType.ACCOMMODATION: {
@@ -90,16 +69,6 @@ export const useCreateElement = () => {
                 }
 
                 await createAccomm(request)
-                    .then(() => {
-                        // todos
-                    })
-                    .catch((e) => {
-                        console.error(e)
-                        toast.error('Couldn\'t create an element. Try again later.')
-                    })
-                    .finally(() => {
-                        onClose()
-                    })
                 break
             }
         }

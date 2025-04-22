@@ -45,6 +45,7 @@ export const ActivityElement = ({
     return (
         <ElementCard
             elementCategory={elementDetails.elementCategory}
+            elementId={elementId}
             price={prettifyPrice(userDetails?.currency ?? 'USD', elementDetails.price)}
             notes={elementDetails.notes}
             elementStatus={elementDetails.status}

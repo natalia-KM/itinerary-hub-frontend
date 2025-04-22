@@ -18,7 +18,7 @@ export const CustomDrawer = ({
             className={classes.Drawer}
             data-testid={testId}
             onKeyDown={(e) => {
-                if (e.key.toLowerCase() === 'm') {
+                if (e.key.toLowerCase() !== 'escape') {
                     e.stopPropagation()
                 }
             }}

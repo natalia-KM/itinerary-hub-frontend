@@ -43,7 +43,7 @@ export const ElementsList = ({
     }
 
     return(
-        <Box>
+        <Box data-testid={`elements-list-${optionId}`} key={`elements-list-${optionId}`}>
             {Object.entries(elementInfo).map(([id, details]) => {
                 const args: GetElementArgs = {
                     sectionId,
@@ -55,7 +55,7 @@ export const ElementsList = ({
                 switch (details.elementType) {
                     case ElementType.TRANSPORT: return (<TransportElement key={id} {...args} />)
                     case ElementType.ACTIVITY: return (<ActivityElement key={id} {...args} />)
-                    case ElementType.ACCOMMODATION: return (<AccommElement type={details.accommodationType} {...args} />)
+                    case ElementType.ACCOMMODATION: return (<AccommElement key={id} type={details.accommodationType} {...args} />)
                 }
             })}
         </Box>

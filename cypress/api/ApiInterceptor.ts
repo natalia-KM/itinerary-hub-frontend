@@ -1,12 +1,18 @@
 import { ApiInterceptorBase } from './ApiInterceptorBase'
 import { ApiInterceptorResponse, InterceptorAlias, InterceptRequestOptions, TripsRequestOptions } from './types'
 import { useGetUserDetailsResponses } from 'hooks/useGetUserDetails'
-import { S1_OPTION_1_ID, SECTION_1_ID, TRIP_ID } from 'testUtils/mockValues'
+import { ACCOMMODATION_1, ACTIVITY_1, S1_OPTION_1_ID, SECTION_1_ID, TRANSPORT_1, TRIP_ID } from 'testUtils/mockValues'
 import { useGetAllTripsResponses } from 'hooks/trips/useGetAllTrips/useGetAllTrips.responses'
 import { useGetTripResponses } from 'hooks/trips'
 import { useGetTripDetailsResponses } from 'hooks/trips/useGetTripDetails/useGetTripDetails.responses'
 import { useGetSectionResponses, useGetSectionsResponses } from 'hooks/sections'
 import { useGetOptionResponses, useGetOptionsResponses } from 'hooks/options'
+import {
+    useGetAccommodationElementPairResponses,
+    useGetActivityElementResponses,
+    useGetTransportElementResponses
+} from 'hooks/elements'
+import { useGetPassengersResponses } from 'hooks/passengers/useGetPassengers/useGetPassengers.responses'
 
 export class ApiInterceptor extends ApiInterceptorBase {
 
@@ -331,6 +337,111 @@ export class ApiInterceptor extends ApiInterceptorBase {
             status,
             method: 'DELETE',
             alias: InterceptorAlias.DELETE_OPTION,
+            manualResolution
+        })
+    }
+
+    interceptGetPassengers({
+        status = 200,
+        manualResolution,
+        responseBody = useGetPassengersResponses
+    }: TripsRequestOptions): ApiInterceptorResponse {
+        return apiInterceptor.interceptRequest({
+            url: 'http://localhost:8080/v1/passengers',
+            status,
+            method: 'GET',
+            alias: InterceptorAlias.GET_PASSENGERS,
+            responseBody,
+            manualResolution
+        })
+    }
+
+    interceptCreateTransportElement({
+        status = 200,
+        manualResolution,
+        sectionId = SECTION_1_ID,
+        optionId = S1_OPTION_1_ID,
+        responseBody = useGetTransportElementResponses[TRANSPORT_1]
+    }: TripsRequestOptions): ApiInterceptorResponse {
+        return apiInterceptor.interceptRequest({
+            url: `http://localhost:8080/v1/sections/${sectionId}/options/${optionId}/elements/transport`,
+            status,
+            method: 'POST',
+            alias: InterceptorAlias.CREATE_TRANSPORT_ELEMENT,
+            responseBody,
+            manualResolution
+        })
+    }
+
+    interceptCreateActivityElement({
+        status = 200,
+        manualResolution,
+        sectionId = SECTION_1_ID,
+        optionId = S1_OPTION_1_ID,
+        responseBody = useGetActivityElementResponses[ACTIVITY_1]
+    }: TripsRequestOptions): ApiInterceptorResponse {
+        return apiInterceptor.interceptRequest({
+            url: `http://localhost:8080/v1/sections/${sectionId}/options/${optionId}/elements/activity`,
+            status,
+            method: 'POST',
+            alias: InterceptorAlias.CREATE_ACTIVITY_ELEMENT,
+            responseBody,
+            manualResolution
+        })
+    }
+
+    interceptCreateAccommElement({
+        status = 200,
+        manualResolution,
+        sectionId = SECTION_1_ID,
+        optionId = S1_OPTION_1_ID,
+        responseBody = useGetAccommodationElementPairResponses[ACCOMMODATION_1]
+    }: TripsRequestOptions): ApiInterceptorResponse {
+        return apiInterceptor.interceptRequest({
+            url: `http://localhost:8080/v1/sections/${sectionId}/options/${optionId}/elements/accommodation`,
+            status,
+            method: 'POST',
+            alias: InterceptorAlias.CREATE_ACCOMM_ELEMENT,
+            responseBody,
+            manualResolution
+        })
+    }
+
+    interceptGetElements({
+        status = 200,
+        manualResolution,
+        optionId = S1_OPTION_1_ID,
+        responseBody = [
+            useGetTransportElementResponses[TRANSPORT_1],
+            useGetAccommodationElementPairResponses[ACCOMMODATION_1][0],
+            useGetActivityElementResponses[ACTIVITY_1],
+            useGetAccommodationElementPairResponses[ACCOMMODATION_1][1]
+        ]
+    }: TripsRequestOptions): ApiInterceptorResponse {
+        return apiInterceptor.interceptRequest({
+            url: `http://localhost:8080/v1/options/${optionId}/elements`,
+            status,
+            method: 'GET',
+            alias: InterceptorAlias.GET_ELEMENTS,
+            responseBody,
+            manualResolution
+        })
+    }
+
+    interceptGetTransportElement({
+        status = 200,
+        manualResolution,
+        sectionId = SECTION_1_ID,
+        optionId = S1_OPTION_1_ID,
+        elementId = TRANSPORT_1,
+        responseBody = useGetTransportElementResponses[TRANSPORT_1]
+    }: TripsRequestOptions): ApiInterceptorResponse {
+        return apiInterceptor.interceptRequest({
+            url: `http://localhost:8080/v1/sections/${sectionId}/options/${optionId}/elements/${elementId}/transport`,
+            status,
+            method: 'GET',
+            alias: InterceptorAlias.GET_TRANSPORT_ELEMENT,
+            responseBody,
             manualResolution
         })
     }

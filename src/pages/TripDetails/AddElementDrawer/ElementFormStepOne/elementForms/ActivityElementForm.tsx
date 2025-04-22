@@ -103,6 +103,7 @@ export const ActivityElementForm = () => {
                                     onChange={(val) => {
                                         field.onChange(val)
                                     }}
+                                    slotProps={{ input: { id: `${testId}-hours` } }}
                                     customInput={TextField}
                                     thousandSeparator
                                     valueIsNumericString
@@ -115,7 +116,7 @@ export const ActivityElementForm = () => {
                     />
                     {hoursErrorMessage &&
                         <InputErrorMessage
-                            dataTestId={`${testId}-location-error`}
+                            dataTestId={`${testId}-hours-error`}
                             error={hoursErrorMessage}
                         />
                     }
@@ -131,6 +132,7 @@ export const ActivityElementForm = () => {
                                     onChange={(val) => {
                                         field.onChange(val)
                                     }}
+                                    slotProps={{ input: { id: `${testId}-minutes` } }}
                                     customInput={TextField}
                                     thousandSeparator
                                     valueIsNumericString
@@ -143,7 +145,7 @@ export const ActivityElementForm = () => {
                     />
                     {minutesErrorMessage &&
                         <InputErrorMessage
-                            dataTestId={`${testId}-location-error`}
+                            dataTestId={`${testId}-minutes-error`}
                             error={minutesErrorMessage}
                         />
                     }

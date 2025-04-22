@@ -8,25 +8,24 @@ const transportSchema = z.object({
     originPlace: z
         .string()
         .min(1, 'Required')
-        .max(100)
-        .regex(/^[\p{L}\d\s\-'.]+$/u, 'Invalid characters'),
+        .max(100, 'Place must be at most 100 characters')
+        .regex(/^[\p{L}\d\s\-'",.]+$/u, 'Invalid characters'),
     originDate: z
-        .custom<Dayjs>((val) => val instanceof dayjs, 'Date is required'),
+        .custom<Dayjs>((val) => val instanceof dayjs, 'Required'),
     originTime: z
-        .custom<Dayjs>((val) => val instanceof dayjs, 'Time is required'),
+        .custom<Dayjs>((val) => val instanceof dayjs, 'Required'),
     destinationPlace: z
         .string()
         .min(1, 'Required')
-        .max(100)
-        .regex(/^[\p{L}\d\s\-'.]+$/u, 'Invalid characters'),
+        .max(100, 'Place must be at most 100 characters')
+        .regex(/^[\p{L}\d\s\-'",.]+$/u, 'Invalid characters'),
     destinationDate: z
-        .custom<Dayjs>((val) => val instanceof dayjs, 'Date is required'),
+        .custom<Dayjs>((val) => val instanceof dayjs, 'Required'),
     destinationTime: z
-        .custom<Dayjs>((val) => val instanceof dayjs, 'Time is required'),
+        .custom<Dayjs>((val) => val instanceof dayjs, 'Required'),
     provider: z
         .string()
-        .max(100)
-        .regex(/^[\p{L}\d\s\-'.]+$/u, 'Invalid characters')
+        .max(100, 'Provider must be at most 100 characters')
         .optional(),
 })
 
@@ -35,13 +34,13 @@ const activitySchema = z.object({
     activityName: z
         .string()
         .min(1, 'Required')
-        .max(150)
-        .regex(/^[\p{L}\d\s\-'.]+$/u, 'Invalid characters'),
+        .max(150, 'Name must be at most 150 characters')
+        .regex(/^[\p{L}\d\s\-'",.]+$/u, 'Invalid characters'),
     location: z
         .string()
         .min(1, 'Required')
-        .max(150)
-        .regex(/^[\p{L}\d\s\-'.]+$/u, 'Invalid characters'),
+        .max(150, 'Location must be at most 150 characters')
+        .regex(/^[\p{L}\d\s\-'",.]+$/u, 'Invalid characters'),
     startsAtDate: z.any().optional(),
     startsAtTime: z.any().optional(),
     hours: z.string().optional(),
@@ -53,21 +52,20 @@ const accommodationSchema = z.object({
     place: z
         .string()
         .min(1, 'Required')
-        .max(150)
-        .regex(/^[\p{L}\d\s\-'.]+$/u, 'Invalid characters'),
+        .max(150, 'Place must be at most 150 characters')
+        .regex(/^[\p{L}\d\s\-'",.]+$/u, 'Invalid characters'),
     location: z
         .string()
-        .max(100)
-        .regex(/^[\p{L}\d\s\-'.]+$/u, 'Invalid characters')
+        .max(100, 'Location must be at most 100 characters')
         .optional(),
     checkInDate: z
-        .custom<Dayjs>((val) => val instanceof dayjs, 'Date is required'),
+        .custom<Dayjs>((val) => val instanceof dayjs, 'Required'),
     checkInTime: z
-        .custom<Dayjs>((val) => val instanceof dayjs, 'Time is required'),
+        .custom<Dayjs>((val) => val instanceof dayjs, 'Required'),
     checkOutDate: z
-        .custom<Dayjs>((val) => val instanceof dayjs, 'Date is required'),
+        .custom<Dayjs>((val) => val instanceof dayjs, 'Required'),
     checkOutTime: z
-        .custom<Dayjs>((val) => val instanceof dayjs, 'Time is required')
+        .custom<Dayjs>((val) => val instanceof dayjs, 'Required')
 })
 
 const elementInformationSchema = z.discriminatedUnion('type', [
@@ -90,6 +88,9 @@ const elementInformationSchema = z.discriminatedUnion('type', [
         }
     } else if(val.type === 'ACTIVITY') {
         const { startsAtDate, startsAtTime } = val
+
+        if(!startsAtDate || !startsAtTime) return
+
         const mergedDateTime = mergeDates({ date: startsAtDate, time: startsAtTime })
 
         if(!mergedDateTime?.isValid()) {
@@ -112,7 +113,7 @@ export const formSchema = z.object({
         .regex(/^(https?:\/\/)?([\w-]+\.)+[\w-]+(\/[\w\-./?%&=]*)?$/, 'Invalid URL')
         .optional()
         .or(z.literal('')),
-    notes: z.string().max(245).optional(),
+    notes: z.string().max(245, 'Notes must be at most 245 characters').optional(),
     status: z.nativeEnum(ElementStatus).optional(),
     passengerIds: z.array(z.string().uuid())
 })

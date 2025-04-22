@@ -1,6 +1,6 @@
-import { apiInterceptor } from '../../api/ApiInterceptor'
+import { apiInterceptor } from 'cypress/api/ApiInterceptor'
 import { SECTION_1_ID, TRIP_ID } from 'testUtils/mockValues'
-import { tripDetailsPage } from '../../fixtures/pages/TripDetails'
+import { tripDetailsPage } from 'cypress/fixtures/pages/TripDetails'
 
 describe('Sections', () => {
     beforeEach(() => {

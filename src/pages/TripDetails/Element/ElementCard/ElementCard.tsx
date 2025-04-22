@@ -14,6 +14,7 @@ import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome'
 
 interface ElementCardProps {
     children: React.ReactNode
+    elementId: string
     elementCategory: string
     passengerProps?: PassengersColumnProps
     elementStatus?: ElementStatus
@@ -24,6 +25,7 @@ interface ElementCardProps {
 
 export const ElementCard = ({
     children,
+    elementId,
     elementCategory,
     price,
     notes,
@@ -41,13 +43,14 @@ export const ElementCard = ({
 
     const config = elementCategoryIcons[elementCategory] ?? defaultCategoryIcon
     const ElementCategoryIcon = config?.icon
+    const testOptionId = elementCategory.replace('& ', '').replace(' ', '-').toLowerCase()
 
     return (
-        <Box className={classes.ElementCard}>
+        <Box className={classes.ElementCard} data-testid={`element-${elementId}`}>
             <Box>
-                <ElementBadge Icon={ElementCategoryIcon} tooltipText={elementCategory} color={config.color} whiteIcon={config.whiteIcon} />
+                <ElementBadge Icon={ElementCategoryIcon} tooltipText={elementCategory} color={config.color} whiteIcon={config.whiteIcon} testId={`${testOptionId}-category-badge`} />
                 {elementStatus && (
-                    <ElementBadge Icon={Icon} tooltipText={elementStatus.toString()} color={color} />
+                    <ElementBadge Icon={Icon} tooltipText={elementStatus.toString()} color={color} testId={'element-status-badge'} />
                 )}
             </Box>
             <Box className={classNames(classes.ElementCard__Column, classes.ElementCard__ElementTyped)}>

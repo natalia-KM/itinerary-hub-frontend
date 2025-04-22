@@ -1,4 +1,4 @@
-import { apiInterceptor } from '../../api/ApiInterceptor'
+import { apiInterceptor } from 'cypress/api/ApiInterceptor'
 import {
     S1_OPTION_1_ID,
     S1_OPTION_2_ID,
@@ -7,11 +7,9 @@ import {
     SECTION_2_ID,
     TRIP_ID
 } from 'testUtils/mockValues'
-import { tripDetailsPage } from '../../fixtures/pages/TripDetails'
-import { modals } from '../../fixtures/modules/Modals'
+import { tripDetailsPage } from 'cypress/fixtures/pages/TripDetails'
+import { modals } from 'cypress/fixtures/modules/Modals'
 import { OptionDetails, useGetOptionResponses } from 'hooks/options'
-
-// TODO: once elements are implemented, add check that it loads correct content of the tab panel
 
 describe('Options', () => {
     beforeEach(() => {

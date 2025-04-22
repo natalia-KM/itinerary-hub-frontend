@@ -3,6 +3,7 @@ import { tripsViewPage } from '../fixtures/pages/TripsView'
 import { useGetAllTripsResponses } from 'hooks/trips/useGetAllTrips/useGetAllTrips.responses'
 import { TRIP_ID, TRIP_ID_2 } from 'testUtils/mockValues'
 import { modals } from '../fixtures/modules/Modals'
+import { drawer } from '../fixtures/modules/Drawers'
 
 describe('Trips View - Happy Paths', () => {
 
@@ -136,11 +137,11 @@ describe('Trips View - Happy Paths', () => {
             const  { alias, resolve } = apiInterceptor.interceptCreateTrip({ manualResolution: true })
             apiInterceptor.interceptGetAllTrips({ responseBody: updatedTrips })
 
-            tripsViewPage.tripFormSubmitButton
+            drawer.confirmButton
                 .should('be.visible')
                 .click()
 
-            tripsViewPage.tripFormSubmitButton
+            drawer.confirmButton
                 .should('be.disabled')
                 .then(() => {
                     resolve?.()
@@ -192,7 +193,7 @@ describe('Trips View - Happy Paths', () => {
             const  { alias } = apiInterceptor.interceptCreateTrip({ manualResolution: false })
             apiInterceptor.interceptGetAllTrips({ responseBody: updatedTrips })
 
-            tripsViewPage.tripFormSubmitButton
+            drawer.confirmButton
                 .should('be.visible')
                 .click()
 
@@ -221,7 +222,7 @@ describe('Trips View - Happy Paths', () => {
 
             tripsViewPage.createTripDrawer.should('be.visible')
 
-            tripsViewPage.tripFormCancelButton
+            drawer.cancelButton
                 .should('be.visible')
                 .click()
 
@@ -297,11 +298,11 @@ describe('Trips View - Happy Paths', () => {
             const  { alias, resolve } = apiInterceptor.interceptUpdateTrip({ manualResolution: true })
             apiInterceptor.interceptGetAllTrips({ responseBody: updatedTrips })
 
-            tripsViewPage.tripFormSubmitButton
+            drawer.confirmButton
                 .should('be.visible')
                 .click()
 
-            tripsViewPage.tripFormSubmitButton
+            drawer.confirmButton
                 .should('be.disabled')
                 .then(() => {
                     resolve?.()
@@ -340,7 +341,7 @@ describe('Trips View - Happy Paths', () => {
 
             tripsViewPage.editTripDrawer.should('be.visible')
 
-            tripsViewPage.tripFormSubmitButton.click()
+            drawer.confirmButton.click()
 
             tripsViewPage.editTripDrawer.should('not.exist')
             tripsViewPage.tripNotModifiedToast
@@ -392,11 +393,11 @@ describe('Trips View - Happy Paths', () => {
             const  { alias, resolve } = apiInterceptor.interceptUpdateTrip({ manualResolution: true })
             apiInterceptor.interceptGetAllTrips({ responseBody: updatedTrips })
 
-            tripsViewPage.tripFormSubmitButton
+            drawer.confirmButton
                 .should('be.visible')
                 .click()
 
-            tripsViewPage.tripFormSubmitButton
+            drawer.confirmButton
                 .should('be.disabled')
                 .then(() => {
                     resolve?.()
