@@ -11,7 +11,10 @@ export default defineConfig({
         sourcemap: !process.env.CYPRESS_RUN,
         rollupOptions: {
             onwarn(warning, warn) {
-                if (warning.code === 'MODULE_LEVEL_DIRECTIVE' && warning.loc?.file?.includes('node_modules/@mui/')) {
+                if (warning.code === 'MODULE_LEVEL_DIRECTIVE') {
+                    return
+                }
+                if(warning.loc?.file?.includes('node_modules/@mui/')) {
                     return
                 }
                 warn(warning)
