@@ -2,7 +2,7 @@ import { apiInterceptor } from 'cypress/api/ApiInterceptor'
 import { loginPage } from 'cypress/fixtures/pages/LoginPage'
 import { tripsViewPage } from 'cypress/fixtures/pages/TripsView'
 
-describe.skip('Login Page', () => {
+describe('Login Page', () => {
     beforeEach(() => {
         cy.visit('http://localhost:3000/login')
 
