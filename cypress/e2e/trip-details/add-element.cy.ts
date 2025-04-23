@@ -28,7 +28,7 @@ import {
 } from 'hooks/elements'
 import { elements } from 'cypress/fixtures/pages/Elements'
 
-describe.skip('Add Element', () => {
+describe('Add Element', () => {
     beforeEach(() => {
         apiInterceptor.interceptGetUserDetails({ manualResolution: false })
         apiInterceptor.interceptGetOptions({})

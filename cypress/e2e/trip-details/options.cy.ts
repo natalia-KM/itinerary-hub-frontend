@@ -11,7 +11,7 @@ import { tripDetailsPage } from 'cypress/fixtures/pages/TripDetails'
 import { modals } from 'cypress/fixtures/modules/Modals'
 import { OptionDetails, useGetOptionResponses } from 'hooks/options'
 
-describe.skip('Options', () => {
+describe('Options', () => {
     beforeEach(() => {
         apiInterceptor.interceptGetUserDetails({ manualResolution: false })
         const { alias } = apiInterceptor.interceptGetTrip({})
