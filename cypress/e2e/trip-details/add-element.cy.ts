@@ -134,6 +134,9 @@ describe('Add Element', () => {
                 })
             })
 
+            // eslint-disable-next-line cypress/no-unnecessary-waiting
+            cy.wait(2000)
+
             tripDetailsPage.optionTab(S1_OPTION_1_ID)
                 .should('be.visible')
 
@@ -208,6 +211,9 @@ describe('Add Element', () => {
                 })
             })
 
+            // eslint-disable-next-line cypress/no-unnecessary-waiting
+            cy.wait(2000)
+
             tripDetailsPage.optionTab(S1_OPTION_1_ID)
                 .should('be.visible')
 
@@ -278,6 +284,9 @@ describe('Add Element', () => {
                     }
                 })
             })
+
+            // eslint-disable-next-line cypress/no-unnecessary-waiting
+            cy.wait(2000)
 
             tripDetailsPage.optionTab(S1_OPTION_1_ID)
                 .should('be.visible')
