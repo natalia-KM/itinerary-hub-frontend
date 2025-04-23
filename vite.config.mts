@@ -7,6 +7,21 @@ import path from "path";
 
 // if something fails: https://dev.to/henriquejensen/migrating-from-create-react-app-to-vite-a-quick-and-easy-guide-5e72
 export default defineConfig({
+    build: {
+        sourcemap: !process.env.CYPRESS_RUN,
+        rollupOptions: {
+            onwarn(warning, warn) {
+                if (warning.code === 'MODULE_LEVEL_DIRECTIVE') {
+                    return
+                }
+                if(warning.loc?.file?.includes('node_modules/@mui/')) {
+                    return
+                }
+                warn(warning)
+            }
+        }
+    },
+    logLevel: process.env.CYPRESS_RUN ? 'silent' : 'info',
     base: '/',
     resolve: {
         alias: {
@@ -39,7 +54,7 @@ export default defineConfig({
         reporters: ['verbose'],
         coverage: {
             provider: 'istanbul',
-            reporter: ['text', 'json', 'html'],
+            reporter: ['text', 'json', 'lcov'],
             include: ['src/**/*'],
             reportsDirectory: './coverage-unit',
             exclude: [

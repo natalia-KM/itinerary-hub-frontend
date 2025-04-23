@@ -11,6 +11,7 @@ import { useQuery } from '@tanstack/react-query'
 import { useTripId } from 'utils'
 import { getSections } from 'hooks/sections'
 
+// TODO: no section screen / add on BE to create a section & option when new trip created
 export const TripDetails = () => {
     const navigate = useNavigate()
 
@@ -48,6 +49,12 @@ export const TripDetails = () => {
                 </Box>
                 <Box className={classes.TripDetails__TripView}>
                     <TripHeader />
+
+                    {sectionIds?.length === 0 && (
+                        <Box>
+                            Create a new section
+                        </Box>
+                    )}
 
                     {sectionIds?.map((sectionId) => (
                         <Section key={sectionId} sectionId={sectionId}/>

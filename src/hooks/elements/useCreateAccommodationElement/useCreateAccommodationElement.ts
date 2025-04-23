@@ -12,7 +12,7 @@ export const useCreateAccommodationElement = () => {
         sectionId,
         optionId
     }: CreateAccommElementRequest) => {
-        const { data } = await webClient.post<AccommodationElementDetails>(`/v1/sections/${sectionId}/options/${optionId}/elements/accommodation`, request)
+        const { data } = await webClient.post<AccommodationElementDetails[]>(`/v1/sections/${sectionId}/options/${optionId}/elements/accommodation`, request)
         return data
     }, [])
 

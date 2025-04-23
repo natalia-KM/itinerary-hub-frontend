@@ -1,16 +1,19 @@
 import { useQuery } from '@tanstack/react-query'
-import { Box, Typography } from '@mui/material'
+import { Box } from '@mui/material'
 import { TabContext, TabList, TabPanel } from '@mui/lab'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import classes from './Option.module.scss'
 import { OptionTab } from './ManageOptionsModal/OptionTab'
 import { getOptions } from 'hooks/options'
+import { useSectionContext } from 'provider/SectionProvider/SectionContext'
+import { ElementsList } from '../Element/ElementsList'
 
 interface OptionProps {
     sectionId: string
 }
 
 export const Option = ({ sectionId }: OptionProps) => {
+    const { setOpenOptionId } = useSectionContext()
      const { data: optionIds, isPending, isRefetching } = useQuery<string[]>({
         queryKey: ['sectionOptionIds', sectionId],
         queryFn: () => getOptions(sectionId)
@@ -20,6 +23,10 @@ export const Option = ({ sectionId }: OptionProps) => {
     })
 
     const [openTab, setOpenTab] = useState(0)
+
+    useEffect(() => {
+        setOpenOptionId(optionIds?.at(openTab))
+    }, [openTab, optionIds, setOpenOptionId])
 
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
         setOpenTab(newValue)
@@ -41,8 +48,8 @@ export const Option = ({ sectionId }: OptionProps) => {
 
                 </Box>
                 {optionIds?.map((optionId, index) => (
-                    <TabPanel key={optionId} value={index}>
-                        <Typography>{optionId}</Typography>
+                    <TabPanel key={optionId} value={index} sx={{ padding: '0 24px' }}>
+                        <ElementsList sectionId={sectionId} optionId={optionId} />
                     </TabPanel>
                 ))}
             </TabContext>

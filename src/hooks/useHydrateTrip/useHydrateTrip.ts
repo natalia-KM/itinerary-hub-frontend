@@ -27,7 +27,7 @@ export const useHydrateTrip = () => {
 
         Object.entries(normalized.options).forEach(([id, option]) => {
             queryClient.setQueryData(['optionDetails', id], option.optionDetails)
-            queryClient.setQueryData(['optionElementIds', id], option.elementIds)
+            queryClient.setQueryData(['elementInfo', id], option.elementInfo)
         })
 
         Object.entries(normalized.elements).forEach(([id, element]) => {

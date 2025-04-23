@@ -1,6 +1,6 @@
-import { apiInterceptor } from '../api/ApiInterceptor'
-import { loginPage } from '../fixtures/pages/LoginPage'
-import { tripsViewPage } from '../fixtures/pages/TripsView'
+import { apiInterceptor } from 'cypress/api/ApiInterceptor'
+import { loginPage } from 'cypress/fixtures/pages/LoginPage'
+import { tripsViewPage } from 'cypress/fixtures/pages/TripsView'
 
 describe('Login Page', () => {
     beforeEach(() => {

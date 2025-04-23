@@ -2,6 +2,7 @@ import { apiInterceptor } from '../api/ApiInterceptor'
 import { tripsViewPage } from '../fixtures/pages/TripsView'
 import { useGetAllTripsResponses } from 'hooks/trips/useGetAllTrips/useGetAllTrips.responses'
 import { modals } from '../fixtures/modules/Modals'
+import { drawer } from '../fixtures/modules/Drawers'
 
 describe('Trips View - Sad Paths', () => {
     beforeEach(() => {
@@ -36,13 +37,13 @@ describe('Trips View - Sad Paths', () => {
 
             tripsViewPage.createTripDrawer.should('be.visible')
 
-            tripsViewPage.tripFormSubmitButton.click()
+            drawer.confirmButton.click()
 
             tripsViewPage.tripFormNameFieldErrors
                 .should('be.visible')
                 .should('contain.text', 'Trip name is a required field')
 
-            tripsViewPage.tripFormSubmitButton.should('be.disabled')
+            drawer.confirmButton.should('be.disabled')
 
             tripsViewPage.tripFormNameField
                 .should('be.visible')
@@ -68,7 +69,7 @@ describe('Trips View - Sad Paths', () => {
                 .should('be.visible')
                 .should('contain.text', 'Only letters, spaces, and apostrophes are allowed.')
 
-            tripsViewPage.tripFormSubmitButton.should('be.disabled')
+            drawer.confirmButton.should('be.disabled')
         })
 
         it('should validate dates and not allow to confirm if the input is incorrect', () => {
@@ -83,13 +84,13 @@ describe('Trips View - Sad Paths', () => {
             tripsViewPage.tripFormEndDateField
                 .type('24052025') // 24 05 2025
 
-            tripsViewPage.tripFormSubmitButton.click()
+            drawer.confirmButton.click()
 
             tripsViewPage.tripFormEndDateFieldErrors
                 .should('be.visible')
                 .should('contain.text', 'To add an end date, add a start date first')
 
-            tripsViewPage.tripFormSubmitButton.should('be.disabled')
+            drawer.confirmButton.should('be.disabled')
 
             tripsViewPage.tripFormStartDateField
                 .type('25052025') // 25 05 2025
@@ -109,7 +110,7 @@ describe('Trips View - Sad Paths', () => {
             tripsViewPage.tripFormEndDateFieldErrors
                 .should('not.exist')
 
-            tripsViewPage.tripFormSubmitButton.should('be.enabled')
+            drawer.confirmButton.should('be.enabled')
         })
 
 
@@ -123,7 +124,7 @@ describe('Trips View - Sad Paths', () => {
 
             apiInterceptor.interceptCreateTrip({ status: 500 })
 
-            tripsViewPage.tripFormSubmitButton.click()
+            drawer.confirmButton.click()
 
             tripsViewPage.createTripErrorToast
                 .should('be.visible')
@@ -155,7 +156,7 @@ describe('Trips View - Sad Paths', () => {
 
             apiInterceptor.interceptUpdateTrip({ status: 500 })
 
-            tripsViewPage.tripFormSubmitButton
+            drawer.confirmButton
                 .should('be.visible')
                 .click()
 

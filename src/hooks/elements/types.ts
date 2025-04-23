@@ -16,24 +16,40 @@ export enum AccommodationType {
     CHECK_OUT = 'CHECK_OUT'
 }
 
+export const accommodationTypeLabel = (type: AccommodationType) => {
+    return type === AccommodationType.CHECK_IN ? 'Check-In' : 'Check-Out'
+}
+
+export interface PassengerDetails {
+    passengerId: string
+    firstName: string
+    lastName: string
+    avatar: string
+}
+
 export interface BaseElementRequest {
     elementType: ElementType
+    elementCategory: string
     link?: string
     price?: number
     notes?: string
     status?: ElementStatus
+    passengerIds?: string[]
 }
 
 export interface BaseElementDetails {
-    baseElementID: string;
-    optionID: string;
-    lastUpdatedAt: string;
-    elementType: ElementType;
-    link?: string;
-    price?: number;
-    notes?: string;
-    status?: ElementStatus;
-    order: number;
+    baseElementID: string
+    elementID: string
+    optionID: string
+    lastUpdatedAt: string
+    elementType: ElementType
+    elementCategory: string
+    link?: string
+    price?: number
+    notes?: string
+    status?: ElementStatus
+    order: number
+    passengerDetailsList: PassengerDetails[]
 }
 
 export interface TransportElementDetails extends BaseElementDetails {
@@ -61,4 +77,5 @@ export interface AccommodationElementDetails extends BaseElementDetails {
 export interface GetElementRequest {
     sectionId: string
     optionId: string
+    baseElementId: string
 }

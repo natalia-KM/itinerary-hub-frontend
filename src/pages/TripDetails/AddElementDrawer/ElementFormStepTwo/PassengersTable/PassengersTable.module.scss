@@ -1,0 +1,12 @@
+.Selected {
+  background-color: $mui-selected-bg !important;
+  color: $mui-selected-text !important;
+}
+
+.ListItem {
+  border: 1px $border solid !important;
+  border-top: 0 !important;
+}
+.FirstItem {
+  border: 1px $border solid !important;
+}

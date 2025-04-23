@@ -1,6 +1,6 @@
-import { tripDetailsPage } from '../../fixtures/pages/TripDetails'
-import { tripsViewPage } from '../../fixtures/pages/TripsView'
-import { apiInterceptor } from '../../api/ApiInterceptor'
+import { tripDetailsPage } from 'cypress/fixtures/pages/TripDetails'
+import { tripsViewPage } from 'cypress/fixtures/pages/TripsView'
+import { apiInterceptor } from 'cypress/api/ApiInterceptor'
 import { TRIP_ID, TRIP_ID_2 } from 'testUtils/mockValues'
 import { useGetTripResponses } from 'hooks/trips'
 

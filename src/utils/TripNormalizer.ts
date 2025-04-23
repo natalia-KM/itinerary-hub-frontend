@@ -1,8 +1,9 @@
 import { TripDetails } from './types'
-import { BaseElementDetails } from '../hooks/elements'
-import { TripDO } from '../hooks/trips/useGetTrip/types'
+import { AccommodationType, ElementType } from '../hooks/elements'
+import { ElementDO, TripDO } from '../hooks/trips'
 import { OptionDetails } from '../hooks/options'
 import { SectionDetails } from '../hooks/sections'
+import { isAccommElement } from './AccommodationHelper'
 
 export interface NormalizedTripDetails {
     tripDetails: TripDetails
@@ -14,16 +15,22 @@ export interface NormalizedSection {
     optionIds: string[]
 }
 
+export interface ElementInfo {
+    baseElementId: string
+    elementType: ElementType
+    accommodationType?: AccommodationType
+}
+
 export interface NormalizedOption {
     optionDetails: OptionDetails
-    elementIds: string[]
+    elementInfo: Record<string, ElementInfo>
 }
 
 export interface NormalizedTrip {
     trip: NormalizedTripDetails
     sections: Record<string, NormalizedSection>
     options: Record<string, NormalizedOption>
-    elements: Record<string, BaseElementDetails>
+    elements: Record<string, ElementDO>
 }
 
 export function normalizeTripData(tripData: TripDO) {
@@ -47,12 +54,13 @@ export function normalizeTripData(tripData: TripDO) {
 
             normalized.options[option.optionDetails.optionId] = {
                 optionDetails: option.optionDetails,
-                elementIds: []
+                elementInfo: {}
             }
 
             for (const element of option.baseElementDetails) {
-                normalized.options[option.optionDetails.optionId].elementIds.push(element.baseElementID)
-                normalized.elements[element.baseElementID] = { ...element }
+                const type = isAccommElement(element) ? element.accommodationType : undefined
+                normalized.options[option.optionDetails.optionId].elementInfo[element.elementID] = { baseElementId: element.baseElementID, elementType: element.elementType, accommodationType: type }
+                normalized.elements[element.elementID] = { ...element }
             }
         }
     }
