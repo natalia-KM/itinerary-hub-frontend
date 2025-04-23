@@ -118,8 +118,7 @@ jobs:
           npm install -g nyc
           mkdir -p merged-coverage
           cd ./coverage-work/unit
-          nyc merge ../e2e/coverage-final.json coverage-final.json merged.json
-          mv merged.json ../../merged-coverage/coverage-final.json
+          nyc merge . ../e2e/coverage-final.json -o ../../merged-coverage/coverage-final.json
           cd ../../
 
       - name: Upload combined coverage to Codecov
