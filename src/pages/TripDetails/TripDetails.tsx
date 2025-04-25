@@ -1,27 +1,25 @@
 import { TopBar } from 'modules/TopBar'
-import { Box, Fab, Typography } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 import { Section } from './Section'
 import classes from './TripDetails.module.scss'
 import { TripHeader } from './TripHeader/TripHeader'
-import AddIcon from '@mui/icons-material/Add'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import classnames from 'classnames'
 import { useNavigate } from 'react-router'
 import { useQuery } from '@tanstack/react-query'
 import { useTripId } from 'utils'
 import { getSections } from 'hooks/sections'
+import React from 'react'
+import { TripQuickActions } from './TripQuickActions/TripQuickActions'
 
 // TODO: no section screen / add on BE to create a section & option when new trip created
 export const TripDetails = () => {
     const navigate = useNavigate()
-
     const { tripId } = useTripId()
 
-    const { data: sectionIds } = useQuery<string[]>({ queryKey: ['sectionIds', tripId], enabled: false,
-        queryFn: () => getSections(tripId)
-            .then((response) => {
-                return response.map((section) => section.sectionId)
-             })
+    const { data: sectionIds } = useQuery<string[]>({
+        queryKey: ['sectionIds', tripId],
+        queryFn: () => getSections(tripId).then(r => r.map(s => s.sectionId))
     })
 
     const redirectToTripList = () => {
@@ -61,11 +59,7 @@ export const TripDetails = () => {
                     ))}
                 </Box>
                 <Box className={classes.TripDetails__Sidebar}>
-                    <Box className={classes.TripDetails__Fab}>
-                        <Fab color="primary" aria-label="Manage Trip Button">
-                            <AddIcon />
-                        </Fab>
-                    </Box>
+                    <TripQuickActions/>
                 </Box>
             </Box>
         </div>

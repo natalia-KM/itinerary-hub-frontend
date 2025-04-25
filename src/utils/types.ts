@@ -6,3 +6,8 @@ export interface TripDetails {
     startDate?: Date
     endDate?: Date
 }
+
+export interface ModalProps {
+    modalOpen: boolean,
+    setModalOpen: (value: boolean) => void
+}
