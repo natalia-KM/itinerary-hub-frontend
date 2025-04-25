@@ -79,6 +79,10 @@ export class TripDetails {
         return cy.getById('section-menu-manage-options-button')
     }
 
+    get sectionMenuDeleteSection() {
+        return cy.getById('section-menu-delete-section-button')
+    }
+
     /************************* Options ************************/
 
     allOptionTabs(sectionId: string) {
@@ -184,6 +188,10 @@ export class TripDetails {
 
     get optionErrorToast() {
         return cy.get('#option-error-toast')
+    }
+
+    get deleteSectionToast() {
+        return cy.get('#delete-section-toast')
     }
 }
 

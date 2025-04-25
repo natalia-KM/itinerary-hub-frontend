@@ -1,6 +1,6 @@
-import { Box } from '@mui/material'
+import { Box, Skeleton } from '@mui/material'
 import classes from './Section.module.scss'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Option } from '../Option'
 import OutsideAlerter from 'utils/OutsideAlerter'
 import { SectionMenu } from './SectionMenu'
@@ -21,14 +21,15 @@ export const Section = ({
     sectionId
 }: SectionProps) => {
     const [menuOpen, setMenuOpen] = useState(false)
-    const [modalOpen, setModalOpen] = useState(false)
+    const [optionsModalOpen, setOptionsModalOpen] = useState(false)
+    const [deleteSectionModalOpen, setDeleteSectionModalOpen] = useState(false)
     const [elementDrawerOpen, setElementDrawerOpen] = useState(false)
 
     const { mutateAsync: updateSectionCall } = useUpdateSection()
     const { tripId } = useTripId()
 
-    const { data: section } = useQuery<SectionDetails>({
-        queryKey: ['sectionDetails', sectionId], enabled: false,
+    const { data: section, isPending, isRefetching } = useQuery<SectionDetails>({
+        queryKey: ['sectionDetails', sectionId],
         queryFn: () => getSection({ tripId, sectionId })
     })
 
@@ -37,13 +38,26 @@ export const Section = ({
     const [isEditingSectionName, setIsEditingSectionName] = useState(false)
     const [currentSectionName, setSectionName] = useState(section?.sectionName)
 
+    useEffect(() => {
+        setSectionName(section?.sectionName)
+    }, [section?.sectionName])
+
+    if(isPending || isRefetching) {
+        return (
+            <Skeleton/>
+        )
+    }
+
     if(!section) {
         // TODO: implement error & loading state
+        console.error('Couldn\'t retrieve section details.')
         return null
     }
 
-    const handleMenuClose = async () => {
-        await queryClient.invalidateQueries({ queryKey: ['sectionOptionIds', sectionId] })
+    const handleMenuOptionsClose = async (invalidate: boolean) => {
+        if(invalidate) {
+            await queryClient.invalidateQueries({ queryKey: ['sectionOptionIds', sectionId] })
+        }
         setMenuOpen(false)
     }
 
@@ -71,7 +85,7 @@ export const Section = ({
     }
 
     const onOutsideClick = () => {
-        if (!modalOpen && !elementDrawerOpen) setMenuOpen(false)
+        if (!optionsModalOpen && !elementDrawerOpen && !deleteSectionModalOpen) setMenuOpen(false)
     }
 
     return (
@@ -102,11 +116,19 @@ export const Section = ({
                         {menuOpen && (
                             <SectionMenu
                                 sectionDetails={section}
-                                closeMenu={handleMenuClose}
-                                modalOpen={modalOpen}
-                                setModalOpen={setModalOpen}
-                                elementDrawerOpen={elementDrawerOpen}
-                                setElementDrawerOpen={setElementDrawerOpen}
+                                manageOptionsModal={{
+                                    modalOpen: optionsModalOpen,
+                                    setModalOpen: setOptionsModalOpen
+                                }}
+                                elementDrawer={{
+                                    modalOpen: elementDrawerOpen,
+                                    setModalOpen: setElementDrawerOpen
+                                }}
+                                deleteSectionModal={{
+                                    modalOpen: deleteSectionModalOpen,
+                                    setModalOpen: setDeleteSectionModalOpen
+                                }}
+                                closeMenu={handleMenuOptionsClose}
                             />
                         )}
                     </OutsideAlerter>
