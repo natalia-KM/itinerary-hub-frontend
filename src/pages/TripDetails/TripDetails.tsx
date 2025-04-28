@@ -11,6 +11,7 @@ import { useTripId } from 'utils'
 import { getSections } from 'hooks/sections'
 import React from 'react'
 import { TripQuickActions } from './TripQuickActions/TripQuickActions'
+import { PassengerDrawer } from '../TripsView/PassengerDrawer/PassengerDrawer'
 
 // TODO: no section screen / add on BE to create a section & option when new trip created
 export const TripDetails = () => {
@@ -29,6 +30,7 @@ export const TripDetails = () => {
     return (
         <div className={classes.Page}>
             <TopBar/>
+            <PassengerDrawer />
             <Box className={classes.TripDetails}>
                 <Box className={classnames(
                     classes.TripDetails__Sidebar,
@@ -41,7 +43,7 @@ export const TripDetails = () => {
                     >
                         <ArrowBackIcon fontSize={'small'}/>
                         <Typography>
-                            Go back to trips
+                            Trip List
                         </Typography>
                     </Box>
                 </Box>

@@ -1,0 +1,36 @@
+.AddPassengerForm {
+  margin-top: 14px;
+  display: flex;
+  flex-direction: column;
+
+  &__IconContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 5px 4px;
+  }
+}
+
+.EditPassengerForm {
+  margin: 18px 0;
+  display: flex;
+  flex-direction: column;
+
+  &__IconContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 5px 4px;
+  }
+}
+
+.TextField {
+  margin: 7px !important;
+
+  input {
+    border-bottom: 1px solid white;
+    color: white !important;
+  }
+}

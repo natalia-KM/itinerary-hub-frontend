@@ -4,13 +4,15 @@ interface UserAvatarProps {
     firstName?: string
     lastName?: string
     showTooltip? :boolean
+    enablePaddingRight?: boolean
     // image?:string // TODO: to be implemented
 }
 
 export const UserAvatar = ({
     firstName,
     lastName,
-    showTooltip = false
+    showTooltip = false,
+    enablePaddingRight = false
 }: UserAvatarProps) => {
     const initials = () => {
         const firstLetter = firstName && firstName.substring(0, 1)
@@ -31,17 +33,25 @@ export const UserAvatar = ({
 
     return (
         <Tooltip title={name} hidden={showTooltip}>
-        <Avatar sx={{ width: 24, height: 24, border: '1px solid white' }} data-testid='user-avatar'>
-            <Typography
-                fontSize='10px'
-                fontWeight='600'
-                letterSpacing={'0.1em'}
-                paddingLeft={'1px'}
-                paddingTop={'1px'}
+            <Avatar
+                sx={{
+                    width: 24,
+                    height: 24,
+                    border: '1px solid white',
+                    marginRight: enablePaddingRight ? '8px' : 'none'
+                }}
+                data-testid='user-avatar'
             >
-                {initials()}
-            </Typography>
-        </Avatar>
+                <Typography
+                    fontSize='10px'
+                    fontWeight='600'
+                    letterSpacing={'0.1em'}
+                    paddingLeft={'1px'}
+                    paddingTop={'1px'}
+                >
+                    {initials()}
+                </Typography>
+            </Avatar>
         </Tooltip>
     )
 }

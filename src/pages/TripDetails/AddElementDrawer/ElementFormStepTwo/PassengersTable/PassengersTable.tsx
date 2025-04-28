@@ -36,10 +36,18 @@ export const PassengersTable = ({
         )
     }
 
-    if(!passengerDetailsList || passengerDetailsList.length === 0) {
+    if(!passengerDetailsList) {
         return (
             <Typography color={'error'}>
                 There was a problem retrieving the {label}s in this account.
+            </Typography>
+        )
+    }
+
+    if(passengerDetailsList.length === 0) {
+        return (
+            <Typography>
+                Currently you have no passengers in the account.
             </Typography>
         )
     }

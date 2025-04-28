@@ -5,6 +5,7 @@ import { AddTripCard } from './AddTripCard/AddTripCard'
 import classes from './TripsView.module.scss'
 import { TripViewCard } from './TripViewCard/TripViewCard'
 import { toast } from 'react-toastify'
+import { PassengerDrawer } from './PassengerDrawer/PassengerDrawer'
 
 export const TripsView = () => {
     const { trips, isLoading, isError } = useMutateAllTrips()
@@ -31,6 +32,7 @@ export const TripsView = () => {
     return (
         <div className={classes.TripsView}>
             <TopBar/>
+            <PassengerDrawer />
             <Box className={classes.TripsView__TripsContainer}>
                 <AddTripCard />
                 {trips?.map((trip, index) => {
