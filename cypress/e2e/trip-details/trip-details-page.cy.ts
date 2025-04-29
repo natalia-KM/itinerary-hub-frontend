@@ -18,7 +18,7 @@ describe('Trip Details Page', () => {
         apiInterceptor.interceptGetAllTrips({})
         tripDetailsPage.goToTripsLink
             .should('be.visible')
-            .should('have.text', 'Go back to trips')
+            .should('have.text', 'Trip List')
             .click()
 
         cy.location('pathname', { timeout: 60000 })

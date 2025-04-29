@@ -9,7 +9,7 @@
 
     gap: 2vw;
 
-    padding: 5vh 3vw;
+    padding: 5vh calc(3vw + 70px); // closed passengers drawer = 60px, + 10px padding
   }
 }
 

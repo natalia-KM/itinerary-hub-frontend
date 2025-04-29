@@ -7,15 +7,24 @@ import {
 } from '../TripDetails/AddElementDrawer'
 import { ElementBadge } from '../TripDetails/Element/ElementBadge'
 import { TopBar } from 'modules/TopBar'
+import { PassengerDrawer } from '../TripsView/PassengerDrawer/PassengerDrawer'
 
 export const Components = () => {
 
     return (
         <Box>
             <TopBar/>
+            <PassengerDrawer/>
             <Typography variant={'h4'} margin={'5vh'} textAlign={'center'}>
                 Components
             </Typography>
+            <Box sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                ml: 'auto',
+                mr: 'auto',
+                width: '80%'
+            }}>
             <Accordion>
                 <AccordionSummary>
                     Transport Elements Category Badges
@@ -26,7 +35,7 @@ export const Components = () => {
                         const ElementCategoryIcon = config?.icon
 
                         return (
-                            <ElementBadge Icon={ElementCategoryIcon} tooltipText={element} color={config.color} whiteIcon={config.whiteIcon} />
+                            <ElementBadge key={element} Icon={ElementCategoryIcon} tooltipText={element} color={config.color} whiteIcon={config.whiteIcon} />
                         )
                     })}
                 </AccordionDetails>
@@ -42,7 +51,7 @@ export const Components = () => {
                         const ElementCategoryIcon = config?.icon
 
                         return (
-                            <ElementBadge Icon={ElementCategoryIcon} tooltipText={element} color={config.color} whiteIcon={config.whiteIcon} />
+                            <ElementBadge key={element} Icon={ElementCategoryIcon} tooltipText={element} color={config.color} whiteIcon={config.whiteIcon} />
                         )
                     })}
                 </AccordionDetails>
@@ -58,11 +67,12 @@ export const Components = () => {
                         const ElementCategoryIcon = config?.icon
 
                         return (
-                            <ElementBadge Icon={ElementCategoryIcon} tooltipText={element} color={config.color} whiteIcon={config.whiteIcon} />
+                            <ElementBadge key={element} Icon={ElementCategoryIcon} tooltipText={element} color={config.color} whiteIcon={config.whiteIcon} />
                         )
                     })}
                 </AccordionDetails>
             </Accordion>
+            </Box>
         </Box>
     )
 }

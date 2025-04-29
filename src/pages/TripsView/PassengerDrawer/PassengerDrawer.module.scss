@@ -1,0 +1,82 @@
+.IconButton {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  padding: 0;
+}
+
+.error {
+  color: $lightest-gray !important;
+
+  &:hover {
+    color: $error !important;
+  }
+}
+
+.natural {
+  color: $lightest-gray !important;
+
+  &:hover {
+    color: $mui-selected-text !important;
+  }
+}
+
+.Drawer {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.DrawerHeader {
+  margin-top: 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  &__Title {
+    color: white;
+    margin: 5px !important;
+  }
+}
+
+.ListItem {
+  padding: 7px 0 !important;
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  align-items: center;
+
+  &__Icon {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+}
+
+.AddPassengerRowButton {
+  margin-top: 10px;
+  margin-left: -10px;
+  width: 240px; /* == drawer width */
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+
+  text-align: center;
+  cursor: pointer;
+  background-color: #272d33;
+  padding: 8px 0;
+
+  &:hover {
+    background-color: #27323b;
+
+    .AddPassengerRowButton__Component {
+      color: $selected-darker !important;
+    }
+  }
+
+  &__Component {
+  }
+}

@@ -9,6 +9,7 @@ describe('Trips View - Happy Paths', () => {
     beforeEach(() => {
         apiInterceptor.interceptGetUserDetails({ manualResolution: false })
         apiInterceptor.interceptGetAllTrips({})
+        apiInterceptor.interceptGetPassengers({})
 
         cy.visit('http://localhost:3000/dashboard')
     })

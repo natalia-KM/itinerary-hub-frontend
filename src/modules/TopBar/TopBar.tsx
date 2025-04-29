@@ -12,7 +12,7 @@ export const TopBar = ({
         window.location.href = '/dashboard'
     }
     return(
-        <AppBar position="static" className={classes.TopBar} data-testid='top-bar'>
+        <AppBar className={classes.TopBar} data-testid='top-bar' sx={{ position: 'sticky', zIndex: (theme) => theme.zIndex.drawer + 1 }}>
             <Toolbar>
                 <Box
                     sx={{ md: 'flex' }}

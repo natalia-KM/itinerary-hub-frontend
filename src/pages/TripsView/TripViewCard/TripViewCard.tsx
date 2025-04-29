@@ -53,7 +53,7 @@ export const TripViewCard = ({
                                 alt="Trip Cover Image"
                                 data-testid={`${testIdPrefix}-image`}
                             />
-                            <Grid container className={classes.Card__InfoContainer}>
+                            <Grid container className={classes.Card__InfoContainer} maxWidth={'300px'}>
                                 <Grid size={11} onClick={redirectToTripDetails}>
                                     <Tooltip
                                         id={`${testIdPrefix}-tooltip`}

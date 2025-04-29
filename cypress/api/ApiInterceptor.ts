@@ -341,21 +341,6 @@ export class ApiInterceptor extends ApiInterceptorBase {
         })
     }
 
-    interceptGetPassengers({
-        status = 200,
-        manualResolution,
-        responseBody = useGetPassengersResponses
-    }: TripsRequestOptions): ApiInterceptorResponse {
-        return apiInterceptor.interceptRequest({
-            url: 'http://localhost:8080/v1/passengers',
-            status,
-            method: 'GET',
-            alias: InterceptorAlias.GET_PASSENGERS,
-            responseBody,
-            manualResolution
-        })
-    }
-
     interceptCreateTransportElement({
         status = 200,
         manualResolution,
@@ -442,6 +427,62 @@ export class ApiInterceptor extends ApiInterceptorBase {
             method: 'GET',
             alias: InterceptorAlias.GET_TRANSPORT_ELEMENT,
             responseBody,
+            manualResolution
+        })
+    }
+
+    interceptGetPassengers({
+        status = 200,
+        manualResolution,
+        responseBody = useGetPassengersResponses
+    }: TripsRequestOptions): ApiInterceptorResponse {
+        return apiInterceptor.interceptRequest({
+            url: 'http://localhost:8080/v1/passengers',
+            status,
+            method: 'GET',
+            alias: InterceptorAlias.GET_PASSENGERS,
+            responseBody,
+            manualResolution
+        })
+    }
+
+    interceptCreatePassenger({
+        status = 201,
+        manualResolution
+    }: TripsRequestOptions): ApiInterceptorResponse {
+        return apiInterceptor.interceptRequest({
+            url: 'http://localhost:8080/v1/passengers',
+            status,
+            method: 'POST',
+            alias: InterceptorAlias.CREATE_PASSENGER,
+            manualResolution
+        })
+    }
+
+    interceptUpdatePassenger({
+        status = 200,
+        manualResolution,
+        passengerId
+    }: TripsRequestOptions): ApiInterceptorResponse {
+        return apiInterceptor.interceptRequest({
+            url: `http://localhost:8080/v1/passengers/${passengerId}`,
+            status,
+            method: 'PUT',
+            alias: InterceptorAlias.UPDATE_PASSENGER,
+            manualResolution
+        })
+    }
+
+    interceptDeletePassenger({
+        status = 200,
+        manualResolution,
+        passengerId
+    }: TripsRequestOptions): ApiInterceptorResponse {
+        return apiInterceptor.interceptRequest({
+            url: `http://localhost:8080/v1/passengers/${passengerId}`,
+            status,
+            method: 'DELETE',
+            alias: InterceptorAlias.DELETE_PASSENGER,
             manualResolution
         })
     }
