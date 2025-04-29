@@ -42,7 +42,7 @@ export const EditPassengerForm = ({
             }).then(() => {
                 queryClient.invalidateQueries({ queryKey: [queryKeys.getAllPassengers] })
             }).catch(() => {
-                toast.error('Couldn\'t update passenger. Try again later')
+                toast.error('Couldn\'t update passenger. Try again later', { toastId: 'passenger-form-error-toast' })
             }).finally(() => {
                 cancelOp()
             })

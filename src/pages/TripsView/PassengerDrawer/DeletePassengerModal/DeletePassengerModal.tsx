@@ -28,7 +28,7 @@ export const DeletePassengerModal = ({
                 await queryClient.invalidateQueries({ queryKey: [queryKeys.getAllPassengers] })
             })
             .catch(() => {
-                toast.error('Couldn\'t delete the passenger. Try again later')
+                toast.error('Couldn\'t delete the passenger. Try again later', { toastId: 'delete-passenger-error-toast' })
             })
             .finally(() => {
                 closeModal()

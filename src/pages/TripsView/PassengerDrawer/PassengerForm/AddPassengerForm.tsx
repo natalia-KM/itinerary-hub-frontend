@@ -32,7 +32,7 @@ export const AddPassengerForm = ({
             }).then(() => {
                 queryClient.invalidateQueries({ queryKey: [queryKeys.getAllPassengers] })
             }).catch(() => {
-                toast.error('Couldn\'t add a passenger. Try again later')
+                toast.error('Couldn\'t add a passenger. Try again later', { toastId: 'passenger-form-error-toast' })
             }).finally(() => {
                 cancelOp()
             })
@@ -71,7 +71,7 @@ export const AddPassengerForm = ({
                 value={newPassengerLastName}
                 onChange={(event: React.ChangeEvent<HTMLInputElement>) => setNewPassengerLastName(event.target.value)}
                 size="small"
-                slotProps={{ htmlInput: { 'data-testid': 'passengers-add-first-name' } }}
+                slotProps={{ htmlInput: { 'data-testid': 'passengers-add-last-name' } }}
             />
             {newPassengerErrors && (
                 <InputErrorMessage

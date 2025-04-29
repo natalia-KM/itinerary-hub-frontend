@@ -69,6 +69,17 @@ export class Passengers {
         return cy.getById('passengers-form-confirm-icon')
     }
 
+    get addPassengerErrorToast() {
+        return cy.get('#passenger-form-error-toast')
+    }
+
+    get confirmDeletePassengerModal() {
+        return cy.getById('delete-passenger-modal')
+    }
+
+    get deletePassengerErrorToast() {
+        return cy.get('#delete-passenger-error-toast')
+    }
 }
 
 export const passengerDrawer = new Passengers()

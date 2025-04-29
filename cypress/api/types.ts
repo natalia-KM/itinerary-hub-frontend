@@ -18,6 +18,7 @@ export interface TripsRequestOptions extends InterceptRequestOptions {
     sectionId?: string
     optionId?: string
     elementId?: string
+    passengerId?: string
 }
 
 export enum InterceptorAlias {
@@ -44,6 +45,9 @@ export enum InterceptorAlias {
     DELETE_OPTION = 'deleteOption',
     CREATE_OPTION = 'createOption',
     GET_PASSENGERS = 'getPassengers',
+    CREATE_PASSENGER = 'createPassenger',
+    UPDATE_PASSENGER = 'updatePassenger',
+    DELETE_PASSENGER = 'deletePassenger',
     GET_ELEMENTS = 'getElements',
     GET_TRANSPORT_ELEMENT = 'getTransportElement',
     CREATE_TRANSPORT_ELEMENT = 'createTransportElement',
