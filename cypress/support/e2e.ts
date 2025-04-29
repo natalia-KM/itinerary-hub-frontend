@@ -4,5 +4,5 @@ import 'cypress-real-events'
 
 before(() => {
     // eslint-disable-next-line cypress/no-unnecessary-waiting
-    cy.wait(4000)
+    cy.wait(2000)
 })
