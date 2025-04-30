@@ -6,7 +6,7 @@ interface OutsideAlerterProps {
 }
 
 export default class OutsideAlerter extends Component<OutsideAlerterProps> {
-    private wrapperRef: React.RefObject<HTMLDivElement | null>
+    private readonly wrapperRef: React.RefObject<HTMLDivElement | null>
 
     constructor(props: OutsideAlerterProps) {
         super(props)

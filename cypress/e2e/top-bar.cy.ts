@@ -135,6 +135,73 @@ describe('Top Bar', () => {
         })
     })
 
+    describe('Account Menu - User Details', () => {
+        const userDetails = useGetUserDetailsResponses.Guest
+
+        beforeEach(() => {
+            apiInterceptor.interceptGetUserDetails({})
+            cy.visit('http://localhost:3000/dashboard')
+
+            topBar.topBar.should('be.visible')
+
+            topBar.accountButton
+                .should('be.visible')
+                .click()
+
+            topBar.accountMenu.should('be.visible')
+
+            topBar.userDetailsButton
+                .should('be.visible')
+                .click()
+
+            topBar.userDetailsModal.should('be.visible')
+        })
+
+        it('should show all information', () => {
+            topBar.firstNameCellInput.should('have.text', 'First Name')
+            topBar.lastNameCellProperty.should('have.text', 'Last Name')
+            topBar.createdAtCellProperty.should('have.text', 'Created At')
+            topBar.currencyCellProperty.should('have.text', 'Currency')
+
+            topBar.firstNameCellValue.should('have.text', userDetails.firstName)
+            topBar.lastNameCellValue.should('have.text', userDetails.lastName)
+            topBar.createdAtCellValue.should('have.text', '10/03/2025')
+            topBar.currencyCellValue.should('have.text', 'USD')
+        })
+
+        it('should update first name successfully', () => {
+
+        })
+
+        it('should update last name successfully', () => {
+
+        })
+
+        it('should not update name if empty', () => {
+
+        })
+
+        it('should update currency successfully', () => {
+
+        })
+
+        it('should show error toast on failed first name update', () => {
+
+        })
+
+        it('should show error toast on failed first name update', () => {
+
+        })
+
+        it('should show error toast on failed first name update', () => {
+
+        })
+
+        it('should close modal on OK click', () => {
+
+        })
+    })
+
     describe('Account Menu - Google User', () => {
 
         beforeEach(() => {

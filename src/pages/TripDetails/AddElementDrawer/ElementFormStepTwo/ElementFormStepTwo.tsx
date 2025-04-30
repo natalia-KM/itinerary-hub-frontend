@@ -16,9 +16,11 @@ import { getCurrencySymbol } from 'pages/TripDetails/Element/utils'
 import classnames from 'classnames'
 import { ElementStatus, ElementType } from 'hooks/elements'
 import { PassengersTable } from './PassengersTable/PassengersTable'
+import { useUserDetailsContext } from 'provider/UserDetailsProvider/useUserDetailsContext'
 
 export const ElementFormStepTwo = () => {
     const { register, control, getValues, formState: { errors } } = useFormContext<FormSchema>()
+    const { userDetails } = useUserDetailsContext()
     const elementType = getValues('elementType')
 
     const passengersLabel = elementType === ElementType.TRANSPORT ? 'Passenger' : 'Guest'
@@ -38,7 +40,7 @@ export const ElementFormStepTwo = () => {
                         <InputLabel htmlFor={`${testId}-price`}>Price</InputLabel>
                         <OutlinedInput
                             id={`${testId}-price`}
-                            startAdornment={<InputAdornment position="start">{getCurrencySymbol('USD')}</InputAdornment>}
+                            startAdornment={<InputAdornment position="start">{getCurrencySymbol(userDetails?.currency ?? 'USD')}</InputAdornment>}
                             placeholder='122.50'
                             size='small'
                             label='Price'

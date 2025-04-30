@@ -20,6 +20,8 @@ export const ElementFormStepOne = () => {
         event: React.MouseEvent<HTMLElement>,
         newValue: ElementType,
     ) => {
+        if(!newValue || newValue === elementType) return
+
         setValue('elementInformation.type', newValue)
         setValue('elementType', newValue)
     }
@@ -53,7 +55,7 @@ export const ElementFormStepOne = () => {
                             >
                                 {Object.values(ElementType).map((type) => (
                                     <ToggleButton
-                                        key={`${elementType.toLowerCase()}-el-type-item`}
+                                        key={`${type.toLowerCase()}-el-type-item`}
                                         data-testid={`${type.toLowerCase()}-radio-btn`}
                                         value={type}
                                         color={'secondary'}

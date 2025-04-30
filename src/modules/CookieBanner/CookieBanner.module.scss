@@ -1,0 +1,15 @@
+.CookieBanner {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  padding: 15px !important;
+  margin: 5vh !important;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #1C243D !important;
+  color: white !important;
+  z-index: 1300
+}

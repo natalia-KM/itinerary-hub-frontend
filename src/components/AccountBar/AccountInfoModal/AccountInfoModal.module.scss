@@ -1,0 +1,48 @@
+.EditableCell {
+  padding: 0 !important;
+  font-size: 0.875rem !important;
+
+  &:hover {
+    cursor: pointer;
+    background-color: $lightest-gray !important;
+  }
+}
+
+.RegularCell {
+  padding: 0 7px !important;
+  cursor: default;
+  font-size: 0.875rem !important;
+}
+
+.DisplayText {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  gap: 8px;
+
+  &__Text {
+    font-size: 0.875rem !important;
+    padding: 0 8px;
+    transition: background-color 0.2s ease-in-out;
+  }
+}
+
+.Editable {
+  padding: 0 !important;
+
+  input {
+    padding: 5px 12px;
+  }
+}
+
+.Dropdown {
+  padding: 0 !important;
+  width: 100%;
+
+  &__MenuItem {
+    display: flex;
+    justify-content: space-between !important;
+    align-items: center;
+  }
+}
