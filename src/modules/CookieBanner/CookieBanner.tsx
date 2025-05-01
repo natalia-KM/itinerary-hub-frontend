@@ -30,7 +30,7 @@ export const CookieBanner = () => {
                 We use only essential cookies to ensure the website functions correctly.
                 By continuing to use this site, you agree to our use of necessary cookies.
             </Typography>
-            <Button variant="contained" onClick={handleAccept}>
+            <Button variant="contained" onClick={handleAccept} data-testid={'cookie-banner-btn'}>
                 OK
             </Button>
         </Paper>

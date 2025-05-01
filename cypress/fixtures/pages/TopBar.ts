@@ -118,6 +118,10 @@ export class TopBar {
     get userUpdateErrorToast() {
         return cy.get('#update-user-error-toast')
     }
+
+    get cookieBannerButton(){
+        return cy.getById('cookie-banner-btn')
+    }
 }
 
 export const topBar = new TopBar()

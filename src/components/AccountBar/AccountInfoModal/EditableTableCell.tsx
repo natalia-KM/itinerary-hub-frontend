@@ -6,7 +6,7 @@ import OutsideAlerter from 'utils/OutsideAlerter'
 
 interface EditableTableCellProps {
     defaultValue?: string
-    onSave: (val?: string) => void
+    onSave: (val?: string) => Promise<void>
     testId: string
 }
 
@@ -29,10 +29,10 @@ export const EditableTableCell = ({
         }
     }
 
-    const onConfirm = () => {
+    const onConfirm = async () => {
         setIsEditing(false)
         try {
-            onSave(value)
+            await onSave(value)
         } catch {
             setValue(defaultValue)
         }
