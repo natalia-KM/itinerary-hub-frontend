@@ -11,6 +11,7 @@ import '@fontsource/roboto/300.css'
 import '@fontsource/roboto/400.css'
 import '@fontsource/roboto/500.css'
 import '@fontsource/roboto/700.css'
+import { CookieBanner } from './modules/CookieBanner'
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -24,6 +25,7 @@ root.render(
                   position='top-right'
                   theme='light'
               />
+              <CookieBanner/>
           </UserDetailsProvider>
       </QueryClientProvider>
   </React.StrictMode>

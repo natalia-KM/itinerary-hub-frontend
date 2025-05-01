@@ -55,6 +55,73 @@ export class TopBar {
     get deleteAccountButton() {
         return cy.getById('top-bar-account-menu-delete-account-button')
     }
+
+    get userDetailsButton() {
+        return cy.getById('top-bar-account-menu-user-details')
+    }
+
+    get userDetailsModal() {
+        return cy.getById('account-info-modal')
+    }
+
+    /******************** PROPERTIES ******************/
+    get firstNameCellProperty() {
+        return cy.get('#first-name-label-cell')
+    }
+
+    get lastNameCellProperty() {
+        return cy.get('#last-name-label-cell')
+    }
+
+    get createdAtCellProperty() {
+        return cy.get('#created-at-label-cell')
+    }
+
+    get currencyCellProperty() {
+        return cy.get('#currency-label-cell')
+    }
+
+    /******************** VALUES ******************/
+    get firstNameCellValue() {
+        return cy.getById('first-name-editable-text')
+    }
+
+    get lastNameCellValue() {
+        return cy.getById('last-name-editable-text')
+    }
+
+    get createdAtCellValue() {
+        return cy.getById('created-at-cell-value')
+    }
+
+    get currencyCellValue() {
+        return cy.getById('currency-cell-value')
+    }
+
+    /******************** EDITABLE ******************/
+    get firstNameCellInput() {
+        return cy.get('#first-name-editable-input')
+    }
+
+    get lastNameCellInput() {
+        return cy.get('#last-name-editable-input')
+    }
+
+    get currencySelect() {
+        return cy.getById('currency-select')
+    }
+
+    currencySelectItem(currencyCode: string) {
+        return cy.getById(`${currencyCode}-currency-item`)
+    }
+
+    get userUpdateErrorToast() {
+        return cy.get('#update-user-error-toast')
+    }
+
+    get cookieBannerButton(){
+        return cy.getById('cookie-banner-btn')
+    }
 }
 
 export const topBar = new TopBar()

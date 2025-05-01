@@ -44,6 +44,19 @@ export class ApiInterceptor extends ApiInterceptorBase {
         })
     }
 
+    interceptUpdateUserDetails({
+        status = 201,
+        manualResolution
+    }: InterceptRequestOptions): ApiInterceptorResponse {
+        return apiInterceptor.interceptRequest({
+            url: 'http://localhost:8080/v1/users',
+            status,
+            method: 'PUT',
+            alias: InterceptorAlias.UPDATE_USER_DETAILS,
+            manualResolution
+        })
+    }
+
     interceptLogout({
         status = 204,
         manualResolution

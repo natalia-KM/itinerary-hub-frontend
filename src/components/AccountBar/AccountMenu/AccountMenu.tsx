@@ -7,15 +7,17 @@ import { UserAvatar } from 'components/UserAvatar'
 import { useLogout } from 'hooks/useLogout'
 import { useSignInWithGoogle } from 'hooks/useSignInWithGoogle'
 import { DeleteAccount } from './DeleteAccount'
+import { ModalProps } from 'utils'
+import { AccountInfoModal } from '../AccountInfoModal/AccountInfoModal'
 
 interface AccountMenuProps {
-    modalOpen: boolean,
-    setModalOpen: (value: boolean) => void
+    deleteModal: ModalProps
+    infoModal: ModalProps
 }
 
 export const AccountMenu = ({
-    modalOpen,
-    setModalOpen
+    deleteModal,
+    infoModal
 }: AccountMenuProps) => {
     const { userDetails } = useUserDetailsContext()
     const { mutateAsync: logout } = useLogout()
@@ -25,7 +27,7 @@ export const AccountMenu = ({
     return (
         <Paper className={classes.AccountMenu} data-testid={testIdPrefix}>
             <MenuList>
-                <MenuItem>
+                <MenuItem onClick={() => infoModal.setModalOpen(true)} data-testid={`${testIdPrefix}-user-details`}>
                     <ListItemIcon>
                        <UserAvatar firstName={userDetails?.firstName} lastName={userDetails?.lastName} />
                     </ListItemIcon>
@@ -36,6 +38,7 @@ export const AccountMenu = ({
                         </Typography>
                     )}
                 </MenuItem>
+                <AccountInfoModal isOpen={infoModal.modalOpen} closeModal={() => infoModal.setModalOpen(false)} />
                 {userDetails?.isGuest && (
                     <MenuItem onClick={() => signInWithGoogle()} data-testid={`${testIdPrefix}-link-google-account`}>
                         <ListItemIcon>
@@ -56,7 +59,7 @@ export const AccountMenu = ({
                     </>
                 )}
                 <Divider />
-                <DeleteAccount testId={testIdPrefix} modalOpen={modalOpen} setModalOpen={setModalOpen}/>
+                <DeleteAccount testId={testIdPrefix} modalOpen={deleteModal.modalOpen} setModalOpen={deleteModal.setModalOpen}/>
             </MenuList>
         </Paper>
     )

@@ -24,6 +24,7 @@ export interface TripsRequestOptions extends InterceptRequestOptions {
 export enum InterceptorAlias {
     GET_USER_DETAILS = 'getUserDetails',
     CREATE_GUEST_USER = 'createGuestUser',
+    UPDATE_USER_DETAILS = 'updateUserDetails',
     LOGOUT = 'logout',
     DELETE_ACCOUNT = 'deleteAccount',
     CREATE_TRIP = 'createTrip',

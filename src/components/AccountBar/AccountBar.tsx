@@ -6,14 +6,15 @@ import OutsideAlerter from 'utils/OutsideAlerter'
 
 export const AccountBar = () => {
     const [menuOpen, setMenuOpen] = useState(false)
-    const [modalOpen, setModalOpen] = useState(false)
+    const [deleteModalOpen, setDeleteModalOpen] = useState(false)
+    const [infoModalOpen, setInfoModalOpen] = useState(false)
 
     const handleOpenMenu = () => {
         setMenuOpen((opened) => !opened)
     }
 
     const handleCloseMenu = () => {
-        if(!modalOpen) setMenuOpen(false)
+        if(!deleteModalOpen && !infoModalOpen) setMenuOpen(false)
     }
 
     return (
@@ -31,7 +32,16 @@ export const AccountBar = () => {
                     <AccountCircleIcon/>
                 </IconButton>
                 {menuOpen && (
-                    <AccountMenu modalOpen={modalOpen} setModalOpen={setModalOpen}/>
+                    <AccountMenu
+                        deleteModal={{
+                            modalOpen: deleteModalOpen,
+                            setModalOpen: setDeleteModalOpen
+                        }}
+                        infoModal={{
+                            modalOpen: infoModalOpen,
+                            setModalOpen: setInfoModalOpen
+                        }}
+                    />
                 )}
             </OutsideAlerter>
         </div>

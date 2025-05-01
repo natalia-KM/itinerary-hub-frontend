@@ -15,6 +15,10 @@
     }
   }
 
+  &__xs {
+    font-size: 0.875rem !important;
+  }
+
   &_small {
     font-size: 18px !important;
   }
@@ -29,6 +33,13 @@
 }
 
 .InputComponent {
+
+  &__xs {
+    input {
+      font-size: 0.875rem !important;
+      padding: 6.5px 14px !important;
+    }
+  }
 
   &_small {
     input {

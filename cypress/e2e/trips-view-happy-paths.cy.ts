@@ -4,6 +4,7 @@ import { useGetAllTripsResponses } from 'hooks/trips/useGetAllTrips/useGetAllTri
 import { TRIP_ID, TRIP_ID_2 } from 'testUtils/mockValues'
 import { modals } from '../fixtures/modules/Modals'
 import { drawer } from '../fixtures/modules/Drawers'
+import { topBar } from 'cypress/fixtures/pages/TopBar'
 
 describe('Trips View - Happy Paths', () => {
     beforeEach(() => {
@@ -216,6 +217,8 @@ describe('Trips View - Happy Paths', () => {
         })
 
         it('should close the drawer on cancel' ,() => {
+            topBar.cookieBannerButton.click() // covers up the cancel btn
+
             tripsViewPage.addTripCard
                 .should('be.visible')
                 .click()

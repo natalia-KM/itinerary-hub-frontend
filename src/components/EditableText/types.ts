@@ -4,7 +4,7 @@ export interface EditableTextProps extends TypographyProps {
     /**
      * Size of the text and the text field
      */
-    size?: 'small' | 'medium' | 'large'
+    size?: 'xs' | 'small' | 'medium' | 'large'
 
     /**
      * Optional function to enable/disable editing mode. Must be passed with value.

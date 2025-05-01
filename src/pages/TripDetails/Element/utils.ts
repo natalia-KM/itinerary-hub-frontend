@@ -1,10 +1,18 @@
+export const currencyMap: Record<string, string> = {
+    USD: '$',
+    EUR: '€',
+    GBP: '£',
+    JPY: '¥',
+    AUD: '$',
+    CAD: '$',
+    CHF: 'CHF',
+    CNY: '¥',
+    INR: '₹',
+    NZD: '$',
+}
+
 export const getCurrencySymbol = (code: string): string => {
-    return (0).toLocaleString('en', {
-        style: 'currency',
-        currency: code,
-        minimumFractionDigits: 0,
-        maximumFractionDigits: 0,
-    }).replace(/\d/g, '').trim()
+    return currencyMap[code]
 }
 
 export const prettifyPrice = (currency?: string | null, price?: number) => {
