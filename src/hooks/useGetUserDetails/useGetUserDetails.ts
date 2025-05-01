@@ -1,6 +1,6 @@
 import { useCallback } from 'react'
 import webClient from 'config/clientConfig'
-import { useMutation, useQuery } from '@tanstack/react-query'
+import { useQuery } from '@tanstack/react-query'
 import { UserDetails } from 'hooks/useGetUserDetails/types'
 import { queryKeys } from 'config/queryKeys'
 
