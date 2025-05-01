@@ -7,6 +7,7 @@ describe('Top Bar', () => {
     beforeEach(() => {
         apiInterceptor.interceptGetUserDetails({ manualResolution: false })
         apiInterceptor.interceptGetAllTrips({})
+        apiInterceptor.interceptGetPassengers({})
     })
 
     it('should have all elements visible', () => {
@@ -158,7 +159,7 @@ describe('Top Bar', () => {
         })
 
         it('should show all information', () => {
-            topBar.firstNameCellInput.should('have.text', 'First Name')
+            topBar.firstNameCellProperty.should('have.text', 'First Name')
             topBar.lastNameCellProperty.should('have.text', 'Last Name')
             topBar.createdAtCellProperty.should('have.text', 'Created At')
             topBar.currencyCellProperty.should('have.text', 'Currency')
@@ -170,35 +171,172 @@ describe('Top Bar', () => {
         })
 
         it('should update first name successfully', () => {
+            const newFirstName = 'Tom'
 
+            const { alias } = apiInterceptor.interceptUpdateUserDetails({})
+            apiInterceptor.interceptGetUserDetails({
+                responseBody: {
+                    ...useGetUserDetailsResponses.Guest,
+                    firstName: newFirstName
+                }
+            })
+
+            topBar.firstNameCellValue.click()
+            topBar.firstNameCellInput
+                .should('be.visible')
+                .invoke('val', '') //clear
+                .type(newFirstName)
+                .type('{enter}') // check it updates the name by pressing enter
+
+            cy.wait(alias).then((interception) => {
+                expect(interception.request.body).to.deep.equal({
+                    firstName: newFirstName
+                })
+            })
+
+            topBar.firstNameCellInput.should('not.exist')
+            topBar.firstNameCellValue
+                .should('be.visible')
+                .should('have.text', newFirstName)
         })
 
         it('should update last name successfully', () => {
+            const newLastName = 'Smith'
 
+            const { alias } = apiInterceptor.interceptUpdateUserDetails({})
+            apiInterceptor.interceptGetUserDetails({
+                responseBody: {
+                    ...useGetUserDetailsResponses.Guest,
+                    lastName: newLastName
+                }
+            })
+
+            topBar.lastNameCellValue.click()
+            topBar.lastNameCellInput
+                .should('be.visible')
+                .invoke('val', '') //clear
+                .type(newLastName)
+
+            topBar.lastNameCellProperty.click() // check it updates the name by clicking outside
+
+            cy.wait(alias).then((interception) => {
+                expect(interception.request.body).to.deep.equal({
+                    lastName: newLastName
+                })
+            })
+
+            topBar.lastNameCellInput.should('not.exist')
+            topBar.lastNameCellValue
+                .should('be.visible')
+                .should('have.text', newLastName)
         })
 
         it('should not update name if empty', () => {
+            topBar.firstNameCellValue.click()
+            topBar.firstNameCellInput
+                .should('be.visible')
+                .invoke('val', '') //clear
+                .type('{enter}')
 
+            topBar.firstNameCellInput.should('not.exist')
+            topBar.firstNameCellValue
+                .should('be.visible')
+                .should('have.text', userDetails.firstName)
         })
 
         it('should update currency successfully', () => {
+            const newCurrency = 'AUD'
 
+            const { alias } = apiInterceptor.interceptUpdateUserDetails({})
+            apiInterceptor.interceptGetUserDetails({
+                responseBody: {
+                    ...useGetUserDetailsResponses.Guest,
+                    currency: newCurrency
+                }
+            })
+
+            topBar.currencyCellValue.click()
+            topBar.currencySelect.click()
+            topBar.currencySelectItem(newCurrency)
+                .should('be.visible')
+                .should('contain.text', 'Australian Dollar')
+                .should('contain.text', '$')
+                .should('contain.text', 'AUD')
+                .click()
+
+            cy.wait(alias).then((interception) => {
+                expect(interception.request.body).to.deep.equal({
+                    currency: newCurrency
+                })
+            })
+
+            topBar.currencySelect.should('not.exist')
+            topBar.currencyCellValue
+                .should('be.visible')
+                .should('have.text', newCurrency)
         })
 
         it('should show error toast on failed first name update', () => {
+            apiInterceptor.interceptUpdateUserDetails({ status: 500 })
 
+            topBar.firstNameCellValue.click()
+            topBar.firstNameCellInput
+                .should('be.visible')
+                .invoke('val', '') //clear
+                .clear({ force: true })
+                .type('Tom')
+                .type('{enter}')
+
+            topBar.firstNameCellInput.should('not.exist')
+            topBar.firstNameCellValue
+                .should('be.visible')
+                .should('have.text', userDetails.firstName)
+
+            topBar.userUpdateErrorToast
+                .should('be.visible')
+                .should('have.text', 'Couldn\'t update the name. Try again later')
         })
 
-        it('should show error toast on failed first name update', () => {
+        it('should show error toast on failed last name update', () => {
+            apiInterceptor.interceptUpdateUserDetails({ status: 500 })
 
+            topBar.lastNameCellValue.click()
+            topBar.lastNameCellInput
+                .should('be.visible')
+                .clear()
+                .type('Smith')
+                .type('{enter}')
+
+            topBar.lastNameCellInput.should('not.exist')
+            topBar.lastNameCellValue
+                .should('be.visible')
+                .should('have.text', userDetails.lastName)
+
+            topBar.userUpdateErrorToast
+                .should('be.visible')
+                .should('have.text', 'Couldn\'t update the name. Try again later')
         })
 
-        it('should show error toast on failed first name update', () => {
+        it('should show error toast on failed currency update', () => {
+            apiInterceptor.interceptUpdateUserDetails({ status: 500 })
 
+            topBar.currencyCellValue.click()
+            topBar.currencySelect.click()
+            topBar.currencySelectItem('GBP').click()
+
+            topBar.currencySelect.should('not.exist')
+            topBar.currencyCellValue
+                .should('be.visible')
+                .should('have.text', 'USD')
+
+            topBar.userUpdateErrorToast
+                .should('be.visible')
+                .should('have.text', 'Couldn\'t update the currency. Try again later')
         })
 
         it('should close modal on OK click', () => {
-
+            modals.modalConfirmButton.click()
+            topBar.userDetailsModal.should('not.exist')
         })
     })
 

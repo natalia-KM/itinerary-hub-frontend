@@ -66,19 +66,19 @@ export class TopBar {
 
     /******************** PROPERTIES ******************/
     get firstNameCellProperty() {
-        return cy.getById('first-name-label-cell')
+        return cy.get('#first-name-label-cell')
     }
 
     get lastNameCellProperty() {
-        return cy.getById('last-name-label-cell')
+        return cy.get('#last-name-label-cell')
     }
 
     get createdAtCellProperty() {
-        return cy.getById('created-at-label-cell')
+        return cy.get('#created-at-label-cell')
     }
 
     get currencyCellProperty() {
-        return cy.getById('currency-label-cell')
+        return cy.get('#currency-label-cell')
     }
 
     /******************** VALUES ******************/
@@ -100,15 +100,15 @@ export class TopBar {
 
     /******************** EDITABLE ******************/
     get firstNameCellInput() {
-        return cy.getById('first-name-editable-input')
+        return cy.get('#first-name-editable-input')
     }
 
     get lastNameCellInput() {
-        return cy.getById('last-name-editable-input')
+        return cy.get('#last-name-editable-input')
     }
 
     get currencySelect() {
-        return cy.get('#currency-select')
+        return cy.getById('currency-select')
     }
 
     currencySelectItem(currencyCode: string) {

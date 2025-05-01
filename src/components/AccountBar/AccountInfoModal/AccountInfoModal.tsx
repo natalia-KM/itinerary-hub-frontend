@@ -14,9 +14,9 @@ interface AccountInfoModalProps {
     closeModal: () => void
 }
 
-const NarrowCell = ({ children, props }: { children: ReactNode, props?: TableCellProps }) => {
+const NarrowCell = ({ children, id, props }: { children: ReactNode, id: string, props?: TableCellProps }) => {
     return (
-        <TableCell sx={{ width: '30%' }} {...props}>{children}</TableCell>
+        <TableCell id={id} sx={{ width: '30%' }} {...props}>{children}</TableCell>
     )
 }
 
@@ -46,7 +46,8 @@ export const AccountInfoModal = ({
             invalidateUserDetails()
         }).catch((e) => {
             console.error(e)
-            toast.error('Couldn\'t update the name', { toastId: 'update-user-error-toast' })
+            toast.error('Couldn\'t update the name. Try again later', { toastId: 'update-user-error-toast' })
+            throw e
         })
     }
 
@@ -67,7 +68,7 @@ export const AccountInfoModal = ({
                 <Table size="small">
                     <TableBody>
                         <TableRow>
-                            <NarrowCell data-testid={'first-name-label-cell'}>First Name</NarrowCell>
+                            <NarrowCell id={'first-name-label-cell'}>First Name</NarrowCell>
                             <EditableTableCell
                                 defaultValue={userDetails?.firstName}
                                 onSave={(val) => onUserNameChange(UserDetail.FIRST_NAME, val)}
@@ -75,7 +76,7 @@ export const AccountInfoModal = ({
                             />
                         </TableRow>
                         <TableRow>
-                            <NarrowCell data-testid={'last-name-label-cell'}>Last Name</NarrowCell>
+                            <NarrowCell id={'last-name-label-cell'}>Last Name</NarrowCell>
                             <EditableTableCell
                                 defaultValue={userDetails?.lastName}
                                 onSave={(val) => onUserNameChange(UserDetail.LAST_NAME, val)}
@@ -83,11 +84,11 @@ export const AccountInfoModal = ({
                             />
                         </TableRow>
                         <TableRow>
-                            <NarrowCell data-testid={'created-at-label-cell'}>Created At</NarrowCell>
+                            <NarrowCell id={'created-at-label-cell'}>Created At</NarrowCell>
                             <TableCell className={classes.RegularCell} data-testid={'created-at-cell-value'}>{date}</TableCell>
                         </TableRow>
                         <TableRow>
-                            <NarrowCell data-testid={'currency-label-cell'}>Currency</NarrowCell>
+                            <NarrowCell id={'currency-label-cell'}>Currency</NarrowCell>
                             <SelectCurrencyCell />
                         </TableRow>
                     </TableBody>

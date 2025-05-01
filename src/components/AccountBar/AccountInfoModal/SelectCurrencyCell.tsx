@@ -38,7 +38,7 @@ export const SelectCurrencyCell = () => {
             invalidateUserDetails()
         }).catch((e) => {
             console.error(e)
-            toast.error('Couldn\'t update the currency', { toastId: 'update-user-error-toast' })
+            toast.error('Couldn\'t update the currency. Try again later', { toastId: 'update-user-error-toast' })
         })
     }
 
@@ -61,13 +61,14 @@ export const SelectCurrencyCell = () => {
             )}
             {isEditing && (
                 <Select
+                    data-testid="currency-select"
                     className={classes.Dropdown}
                     value={userDetails?.currency ?? 'USD'}
                     renderValue={(selected) => selected}
                     onChange={e => onCurrencyChange(e.target.value)}
                     onClose={() => setIsEditing(false)}
                     slotProps={{
-                        input: { sx: { padding: '5px 12px', width: '100%', id: 'currency-select' } }
+                        input: { sx: { padding: '5px 12px', width: '100%' } }
                     }}
                 >
                     {currencies.map(({ code, name }) => (

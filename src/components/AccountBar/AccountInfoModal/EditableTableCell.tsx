@@ -20,18 +20,21 @@ export const EditableTableCell = ({
 
     const handleSave = () => {
         if (!isEditing) return
-        onSave(value)
-    }
-
-    const onOutsideClick = () => {
-        setIsEditing(false)
-        onSave(value)
+        onConfirm()
     }
 
     const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
         if (event.key === 'Enter') {
-            setIsEditing(false)
+            onConfirm()
+        }
+    }
+
+    const onConfirm = () => {
+        setIsEditing(false)
+        try {
             onSave(value)
+        } catch {
+            setValue(defaultValue)
         }
     }
 
@@ -53,14 +56,18 @@ export const EditableTableCell = ({
                 </Box>
             )}
             {isEditing && (
-                <OutsideAlerter onClickOutside={onOutsideClick}>
+                <OutsideAlerter onClickOutside={onConfirm}>
                     <TextField
                         className={classes.Editable}
                         id={`${testId}-input`}
                         data-testid={`${testId}-input`}
                         variant="outlined"
                         value={value}
-                        onChange={(e) => setValue(e.target.value)}
+                        onChange={(e) => {
+                            const val = e.target.value
+                            if(!val) return
+                            setValue(val)
+                        }}
                         onBlur={handleSave}
                         onKeyDown={handleKeyDown}
                         size="small"
