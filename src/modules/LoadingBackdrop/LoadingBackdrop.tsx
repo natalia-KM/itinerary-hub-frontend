@@ -4,9 +4,10 @@ import classes from './LoadingBackdrop.module.scss'
 interface LoadingBackdropProps {
     isOpen: boolean
     testId: string
+    onClick?: () => void
 }
 
-export const LoadingBackdrop = ({ isOpen, testId }: LoadingBackdropProps) => {
+export const LoadingBackdrop = ({ isOpen, testId, onClick }: LoadingBackdropProps) => {
 
     return (
         <Backdrop
@@ -14,8 +15,9 @@ export const LoadingBackdrop = ({ isOpen, testId }: LoadingBackdropProps) => {
             className={classes.LoadingBackdrop}
             sx={(theme) => ({ zIndex: theme.zIndex.drawer + 1 })}
             open={isOpen}
+            onClick={onClick}
         >
-            <CircularProgress color="inherit" />
+            <CircularProgress/>
         </Backdrop>
     )
 }

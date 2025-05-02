@@ -1,4 +1,4 @@
-import { GetElementArgs, PassengersColumnProps } from '../types'
+import { PassengersColumnProps } from '../types'
 import { useUserDetailsContext } from 'provider/UserDetailsProvider/useUserDetailsContext'
 import { useQuery } from '@tanstack/react-query'
 import {
@@ -12,19 +12,18 @@ import { ElementCard } from '../ElementCard'
 import { prettifyPrice } from '../utils'
 import classes from './ElementStyles.module.scss'
 import dayjs from 'dayjs'
+import { useElementContext, useSectionContext } from 'provider'
 
-interface AccommElementProps extends GetElementArgs {
+interface AccommElementProps {
     type?: AccommodationType
 }
 
 export const AccommElement = ({
-    sectionId,
-    optionId,
-    elementId,
-    baseElementId,
     type
 }: AccommElementProps) => {
     const { userDetails } = useUserDetailsContext()
+    const { sectionId } = useSectionContext()
+    const { elementId, baseElementId, optionId } = useElementContext()
 
     const { data: elementDetails, isPending, isRefetching } = useQuery<AccommodationElementDetails | undefined>({
         queryKey: ['element', elementId],

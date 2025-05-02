@@ -17,7 +17,7 @@ import {
 } from 'testUtils/mockValues'
 import { tripDetailsPage } from 'cypress/fixtures/pages/TripDetails'
 import { elementDrawer } from 'cypress/fixtures/modules/ElementDrawer'
-import { accommCategories, activityCategories, transportCategories } from 'pages/TripDetails/AddElementDrawer'
+import { accommCategories, activityCategories, transportCategories } from 'pages/TripDetails/ElementDrawer'
 import { drawer } from 'cypress/fixtures/modules/Drawers'
 import {
     ElementStatus,

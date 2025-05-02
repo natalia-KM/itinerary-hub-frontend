@@ -31,11 +31,12 @@ export type AccommodationElementFormValues = {
     checkOutDate: Dayjs
     checkOutTime: Dayjs
 }
+export type ElementTypesUnion = TransportElementFormValues | ActivityElementFormValues | AccommodationElementFormValues
 
 export type FormSchema = {
     elementType: ElementType
     elementCategory: string
-    elementInformation: TransportElementFormValues | ActivityElementFormValues | AccommodationElementFormValues
+    elementInformation: ElementTypesUnion
     price?: string
     link?: string
     notes?: string

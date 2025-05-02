@@ -3,12 +3,12 @@ import {
     ActivityElementFormValues,
     FormSchema,
     TransportElementFormValues
-} from '../ElementDrawer'
+} from 'pages/TripDetails/ElementDrawer/formSchema'
 import {
     BaseElementRequest,
-    CreateAccommElementValues,
-    CreateActivityValues,
-    CreateTransportElementValues
+    UpdateAccommElementValues,
+    UpdateActivityValues,
+    UpdateTransportElementValues
 } from 'hooks/elements'
 import { mergeDates, transformDayJsToString } from 'utils'
 
@@ -24,7 +24,7 @@ export const getBaseElementRequest = (formValues: FormSchema): BaseElementReques
     }
 }
 
-export const getTransportRequestFromForm = (formValues: FormSchema, order: number): CreateTransportElementValues | null=> {
+export const getUpdateTransportRequestFromForm = (formValues: FormSchema): UpdateTransportElementValues | null=> {
     const info = formValues.elementInformation as TransportElementFormValues
 
     const originDateTimeJs = mergeDates({ date: info.originDate, time: info.originTime })
@@ -41,12 +41,11 @@ export const getTransportRequestFromForm = (formValues: FormSchema, order: numbe
         destinationPlace: info.destinationPlace,
         originDateTime,
         destinationDateTime,
-        provider: info.provider,
-        order: order
+        provider: info.provider
     }
 }
 
-export const getActivityRequestFromForm  = (formValues: FormSchema, order: number): CreateActivityValues | null=> {
+export const getUpdateActivityRequestFromForm  = (formValues: FormSchema): UpdateActivityValues | null=> {
     const info = formValues.elementInformation as ActivityElementFormValues
 
     const startsAtDateTimeJs = mergeDates({ date: info.startsAtDate, time: info.startsAtTime })
@@ -61,12 +60,11 @@ export const getActivityRequestFromForm  = (formValues: FormSchema, order: numbe
         activityName: info.activityName,
         location: info.location,
         startsAt: startsAtDateTime,
-        duration: duration !== 0 ? duration : undefined,
-        order
+        duration: duration !== 0 ? duration : undefined
     }
 }
 
-export const getAccommRequestFromForm  = (formValues: FormSchema, order: number): CreateAccommElementValues | null=> {
+export const getUpdateAccommRequestFromForm  = (formValues: FormSchema): UpdateAccommElementValues | null=> {
     const info = formValues.elementInformation as AccommodationElementFormValues
 
     const checkInDateTimeJs = mergeDates({ date: info.checkInDate, time: info.checkInTime })
@@ -83,12 +81,10 @@ export const getAccommRequestFromForm  = (formValues: FormSchema, order: number)
         place: info.place,
         location: info.location,
         checkIn: {
-            dateTime: checkInDateTime,
-            order
+            dateTime: checkInDateTime
         },
         checkOut: {
-            dateTime: checkOutDateTime,
-            order: order + 1
+            dateTime: checkOutDateTime
         }
     }
 }

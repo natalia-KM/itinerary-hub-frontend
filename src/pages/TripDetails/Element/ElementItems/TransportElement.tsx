@@ -1,20 +1,18 @@
 import { useQuery } from '@tanstack/react-query'
 import { getTransportElement, TransportElementDetails } from 'hooks/elements'
 import { ElementCard } from '../ElementCard'
-import { useUserDetailsContext } from 'provider/UserDetailsProvider/useUserDetailsContext'
+import { useUserDetailsContext, useSectionContext, useElementContext } from 'provider'
 import { prettifyPrice } from '../utils'
 import { Box, Skeleton, Typography } from '@mui/material'
-import { GetElementArgs, PassengersColumnProps } from '../types'
+import { PassengersColumnProps } from '../types'
 import dayjs from 'dayjs'
 import classes from './ElementStyles.module.scss'
 import { TimeLine } from './TimeLine'
 
-export const TransportElement = ({
-    sectionId,
-    optionId,
-    elementId,
-    baseElementId
-}: GetElementArgs) => {
+export const TransportElement = () => {
+    const { sectionId } = useSectionContext()
+    const { elementId, baseElementId, optionId } = useElementContext()
+
     const { userDetails } = useUserDetailsContext()
 
     const { data: elementDetails, isPending, isRefetching } = useQuery<TransportElementDetails | undefined>({

@@ -2,15 +2,15 @@ import { Box, Grid } from '@mui/material'
 import React from 'react'
 import { InformationColumnProps, PassengersColumnProps } from '../types'
 import { InformationColumn } from '../InformationColumn'
-import MoreHorizIcon from '@mui/icons-material/MoreHoriz'
 import classes from './ElementCard.module.scss'
 import { ElementStatus } from 'hooks/elements'
 import { ElementBadge } from '../ElementBadge'
 import { PassengersColumn } from '../PassengersColumn'
 import { statusStylesMap } from './elementStatusStyles'
 import classNames from 'classnames'
-import { elementCategoryIcons, IconConfig } from 'pages/TripDetails/AddElementDrawer'
+import { elementCategoryIcons, IconConfig } from 'pages/TripDetails/ElementDrawer'
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome'
+import { ElementMenu } from '../ElementMenu/ElementMenu'
 
 interface ElementCardProps {
     children: React.ReactNode
@@ -87,9 +87,7 @@ export const ElementCard = ({
                     )}
                 </Grid>
             </Box>
-            <Box className={classNames(classes.ElementCard__Column, classes.ElementCard__IconContainer)}>
-                <MoreHorizIcon/>
-            </Box>
+            <ElementMenu/>
         </Box>
     )
 }

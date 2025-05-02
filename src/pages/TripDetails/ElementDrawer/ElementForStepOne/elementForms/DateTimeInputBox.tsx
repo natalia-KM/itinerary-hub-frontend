@@ -2,7 +2,7 @@ import { InputErrorMessage } from 'components/InputErrorMessage'
 import { Controller, FieldErrors, useFormContext } from 'react-hook-form'
 import { DatePicker, LocalizationProvider, TimePicker } from '@mui/x-date-pickers'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
-import classes from 'pages/TripDetails/AddElementDrawer/AddElementDrawer.module.scss'
+import classes from 'pages/TripDetails/ElementDrawer/ElementDrawer.module.scss'
 
 interface PlaceDateTimeInputBoxProps {
     testId: string
@@ -29,8 +29,8 @@ export const DateTimeInputBox = ({
     const timeError = getNestedError(errors, timeFieldName)?.message
 
     return (
-        <div className={classes.AddElementForm__DateTimeContainer}>
-            <div className={classes.AddElementForm__DatePicker}>
+        <div className={classes.ElementForm__DateTimeContainer}>
+            <div className={classes.ElementForm__DatePicker}>
                 <Controller
                     name={dateFieldName}
                     control={control}
@@ -39,7 +39,6 @@ export const DateTimeInputBox = ({
                             <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="en-gb">
                                 <DatePicker
                                     label={dateLabel}
-                                    // defaultValue={initialStartDate} // edit
                                     value={field.value ?? null}
                                     inputRef={field.ref}
                                     onChange={(date) => {
@@ -59,7 +58,7 @@ export const DateTimeInputBox = ({
                 }
             </div>
 
-            <div className={classes.AddElementForm__DatePicker}>
+            <div className={classes.ElementForm__DatePicker}>
                 <Controller
                     name={timeFieldName}
                     control={control}
@@ -68,7 +67,6 @@ export const DateTimeInputBox = ({
                             <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="en-gb">
                                 <TimePicker
                                     label={timeLabel}
-                                    // defaultValue={initialStartDate} // edit
                                     value={field.value ?? null}
                                     inputRef={field.ref}
                                     onChange={(date) => {

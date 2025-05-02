@@ -1,4 +1,4 @@
-import { GetElementArgs, PassengersColumnProps } from '../types'
+import { PassengersColumnProps } from '../types'
 import { useUserDetailsContext } from 'provider/UserDetailsProvider/useUserDetailsContext'
 import { useQuery } from '@tanstack/react-query'
 import { ActivityElementDetails, getActivityElement } from 'hooks/elements'
@@ -7,14 +7,12 @@ import { ElementCard } from '../ElementCard'
 import { prettifyPrice } from '../utils'
 import dayjs from 'dayjs'
 import classes from './ElementStyles.module.scss'
+import { useElementContext, useSectionContext } from 'provider'
 
-export const ActivityElement = ({
-    sectionId,
-    optionId,
-    elementId,
-    baseElementId
-}: GetElementArgs) => {
+export const ActivityElement = () => {
     const { userDetails } = useUserDetailsContext()
+    const { sectionId } = useSectionContext()
+    const { elementId, baseElementId, optionId } = useElementContext()
 
     const { data: elementDetails, isPending, isRefetching } = useQuery<ActivityElementDetails | undefined>({
         queryKey: ['element', elementId],
