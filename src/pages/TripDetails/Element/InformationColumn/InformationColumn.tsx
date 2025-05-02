@@ -4,6 +4,7 @@ import { InformationColumnProps } from '../types'
 export const InformationColumn = ({
     label,
     value,
+    testId,
     small = false
 }: InformationColumnProps) => {
     return (
@@ -11,6 +12,7 @@ export const InformationColumn = ({
             {typeof value === 'string' ? (
                 <Tooltip title={value}>
                 <Typography
+                    data-testid={testId}
                     fontSize={small ? 'small' : 'medium'}
                     sx={{
                         display: '-webkit-box',

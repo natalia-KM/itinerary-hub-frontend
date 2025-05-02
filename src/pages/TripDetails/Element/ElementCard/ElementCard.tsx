@@ -43,7 +43,7 @@ export const ElementCard = ({
 
     const config = elementCategoryIcons[elementCategory] ?? defaultCategoryIcon
     const ElementCategoryIcon = config?.icon
-    const testOptionId = elementCategory.replace('& ', '').replace(' ', '-').toLowerCase()
+    const testOptionId = elementCategory?.replace('& ', '').replace(' ', '-').toLowerCase()
 
     return (
         <Box className={classes.ElementCard} data-testid={`element-${elementId}`}>
@@ -72,17 +72,17 @@ export const ElementCard = ({
                     )}
                     {price && (
                         <Grid size={{ xs: 4, lg: 2.5 }} width={'auto'} maxWidth={'110px'}>
-                            <InformationColumn label='Price' value={price}/>
+                            <InformationColumn label='Price' value={price} testId={`${elementId}-price`} />
                         </Grid>
                     )}
                     {additionalColumn && (
                         <Grid size={{ xs: 4, lg: 2.5 }} width={'auto'} maxWidth={'110px'}>
-                            <InformationColumn label={additionalColumn.label} value={additionalColumn.value}/>
+                            <InformationColumn label={additionalColumn.label} value={additionalColumn.value} testId={`${elementId}-custom`}/>
                         </Grid>
                     )}
                     {notes && (
                         <Grid size={{ xs: notes.length > 50 ? 12 : 6, lg: notes.length > 50 ? 12 : 3 }}>
-                            <InformationColumn label='Notes' value={notes} small={notes.length > 50}/>
+                            <InformationColumn label='Notes' value={notes} small={notes.length > 50} testId={`${elementId}-notes`}/>
                         </Grid>
                     )}
                 </Grid>

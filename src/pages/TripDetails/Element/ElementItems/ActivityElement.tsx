@@ -40,6 +40,8 @@ export const ActivityElement = () => {
         passengers: elementDetails.passengerDetailsList
     }
 
+    const testId = `act-${elementId}`
+
     return (
         <ElementCard
             elementCategory={elementDetails.elementCategory}
@@ -52,19 +54,19 @@ export const ActivityElement = () => {
         >
             <Box className={classes.TwoColumnContainer}>
                 <Box>
-                    <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                    <Typography variant="body2" sx={{ color: 'text.secondary' }} data-testid={`${testId}-starts-at-date`}>
                         {dayjs(elementDetails.startsAt).format('DD/MM/YYYY')}
                     </Typography>
-                    <Typography fontSize={'18px'}>
+                    <Typography fontSize={'18px'} data-testid={`${testId}-activity-name`}>
                         {elementDetails.activityName}
                     </Typography>
-                    <Typography variant="body2"  fontSize={'16px'}>
+                    <Typography variant="body2"  fontSize={'16px'} data-testid={`${testId}-location`}>
                         {elementDetails.location}
                     </Typography>
                 </Box>
                 <Box className={classes.ActivityTimeBox}>
                     <Box>
-                    <Typography fontSize={'16px'}>
+                    <Typography fontSize={'16px'} data-testid={`${testId}-starts-at-time`}>
                         {dayjs(elementDetails.startsAt).format('HH:mm')}
                     </Typography>
                     <Typography variant="body2" fontSize={'small'} sx={{ color: 'text.secondary' }}>
@@ -73,7 +75,7 @@ export const ActivityElement = () => {
                     </Box>
                     {elementDetails.duration && elementDetails.startsAt && (
                         <Box>
-                            <Typography fontSize={'16px'}>
+                            <Typography fontSize={'16px'} data-testid={`${testId}-ends-at-time`}>
                                 {dayjs(elementDetails.startsAt).add(elementDetails.duration, 'minute').format('HH:mm')}
                             </Typography>
                             <Typography variant="body2" fontSize={'small'} sx={{ color: 'text.secondary' }}>

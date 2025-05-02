@@ -3,13 +3,15 @@ import { ElementStatus, ElementType } from 'hooks/elements'
 import dayjs, { Dayjs } from 'dayjs'
 import { mergeDates } from 'utils'
 
+const strRegex = /^[\p{L}\d\s\-'",.()<>!?@#&*/\\[\]{}|^%$+=`~;:_]+$/u
+
 const transportSchema = z.object({
     type: z.literal('TRANSPORT'),
     originPlace: z
         .string()
         .min(1, 'Required')
         .max(100, 'Place must be at most 100 characters')
-        .regex(/^[\p{L}\d\s\-'",.]+$/u, 'Invalid characters'),
+        .regex(strRegex, 'Invalid characters'),
     originDate: z
         .custom<Dayjs>((val) => val instanceof dayjs, 'Required'),
     originTime: z
@@ -18,7 +20,7 @@ const transportSchema = z.object({
         .string()
         .min(1, 'Required')
         .max(100, 'Place must be at most 100 characters')
-        .regex(/^[\p{L}\d\s\-'",.]+$/u, 'Invalid characters'),
+        .regex(strRegex, 'Invalid characters'),
     destinationDate: z
         .custom<Dayjs>((val) => val instanceof dayjs, 'Required'),
     destinationTime: z
@@ -35,12 +37,12 @@ const activitySchema = z.object({
         .string()
         .min(1, 'Required')
         .max(150, 'Name must be at most 150 characters')
-        .regex(/^[\p{L}\d\s\-'",.]+$/u, 'Invalid characters'),
+        .regex(strRegex, 'Invalid characters'),
     location: z
         .string()
         .min(1, 'Required')
         .max(150, 'Location must be at most 150 characters')
-        .regex(/^[\p{L}\d\s\-'",.]+$/u, 'Invalid characters'),
+        .regex(strRegex, 'Invalid characters'),
     startsAtDate: z.any().optional(),
     startsAtTime: z.any().optional(),
     hours: z.string().optional(),
@@ -53,7 +55,7 @@ const accommodationSchema = z.object({
         .string()
         .min(1, 'Required')
         .max(150, 'Place must be at most 150 characters')
-        .regex(/^[\p{L}\d\s\-'",.]+$/u, 'Invalid characters'),
+        .regex(strRegex, 'Invalid characters'),
     location: z
         .string()
         .max(100, 'Location must be at most 100 characters')

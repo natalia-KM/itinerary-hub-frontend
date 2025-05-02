@@ -9,7 +9,7 @@ import { ElementBadge } from '../TripDetails/Element/ElementBadge'
 import { TopBar } from 'modules/TopBar'
 import { PassengerDrawer } from '../TripsView/PassengerDrawer/PassengerDrawer'
 import { useState } from 'react'
-import { LoadingBackdrop } from '../../modules/LoadingBackdrop'
+import { LoadingBackdrop } from 'modules/LoadingBackdrop'
 
 export const Components = () => {
     const [backdropOpen, setBackdropOpen] = useState(false)

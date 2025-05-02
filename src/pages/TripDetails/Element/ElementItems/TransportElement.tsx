@@ -58,6 +58,8 @@ export const TransportElement = () => {
         passengers: elementDetails.passengerDetailsList
     }
 
+    const testId = `tr-${elementId}`
+
     return (
         <ElementCard
             elementCategory={elementDetails.elementCategory}
@@ -70,25 +72,25 @@ export const TransportElement = () => {
         >
             <Box className={classes.TransportBodyContainer}>
                 <Box>
-                    <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                    <Typography variant="body2" sx={{ color: 'text.secondary' }} data-testid={`${testId}-origin-date`}>
                         {dayjs(elementDetails.originDateTime).format('DD/MM/YYYY')}
                     </Typography>
-                    <Typography fontSize={'18px'}>
+                    <Typography fontSize={'18px'} data-testid={`${testId}-origin-place`}>
                         {elementDetails.originPlace}
                     </Typography>
-                    <Typography variant="body2"  fontSize={'16px'}>
+                    <Typography variant="body2"  fontSize={'16px'} data-testid={`${testId}-origin-time`}>
                         {dayjs(elementDetails.originDateTime).format('HH:mm')}
                     </Typography>
                 </Box>
-                <TimeLine duration={timeDifference()} />
+                <TimeLine duration={timeDifference()} testId={`${testId}-duration`} />
                 <Box>
-                    <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                    <Typography variant="body2" sx={{ color: 'text.secondary' }} data-testid={`${testId}-dest-date`}>
                         {dayjs(elementDetails.destinationDateTime).format('DD/MM/YYYY')}
                     </Typography>
-                    <Typography fontSize={'18px'}>
+                    <Typography fontSize={'18px'} data-testid={`${testId}-dest-place`}>
                         {elementDetails.destinationPlace}
                     </Typography>
-                    <Typography variant="body2" fontSize={'16px'}>
+                    <Typography variant="body2" fontSize={'16px'} data-testid={`${testId}-dest-time`}>
                         {dayjs(elementDetails.destinationDateTime).format('HH:mm')}
                     </Typography>
                 </Box>

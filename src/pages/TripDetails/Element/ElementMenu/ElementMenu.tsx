@@ -6,11 +6,14 @@ import MoreHorizIcon from '@mui/icons-material/MoreHoriz'
 import classNames from 'classnames'
 import classes from '../ElementCard/ElementCard.module.scss'
 import { EditElementDrawer } from 'pages/TripDetails/EditElementDrawer'
+import { useElementContext } from 'provider'
 
 export const ElementMenu = () => {
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
     const [editElementOpen, setEditElementOpen] = useState(false)
     const open = Boolean(anchorEl)
+
+    const { elementId } = useElementContext()
 
     const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
         setAnchorEl(event.currentTarget)
@@ -18,10 +21,12 @@ export const ElementMenu = () => {
     const handleClose = () => {
         setAnchorEl(null)
     }
+    const testId = `${elementId}-element-menu`
 
     return (
         <>
             <IconButton
+                data-testid={`${testId}-button`}
                 onClick={handleClick}
                 className={classNames(
                     classes.ElementCard__IconContainer
@@ -34,6 +39,7 @@ export const ElementMenu = () => {
                     anchorEl={anchorEl}
                     open={open}
                     onClose={handleClose}
+                    data-testid={'element-menu'}
                 >
                     <MenuItem>
                         <ListItemIcon>
@@ -44,6 +50,7 @@ export const ElementMenu = () => {
                         </ListItemText>
                     </MenuItem>
                     <MenuItem
+                        data-testid={'edit-element-button'}
                         onClick={() => {
                             setEditElementOpen(true)
                             handleClose()

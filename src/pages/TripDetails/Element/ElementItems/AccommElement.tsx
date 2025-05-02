@@ -46,6 +46,8 @@ export const AccommElement = ({
         passengers: elementDetails.passengerDetailsList
     }
 
+    const testId = `acc-${elementId}`
+
     return (
         <ElementCard
             elementCategory={elementDetails.elementCategory}
@@ -57,18 +59,18 @@ export const AccommElement = ({
         >
             <Box className={classes.TwoColumnContainer}>
                 <Box>
-                    <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                    <Typography variant="body2" sx={{ color: 'text.secondary' }} data-testid={`${testId}-date`}>
                         {dayjs(elementDetails.dateTime).format('DD/MM/YYYY')}
                     </Typography>
-                    <Typography fontSize={'18px'}>
+                    <Typography fontSize={'18px'} data-testid={`${testId}-place`}>
                         {elementDetails.place}
                     </Typography>
-                    <Typography variant="body2"  fontSize={'16px'}>
+                    <Typography variant="body2"  fontSize={'16px'} data-testid={`${testId}-location`}>
                         {elementDetails.location}
                     </Typography>
                 </Box>
                 <Box className={classes.AccommTimeBox}>
-                        <Typography fontSize={'16px'}>
+                        <Typography fontSize={'16px'} data-testid={`${testId}-time`}>
                             {dayjs(elementDetails.dateTime).format('HH:mm')}
                         </Typography>
                         <Typography variant="body2" fontSize={'small'} sx={{ color: 'text.secondary' }}>

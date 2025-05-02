@@ -49,8 +49,11 @@ export const EditElementDrawer = ({
             optionId,
             elementId: baseElementId
         }).then(async () => {
+            // element update
             await queryClient.invalidateQueries({ queryKey: ['element', elementId] })
+            // accommodation element sibling
             await queryClient.invalidateQueries({ queryKey: ['element', otherAccommElementId] })
+            // this
             await queryClient.invalidateQueries({ queryKey: ['elementsDetails', baseElementId] })
         }).catch((e) => {
             console.error(e)

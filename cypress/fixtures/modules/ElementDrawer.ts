@@ -2,7 +2,7 @@ import { ElementStatus } from 'hooks/elements'
 
 export class ElementDrawer {
     get elementDrawer() {
-        return cy.getById('add-element-drawer')
+        return cy.getById('element-drawer')
     }
 
     get transportRadioBtn() {
@@ -219,6 +219,10 @@ export class ElementDrawer {
 
     get createElementErrorToast() {
         return cy.get('[id="create-element-error-toast"]')
+    }
+
+    get updateElementErrorToast() {
+        return cy.get('[id="update-element-error-toast"]')
     }
 }
 

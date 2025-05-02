@@ -64,7 +64,7 @@ export const ElementDrawer = ({
 
     const submitBtnLabel = useMemo(() => {
         return step === 1 ? 'Next' : submitTitle
-    }, [step])
+    }, [step, submitTitle])
 
     const onCancel = () => {
         if (step == 1) closeDrawer()
@@ -98,7 +98,7 @@ export const ElementDrawer = ({
         <CustomDrawer
             isOpen={isOpen}
             setClosed={closeDrawer}
-            testId="add-element-drawer"
+            testId="element-drawer"
             title={title}
             desc={`${desc} ${sectionDetails.sectionName}`}
         >

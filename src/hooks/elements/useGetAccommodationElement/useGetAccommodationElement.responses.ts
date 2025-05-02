@@ -6,7 +6,7 @@ export const useGetAccommodationElementPairResponses: Record<string, Accommodati
     [ACCOMMODATION_1]: [
         {
             baseElementID: ACCOMMODATION_1,
-            elementID: 'acc-element-1',
+            elementID: `${ACCOMMODATION_1}-check-in`,
             optionID: S1_OPTION_1_ID,
             lastUpdatedAt: '2025-04-07T12:00:00Z',
             elementType: ElementType.ACCOMMODATION,
@@ -24,7 +24,7 @@ export const useGetAccommodationElementPairResponses: Record<string, Accommodati
         },
         {
             baseElementID: ACCOMMODATION_1,
-            elementID: 'acc-element-2',
+            elementID: `${ACCOMMODATION_1}-check-out`,
             optionID: S1_OPTION_1_ID,
             lastUpdatedAt: '2025-04-07T12:00:00Z',
             elementType: ElementType.ACCOMMODATION,
@@ -33,7 +33,7 @@ export const useGetAccommodationElementPairResponses: Record<string, Accommodati
             place: 'Cozy Mountain Lodge',
             location: 'Aspen, Colorado',
             accommodationType: AccommodationType.CHECK_OUT,
-            dateTime: '2025-04-23T15:00:00Z',
+            dateTime: '2025-04-23T17:00:00Z',
             link: 'https://example.com/hotel',
             price: 199.99,
             notes: 'Check-in after 3 PM',
@@ -44,7 +44,7 @@ export const useGetAccommodationElementPairResponses: Record<string, Accommodati
     [ACCOMMODATION_2]: [
         {
             baseElementID: ACCOMMODATION_2,
-            elementID: 'acc-element-3',
+            elementID: `${ACCOMMODATION_2}-check-in`,
             optionID: S2_OPTION_1_ID,
             lastUpdatedAt: '2025-04-07T12:00:00Z',
             elementType: ElementType.ACCOMMODATION,
@@ -59,7 +59,7 @@ export const useGetAccommodationElementPairResponses: Record<string, Accommodati
         },
         {
             baseElementID: ACCOMMODATION_2,
-            elementID: 'acc-element-4',
+            elementID: `${ACCOMMODATION_2}-check-out`,
             optionID: S2_OPTION_1_ID,
             lastUpdatedAt: '2025-04-07T12:00:00Z',
             elementType: ElementType.ACCOMMODATION,
