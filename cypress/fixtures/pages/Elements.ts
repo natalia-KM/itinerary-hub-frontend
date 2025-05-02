@@ -30,6 +30,17 @@ export class Elements {
         return cy.getById('edit-element-button')
     }
 
+    get deleteElementButton() {
+        return cy.getById('delete-element-button')
+    }
+    get deleteElementModal() {
+        return cy.getById('delete-element-modal')
+    }
+
+    get deleteElementErrorToast() {
+        return cy.get('#delete-element-error-toast')
+    }
+
     price(elementId: string) {
         return cy.getById(`${elementId}-price`)
     }

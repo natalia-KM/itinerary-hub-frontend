@@ -10,9 +10,9 @@ export const useDeleteElement = () => {
         sectionId,
         optionId,
         baseElementId,
-        type
+        elementType
     }: DeleteElementRequest) => {
-        const requestParam = `?type=${type}`
+        const requestParam = `?type=${elementType}`
         await webClient.delete(`/v1/sections/${sectionId}/options/${optionId}/elements/${baseElementId}${requestParam}`)
     }, [])
 

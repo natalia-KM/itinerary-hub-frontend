@@ -70,6 +70,7 @@ export const ElementsList = ({
                         key={id}
                         elementId={id}
                         baseElementId={details.baseElementId}
+                        elementType={details.elementType}
                         optionId={optionId}
                         otherAccommElementId={accommPairedElement}
                     >

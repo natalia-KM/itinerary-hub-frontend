@@ -22,6 +22,7 @@ import {
 } from 'hooks/elements'
 import { elements } from 'cypress/fixtures/pages/Elements'
 import { topBar } from 'cypress/fixtures/pages/TopBar'
+import { modals } from 'cypress/fixtures/modules/Modals'
 
 describe('Edit Element', () => {
     beforeEach(() => {
@@ -420,5 +421,59 @@ describe('Edit Element', () => {
         elementDrawer.updateElementErrorToast
             .should('be.visible')
             .should('have.text', 'Couldn\'t update an element. Try again later.')
+    })
+
+    describe('Delete Element', () => {
+        it('should delete element', () => {
+            apiInterceptor.interceptGetElements({
+                responseBody: [
+                    useGetAccommodationElementPairResponses[ACCOMMODATION_1][0],
+                    useGetActivityElementResponses[ACTIVITY_1],
+                    useGetAccommodationElementPairResponses[ACCOMMODATION_1][1]
+                ]
+            })
+            apiInterceptor.interceptDeleteElement({})
+
+            elements.element(TRANSPORT_1).should('be.visible')
+            elements.elementMenuButton(TRANSPORT_1).click()
+
+            elements.elementMenu.should('be.visible')
+            elements.deleteElementButton.click()
+
+            elements.deleteElementModal.should('be.visible')
+            modals.modalConfirmButton.click()
+            elements.element(TRANSPORT_1).should('not.exist')
+        })
+
+        it('should show toast on failed request', () => {
+            apiInterceptor.interceptGetElements({})
+            apiInterceptor.interceptDeleteElement({ status: 500 })
+
+            elements.element(TRANSPORT_1).should('be.visible')
+            elements.elementMenuButton(TRANSPORT_1).click()
+
+            elements.elementMenu.should('be.visible')
+            elements.deleteElementButton.click()
+
+            elements.deleteElementModal.should('be.visible')
+            modals.modalConfirmButton.click()
+
+            elements.deleteElementErrorToast
+                .should('be.visible')
+                .should('have.text', 'Couldn\'t delete element. Try again later')
+        })
+
+        it('should close modal on cancel click', () => {
+            elements.element(TRANSPORT_1).should('be.visible')
+            elements.elementMenuButton(TRANSPORT_1).click()
+
+            elements.elementMenu.should('be.visible')
+            elements.deleteElementButton.click()
+
+            elements.deleteElementModal.should('be.visible')
+            modals.modalCancelButton.click()
+
+            elements.deleteElementModal.should('not.exist')
+        })
     })
 })

@@ -9,6 +9,7 @@ import { useGetSectionResponses, useGetSectionsResponses } from 'hooks/sections'
 import { useGetOptionResponses, useGetOptionsResponses } from 'hooks/options'
 import {
     AccommodationType,
+    ElementType,
     useGetAccommodationElementPairResponses,
     useGetActivityElementResponses,
     useGetTransportElementResponses
@@ -554,6 +555,23 @@ export class ApiInterceptor extends ApiInterceptorBase {
             method: 'PUT',
             alias: InterceptorAlias.UPDATE_ACCOMM_ELEMENT,
             responseBody,
+            manualResolution
+        })
+    }
+
+    interceptDeleteElement({
+        status = 200,
+        manualResolution,
+        sectionId = SECTION_1_ID,
+        optionId = S1_OPTION_1_ID,
+        elementId = TRANSPORT_1,
+        elementType = ElementType.TRANSPORT
+    }: TripsRequestOptions): ApiInterceptorResponse {
+        return apiInterceptor.interceptRequest({
+            url: `http://localhost:8080/v1/sections/${sectionId}/options/${optionId}/elements/${elementId}?type=${elementType}`,
+            status,
+            method: 'DELETE',
+            alias: InterceptorAlias.DELETE_ELEMENT,
             manualResolution
         })
     }

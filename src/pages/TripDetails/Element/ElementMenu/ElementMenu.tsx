@@ -7,10 +7,14 @@ import classNames from 'classnames'
 import classes from '../ElementCard/ElementCard.module.scss'
 import { EditElementDrawer } from 'pages/TripDetails/EditElementDrawer'
 import { useElementContext } from 'provider'
+import { DeleteElementModal } from '../DeleteElementModal/DeleteElementModal'
+import DeleteIcon from '@mui/icons-material/Delete'
 
 export const ElementMenu = () => {
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
     const [editElementOpen, setEditElementOpen] = useState(false)
+    const [deleteElementOpen, setDeleteElementOpen] = useState(false)
+
     const open = Boolean(anchorEl)
 
     const { elementId } = useElementContext()
@@ -63,6 +67,20 @@ export const ElementMenu = () => {
                             Edit Element
                         </ListItemText>
                     </MenuItem>
+                    <MenuItem
+                        data-testid={'delete-element-button'}
+                        onClick={() => {
+                            setDeleteElementOpen(true)
+                            handleClose()
+                        }}
+                    >
+                        <ListItemIcon>
+                            <DeleteIcon/>
+                        </ListItemIcon>
+                        <ListItemText>
+                            Delete Element
+                        </ListItemText>
+                    </MenuItem>
                 </Menu>
             )}
             {editElementOpen && (
@@ -71,6 +89,7 @@ export const ElementMenu = () => {
                     handleClose={() => setEditElementOpen(false)}
                 />
             )}
+            <DeleteElementModal modalOpen={deleteElementOpen} setModalOpen={setDeleteElementOpen} />
         </>
     )
 }

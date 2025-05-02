@@ -1,8 +1,10 @@
 import { createContext, useContext } from 'react'
+import { ElementType } from 'hooks/elements'
 
 export type ElementContextType = {
     elementId: string
     baseElementId: string
+    elementType: ElementType
     optionId: string
     otherAccommElementId?: string
 }
