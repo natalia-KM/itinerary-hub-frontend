@@ -1,6 +1,7 @@
 export interface InformationColumnProps {
     label: string
     value: string | React.ReactNode
+    testId?: string
     small?: boolean
 }
 

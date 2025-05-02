@@ -49,7 +49,7 @@ export const Option = ({ sectionId }: OptionProps) => {
                 </Box>
                 {optionIds?.map((optionId, index) => (
                     <TabPanel key={optionId} value={index} sx={{ padding: '0 24px' }}>
-                        <ElementsList sectionId={sectionId} optionId={optionId} />
+                        <ElementsList optionId={optionId} />
                     </TabPanel>
                 ))}
             </TabContext>

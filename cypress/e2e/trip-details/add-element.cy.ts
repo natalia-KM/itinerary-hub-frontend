@@ -17,7 +17,7 @@ import {
 } from 'testUtils/mockValues'
 import { tripDetailsPage } from 'cypress/fixtures/pages/TripDetails'
 import { elementDrawer } from 'cypress/fixtures/modules/ElementDrawer'
-import { accommCategories, activityCategories, transportCategories } from 'pages/TripDetails/AddElementDrawer'
+import { accommCategories, activityCategories, transportCategories } from 'pages/TripDetails/ElementDrawer'
 import { drawer } from 'cypress/fixtures/modules/Drawers'
 import {
     ElementStatus,
@@ -363,15 +363,15 @@ describe('Add Element', () => {
         tripDetailsPage.optionTab(S1_OPTION_2_ID)
             .should('be.visible')
 
-        elements.element('tr-element-2').should('be.visible')
-        elements.element('tr-element-4').should('be.visible')
+        elements.element(TRANSPORT_2).should('be.visible')
+        elements.element(TRANSPORT_4).should('be.visible')
 
         elements.elementsList(S1_OPTION_2_ID)
             .should('be.visible')
             .children()
             .should('have.length', 2)
 
-        elements.categoryBadgeIcon('tr-element-4', 'Custom Transport')
+        elements.categoryBadgeIcon(TRANSPORT_4, 'Custom Transport')
             .should('be.visible')
             .trigger('mouseover')
 

@@ -3,11 +3,11 @@ import { CreateActivityRequest, useCreateActivityElement } from './useCreateActi
 import { CreateAccommElementRequest, useCreateAccommodationElement } from './useCreateAccommodationElement'
 import { ElementType } from './types'
 import {
-    FormSchema,
     getAccommRequestFromForm,
     getActivityRequestFromForm,
     getTransportRequestFromForm
 } from 'pages/TripDetails/AddElementDrawer'
+import { FormSchema } from 'pages/TripDetails/ElementDrawer'
 
 interface CreateElementProps {
     formValues: FormSchema

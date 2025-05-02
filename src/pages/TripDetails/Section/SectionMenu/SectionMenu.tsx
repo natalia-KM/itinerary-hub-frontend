@@ -4,10 +4,10 @@ import EditIcon from '@mui/icons-material/Edit'
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
 import classes from './SectionMenu.module.scss'
 import { ManageOptionsModal } from 'pages/TripDetails/Option'
-import { AddElementDrawer } from 'pages/TripDetails/AddElementDrawer'
 import { SectionDetails } from 'hooks/sections'
 import { ModalProps } from 'utils'
 import { DeleteSectionModal } from '../DeleteSectionModal/DeleteSectionModal'
+import { AddElementDrawer } from 'pages/TripDetails/AddElementDrawer'
 
 interface OptionMenuProps {
     manageOptionsModal: ModalProps
@@ -85,9 +85,8 @@ export const SectionMenu = ({
                     }}
                 />
                 <AddElementDrawer
-                    sectionId={sectionDetails.sectionId}
                     isOpen={elementDrawer.modalOpen}
-                    closeDrawer={closeElementDrawer}
+                    handleClose={closeElementDrawer}
                     sectionDetails={sectionDetails}
                 />
                 <DeleteSectionModal

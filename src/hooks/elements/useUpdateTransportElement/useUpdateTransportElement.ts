@@ -13,7 +13,7 @@ export const useUpdateTransportElement = () => {
         baseElementId,
         request
     }: UpdateTransportElementRequest) => {
-        const { data } = await webClient.put<TransportElementDetails>(`/v1/sections/${sectionId}/options/${optionId}/elements/${baseElementId}/transpot`, request)
+        const { data } = await webClient.put<TransportElementDetails>(`/v1/sections/${sectionId}/options/${optionId}/elements/${baseElementId}/transport`, request)
         return data
     }, [])
 

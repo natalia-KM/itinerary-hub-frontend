@@ -5,7 +5,6 @@ import istanbul from 'vite-plugin-istanbul'
 
 import path from "path";
 
-// if something fails: https://dev.to/henriquejensen/migrating-from-create-react-app-to-vite-a-quick-and-easy-guide-5e72
 export default defineConfig({
     build: {
         sourcemap: !process.env.CYPRESS_RUN,

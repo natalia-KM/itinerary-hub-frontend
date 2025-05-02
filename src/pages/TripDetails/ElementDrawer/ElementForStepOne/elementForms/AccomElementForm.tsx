@@ -2,10 +2,10 @@ import { FieldErrors, useFormContext } from 'react-hook-form'
 import {
     AccommodationElementFormValues,
     FormSchema
-} from 'pages/TripDetails/AddElementDrawer/formSchema'
+} from 'pages/TripDetails/ElementDrawer/formSchema'
 import { Box, TextField } from '@mui/material'
 import { DrawerSectionTitle } from 'components/DrawerSectionTitle'
-import classes from 'pages/TripDetails/AddElementDrawer/AddElementDrawer.module.scss'
+import classes from 'pages/TripDetails/ElementDrawer/ElementDrawer.module.scss'
 import { InputErrorMessage } from 'components/InputErrorMessage'
 import { useMemo } from 'react'
 import { DateTimeInputBox } from './DateTimeInputBox'
@@ -28,10 +28,10 @@ export const AccomElementForm = () => {
             <DrawerSectionTitle>
                 Accommodation Details
             </DrawerSectionTitle>
-            <Box className={classes.AddElementForm__Section}>
+            <Box className={classes.ElementForm__Section}>
                 <div>
                     <TextField
-                        className={classes.AddElementForm__FormField}
+                        className={classes.ElementForm__FormField}
                         id={`${testId}-place`}
                         label='Place Name'
                         placeholder='Hilton Paris Opera'
@@ -49,7 +49,7 @@ export const AccomElementForm = () => {
                 </div>
                 <div>
                     <TextField
-                        className={classes.AddElementForm__FormField}
+                        className={classes.ElementForm__FormField}
                         id={`${testId}-location`}
                         label='Location'
                         placeholder='108 Rue Saint-Lazare, 8th arr.'
@@ -69,7 +69,7 @@ export const AccomElementForm = () => {
             <DrawerSectionTitle>
                 Check In
             </DrawerSectionTitle>
-            <Box className={classes.AddElementForm__Section}>
+            <Box className={classes.ElementForm__Section}>
                 <DateTimeInputBox
                     testId={`${testId}-checkin`}
                     dateFieldName='elementInformation.checkInDate'
@@ -82,7 +82,7 @@ export const AccomElementForm = () => {
             <DrawerSectionTitle>
                 Check Out
             </DrawerSectionTitle>
-            <Box className={classes.AddElementForm__Section}>
+            <Box className={classes.ElementForm__Section}>
                 <DateTimeInputBox
                     testId={`${testId}-checkout`}
                     dateFieldName='elementInformation.checkOutDate'

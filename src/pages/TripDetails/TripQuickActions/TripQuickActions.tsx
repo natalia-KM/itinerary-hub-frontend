@@ -30,8 +30,8 @@ export const TripQuickActions = () => {
                 />
             </SpeedDial>
             <AddSectionModal
-                isOpen={addSectionModalOpen}
-                setClose={() => setAddSectionModalOpen(false)}
+                modalOpen={addSectionModalOpen}
+                setModalOpen={setAddSectionModalOpen}
             />
         </>
     )

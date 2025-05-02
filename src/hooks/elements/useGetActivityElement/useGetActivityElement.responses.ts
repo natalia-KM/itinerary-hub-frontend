@@ -13,7 +13,7 @@ import { useGetPassengerResponses } from 'hooks/passengers/useGetPassenger/useGe
 export const useGetActivityElementResponses: Record<string, ActivityElementDetails> = {
     [ACTIVITY_1]: {
         baseElementID: ACTIVITY_1,
-        elementID: 'act-element-1',
+        elementID: ACTIVITY_1,
         optionID: S1_OPTION_1_ID,
         lastUpdatedAt: '2025-04-07T12:00:00Z',
         elementType: ElementType.ACTIVITY,
@@ -34,7 +34,7 @@ export const useGetActivityElementResponses: Record<string, ActivityElementDetai
     },
     [ACTIVITY_2]: {
         baseElementID: ACTIVITY_2,
-        elementID: 'act-element-2',
+        elementID: ACTIVITY_2,
         optionID: S2_OPTION_1_ID,
         lastUpdatedAt: '2025-04-07T12:00:00Z',
         elementType: ElementType.ACTIVITY,
@@ -53,7 +53,7 @@ export const useGetActivityElementResponses: Record<string, ActivityElementDetai
     },
     [ACTIVITY_3]: {
         baseElementID: ACTIVITY_3,
-        elementID: 'act-element-3',
+        elementID: ACTIVITY_3,
         optionID: S2_OPTION_1_ID,
         lastUpdatedAt: '2025-04-07T12:00:00Z',
         elementType: ElementType.ACTIVITY,

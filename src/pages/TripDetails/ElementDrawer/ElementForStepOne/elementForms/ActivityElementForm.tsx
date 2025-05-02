@@ -2,10 +2,10 @@ import { Controller, FieldErrors, useFormContext } from 'react-hook-form'
 import {
     ActivityElementFormValues,
     FormSchema
-} from 'pages/TripDetails/AddElementDrawer/formSchema'
+} from 'pages/TripDetails/ElementDrawer/formSchema'
 import { Box, TextField } from '@mui/material'
 import { DrawerSectionTitle } from 'components/DrawerSectionTitle'
-import classes from 'pages/TripDetails/AddElementDrawer/AddElementDrawer.module.scss'
+import classes from 'pages/TripDetails/ElementDrawer/ElementDrawer.module.scss'
 import { InputErrorMessage } from 'components/InputErrorMessage'
 import { DateTimeInputBox } from './DateTimeInputBox'
 import { useMemo } from 'react'
@@ -37,10 +37,10 @@ export const ActivityElementForm = () => {
             <DrawerSectionTitle>
                 Activity Details
             </DrawerSectionTitle>
-            <Box className={classes.AddElementForm__Section}>
+            <Box className={classes.ElementForm__Section}>
                 <div>
                     <TextField
-                        className={classes.AddElementForm__FormField}
+                        className={classes.ElementForm__FormField}
                         id={`${testId}-name`}
                         label='Activity Name'
                         placeholder='Escape Room'
@@ -58,7 +58,7 @@ export const ActivityElementForm = () => {
                 </div>
                 <div>
                     <TextField
-                        className={classes.AddElementForm__FormField}
+                        className={classes.ElementForm__FormField}
                         id={`${testId}-location`}
                         label='Location'
                         placeholder='Paris'
@@ -78,7 +78,7 @@ export const ActivityElementForm = () => {
             <DrawerSectionTitle>
                 Date & Time
             </DrawerSectionTitle>
-            <Box className={classes.AddElementForm__Section}>
+            <Box className={classes.ElementForm__Section}>
                 <DateTimeInputBox
                     testId={testId}
                     dateFieldName='elementInformation.startsAtDate'
@@ -90,8 +90,8 @@ export const ActivityElementForm = () => {
             <DrawerSectionTitle>
                 Duration
             </DrawerSectionTitle>
-            <Box className={classes.AddElementForm__Section}>
-                <div className={classes.AddElementForm__DateTimeContainer}>
+            <Box className={classes.ElementForm__Section}>
+                <div className={classes.ElementForm__DateTimeContainer}>
                 <div>
                     <Controller
                         name='elementInformation.hours'

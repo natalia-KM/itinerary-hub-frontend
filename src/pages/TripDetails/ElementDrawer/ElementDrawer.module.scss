@@ -1,4 +1,11 @@
-.AddElementForm {
+.Drawer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.ElementForm {
   width: 100%;
   display: flex;
   flex-direction: column;

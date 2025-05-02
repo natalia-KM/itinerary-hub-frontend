@@ -12,7 +12,7 @@ import {
 export const useGetTransportElementResponses: Record<string, TransportElementDetails> = {
     [TRANSPORT_1]: {
         baseElementID: TRANSPORT_1,
-        elementID: 'tr-element-1',
+        elementID: TRANSPORT_1,
         optionID: S1_OPTION_1_ID,
         lastUpdatedAt: '2025-04-07T15:30:00Z',
         elementType: ElementType.TRANSPORT,
@@ -31,7 +31,7 @@ export const useGetTransportElementResponses: Record<string, TransportElementDet
     },
     [TRANSPORT_2]: {
         baseElementID: TRANSPORT_2,
-        elementID: 'tr-element-2',
+        elementID: TRANSPORT_2,
         optionID: S1_OPTION_2_ID,
         lastUpdatedAt: '2025-04-07T15:30:00Z',
         elementType: ElementType.TRANSPORT,
@@ -48,7 +48,7 @@ export const useGetTransportElementResponses: Record<string, TransportElementDet
     },
     [TRANSPORT_3]: {
         baseElementID: TRANSPORT_3,
-        elementID: 'tr-element-3',
+        elementID: TRANSPORT_3,
         optionID: S2_OPTION_1_ID,
         lastUpdatedAt: '2025-04-07T15:30:00Z',
         elementType: ElementType.TRANSPORT,
@@ -63,7 +63,7 @@ export const useGetTransportElementResponses: Record<string, TransportElementDet
     },
     [TRANSPORT_4]: { // not used in default response
         baseElementID: TRANSPORT_4,
-        elementID: 'tr-element-4',
+        elementID: TRANSPORT_4,
         optionID: S1_OPTION_2_ID,
         lastUpdatedAt: '2025-04-07T15:30:00Z',
         elementType: ElementType.TRANSPORT,

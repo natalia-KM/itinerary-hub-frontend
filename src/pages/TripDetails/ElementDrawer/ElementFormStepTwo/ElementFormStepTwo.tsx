@@ -7,7 +7,7 @@ import {
     TextField, ToggleButton,
     ToggleButtonGroup, Typography
 } from '@mui/material'
-import classes from '../AddElementDrawer.module.scss'
+import classes from '../ElementDrawer.module.scss'
 import { DrawerSectionTitle } from 'components/DrawerSectionTitle'
 import { Controller, useFormContext } from 'react-hook-form'
 import { FormSchema } from '../formSchema'
@@ -28,14 +28,14 @@ export const ElementFormStepTwo = () => {
     const testId = 'element-form-step-two'
 
     return (
-        <Box className={classes.AddElementForm}>
+        <Box className={classes.ElementForm}>
             <DrawerSectionTitle>
                 Additional Information
             </DrawerSectionTitle>
-            <Box className={classes.AddElementForm__Section}>
-                <div className={classes.AddElementForm__ExtraTopMargin}>
+            <Box className={classes.ElementForm__Section}>
+                <div className={classes.ElementForm__ExtraTopMargin}>
                     <FormControl className={classnames(
-                        classes.AddElementForm__FormField
+                        classes.ElementForm__FormField
                     )}>
                         <InputLabel htmlFor={`${testId}-price`}>Price</InputLabel>
                         <OutlinedInput
@@ -57,7 +57,7 @@ export const ElementFormStepTwo = () => {
                 </div>
                 <div>
                     <TextField
-                        className={classes.AddElementForm__FormField}
+                        className={classes.ElementForm__FormField}
                         id={`${testId}-link`}
                         label='Link'
                         placeholder='www.booking-website.com/'
@@ -75,7 +75,7 @@ export const ElementFormStepTwo = () => {
                 </div>
                 <div>
                     <TextField
-                        className={classes.AddElementForm__FormField}
+                        className={classes.ElementForm__FormField}
                         id={`${testId}-notes`}
                         label='Notes'
                         placeholder='My notes'
@@ -95,7 +95,7 @@ export const ElementFormStepTwo = () => {
             <DrawerSectionTitle>
                 Status
             </DrawerSectionTitle>
-            <Box className={classes.AddElementForm__Section}>
+            <Box className={classes.ElementForm__Section}>
                 <Controller
                     name='status'
                     control={control}
@@ -128,7 +128,7 @@ export const ElementFormStepTwo = () => {
             <Typography fontSize={'0.9em'} fontWeight={400} color={'textSecondary'}>
                 Click a {passengersLabel} to add them to this element
             </Typography>
-            <Box className={classes.AddElementForm__Section}>
+            <Box className={classes.ElementForm__Section}>
                 <PassengersTable label={passengersLabel}/>
             </Box>
         </Box>

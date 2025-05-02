@@ -3,7 +3,7 @@ import {
     ActivityElementFormValues,
     FormSchema,
     TransportElementFormValues
-} from './formSchema'
+} from '../ElementDrawer'
 import {
     BaseElementRequest,
     CreateAccommElementValues,

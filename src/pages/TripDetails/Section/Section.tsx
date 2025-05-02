@@ -42,20 +42,20 @@ export const Section = ({
         setSectionName(section?.sectionName)
     }, [section?.sectionName])
 
-    if(isPending || isRefetching) {
+    if (isPending || isRefetching) {
         return (
             <Skeleton/>
         )
     }
 
-    if(!section) {
+    if (!section) {
         // TODO: implement error & loading state
         console.error('Couldn\'t retrieve section details.')
         return null
     }
 
     const handleMenuOptionsClose = async (invalidate: boolean) => {
-        if(invalidate) {
+        if (invalidate) {
             await queryClient.invalidateQueries({ queryKey: ['sectionOptionIds', sectionId] })
         }
         setMenuOpen(false)
@@ -89,53 +89,53 @@ export const Section = ({
     }
 
     return (
-        <SectionContextProvider>
-        <Box className={classes.Section}>
-            <Box className={classes.Section__Header}>
-                <EditableText
-                    testId={`trip-view-section-${sectionId}`}
-                    value={currentSectionName}
-                    setValue={setSectionName}
-                    isEditing={isEditingSectionName}
-                    setIsEditing={setIsEditingSectionName}
-                    onSave={updateSectionName}
-                    size="medium"
-                    withIcon
-                />
-                <Box sx={{ flexGrow: 1 }}/>
-                <Box>
-                    <OutsideAlerter onClickOutside={onOutsideClick}>
-                        <MoreHorizIcon
-                            data-testid={`section-menu-icon-${sectionId}`}
-                            className={classNames(
-                                classes.Section__Icon,
-                                menuOpen && classes.Section__Icon__Open
-                            )}
-                            onClick={() => setMenuOpen(!menuOpen)}
-                        />
-                        {menuOpen && (
-                            <SectionMenu
-                                sectionDetails={section}
-                                manageOptionsModal={{
-                                    modalOpen: optionsModalOpen,
-                                    setModalOpen: setOptionsModalOpen
-                                }}
-                                elementDrawer={{
-                                    modalOpen: elementDrawerOpen,
-                                    setModalOpen: setElementDrawerOpen
-                                }}
-                                deleteSectionModal={{
-                                    modalOpen: deleteSectionModalOpen,
-                                    setModalOpen: setDeleteSectionModalOpen
-                                }}
-                                closeMenu={handleMenuOptionsClose}
+        <SectionContextProvider sectionId={sectionId}>
+            <Box className={classes.Section}>
+                <Box className={classes.Section__Header}>
+                    <EditableText
+                        testId={`trip-view-section-${sectionId}`}
+                        value={currentSectionName}
+                        setValue={setSectionName}
+                        isEditing={isEditingSectionName}
+                        setIsEditing={setIsEditingSectionName}
+                        onSave={updateSectionName}
+                        size="medium"
+                        withIcon
+                    />
+                    <Box sx={{ flexGrow: 1 }}/>
+                    <Box>
+                        <OutsideAlerter onClickOutside={onOutsideClick}>
+                            <MoreHorizIcon
+                                data-testid={`section-menu-icon-${sectionId}`}
+                                className={classNames(
+                                    classes.Section__Icon,
+                                    menuOpen && classes.Section__Icon__Open
+                                )}
+                                onClick={() => setMenuOpen(!menuOpen)}
                             />
-                        )}
-                    </OutsideAlerter>
+                            {menuOpen && (
+                                <SectionMenu
+                                    sectionDetails={section}
+                                    manageOptionsModal={{
+                                        modalOpen: optionsModalOpen,
+                                        setModalOpen: setOptionsModalOpen
+                                    }}
+                                    elementDrawer={{
+                                        modalOpen: elementDrawerOpen,
+                                        setModalOpen: setElementDrawerOpen
+                                    }}
+                                    deleteSectionModal={{
+                                        modalOpen: deleteSectionModalOpen,
+                                        setModalOpen: setDeleteSectionModalOpen
+                                    }}
+                                    closeMenu={handleMenuOptionsClose}
+                                />
+                            )}
+                        </OutsideAlerter>
+                    </Box>
                 </Box>
+                <Option sectionId={sectionId}/>
             </Box>
-            <Option sectionId={sectionId}/>
-        </Box>
         </SectionContextProvider>
     )
 }

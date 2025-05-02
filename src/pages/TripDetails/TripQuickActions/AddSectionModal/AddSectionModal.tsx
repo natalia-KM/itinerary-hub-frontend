@@ -2,21 +2,16 @@ import { CustomModal } from 'components/CustomModal'
 import { Box, TextField } from '@mui/material'
 import React, { useState } from 'react'
 import { CreateSectionValues, getSections, useCreateSection } from 'hooks/sections'
-import { useTripId } from 'utils'
+import { ModalProps, useTripId } from 'utils'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { toast } from 'react-toastify'
 import { InputErrorMessage } from 'components/InputErrorMessage'
 import { queryKeys } from 'config/queryKeys'
 
-interface AddSectionModalProps {
-    isOpen: boolean
-    setClose: () => void
-}
-
 export const AddSectionModal = ({
-    isOpen,
-    setClose
-}: AddSectionModalProps) => {
+    modalOpen,
+    setModalOpen
+}: ModalProps) => {
     const { tripId } = useTripId()
     const [sectionName, setSectionName] = useState<string>('')
     const [error, setError] = useState<string | undefined>()
@@ -55,16 +50,16 @@ export const AddSectionModal = ({
         }).catch(() => {
             toast.error('Couldn\'t create a new section. Try again later', { toastId: 'add-section-modal-error-toast' })
         }).finally(() => {
-            setClose()
+            setModalOpen(false)
         })
     }
 
     return (
         <CustomModal
-            isOpen={isOpen}
+            isOpen={modalOpen}
             modalTitle={'Add New Section'}
             actionButtonsProps={{
-                onCancel: setClose,
+                onCancel: () => setModalOpen(false),
                 onConfirm: addNewSection,
                 isLoading: isPending,
                 isDisabled: Boolean(error) || sectionName === ''

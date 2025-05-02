@@ -3,14 +3,14 @@ import { DrawerSectionTitle } from 'components/DrawerSectionTitle'
 import { ElementType } from 'hooks/elements'
 
 import { useMemo } from 'react'
-import classes from '../AddElementDrawer.module.scss'
+import classes from '../ElementDrawer.module.scss'
 import { Controller, useFormContext } from 'react-hook-form'
 import { FormSchema } from '../formSchema'
 import { accommCategories, activityCategories, transportCategories, elementCategoryIcons } from '../options'
 import { InputErrorMessage } from 'components/InputErrorMessage'
 import { AccomElementForm, ActivityElementForm, TransportElementForm } from './elementForms'
 
-export const ElementFormStepOne = () => {
+export const ElementFormStepOne = ({ disableTypeSelect }: { disableTypeSelect: boolean }) => {
     const { control, setValue, watch, formState: { errors } } = useFormContext<FormSchema>()
     const elementType = watch('elementType')
 
@@ -35,11 +35,11 @@ export const ElementFormStepOne = () => {
     }, [elementType])
 
     return (
-        <Box className={classes.AddElementForm}>
+        <Box className={classes.ElementForm}>
             <DrawerSectionTitle>
                 Type
             </DrawerSectionTitle>
-            <Box className={classes.AddElementForm__Section}>
+            <Box className={classes.ElementForm__Section}>
                 <Controller
                     name='elementType'
                     control={control}
@@ -50,6 +50,7 @@ export const ElementFormStepOne = () => {
                                 value={elementType}
                                 onChange={handleTypeChange}
                                 aria-label="Choose element category"
+                                disabled={disableTypeSelect}
                                 fullWidth
                                 exclusive
                             >
@@ -75,7 +76,7 @@ export const ElementFormStepOne = () => {
             <Typography fontSize={'0.9em'} fontWeight={400} color={'textSecondary'}>
                 Pick a category, or add your own.
             </Typography>
-            <Box className={classes.AddElementForm__Section}>
+            <Box className={classes.ElementForm__Section}>
                 <div>
                 <Controller
                     name='elementCategory'

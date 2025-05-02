@@ -3,8 +3,8 @@ import { DrawerSectionTitle } from 'components/DrawerSectionTitle'
 import { FieldErrors, useFormContext } from 'react-hook-form'
 import { InputErrorMessage } from 'components/InputErrorMessage'
 import { DateTimeInputBox } from './DateTimeInputBox'
-import classes from 'pages/TripDetails/AddElementDrawer/AddElementDrawer.module.scss'
-import { FormSchema, TransportElementFormValues } from 'pages/TripDetails/AddElementDrawer/formSchema'
+import classes from 'pages/TripDetails/ElementDrawer/ElementDrawer.module.scss'
+import { FormSchema, TransportElementFormValues } from 'pages/TripDetails/ElementDrawer/formSchema'
 import { useMemo } from 'react'
 
 export const TransportElementForm = () => {
@@ -29,10 +29,10 @@ export const TransportElementForm = () => {
             <DrawerSectionTitle>
                 Origin
             </DrawerSectionTitle>
-            <Box className={classes.AddElementForm__Section}>
+            <Box className={classes.ElementForm__Section}>
                 <div>
                     <TextField
-                        className={classes.AddElementForm__FormField}
+                        className={classes.ElementForm__FormField}
                         id={`${testId}-origin-place`}
                         label='Origin Place'
                         placeholder='London Heathrow'
@@ -59,10 +59,10 @@ export const TransportElementForm = () => {
             <DrawerSectionTitle>
                 Destination
             </DrawerSectionTitle>
-            <Box className={classes.AddElementForm__Section}>
+            <Box className={classes.ElementForm__Section}>
                 <div>
                     <TextField
-                        className={classes.AddElementForm__FormField}
+                        className={classes.ElementForm__FormField}
                         id={`${testId}-destination-place`}
                         label='Destination Place'
                         placeholder='Paris'
@@ -89,10 +89,10 @@ export const TransportElementForm = () => {
             <DrawerSectionTitle>
                 Additional Information
             </DrawerSectionTitle>
-            <Box className={classes.AddElementForm__Section}>
+            <Box className={classes.ElementForm__Section}>
                 <div>
                     <TextField
-                        className={classes.AddElementForm__FormField}
+                        className={classes.ElementForm__FormField}
                         id={`${testId}-provider`}
                         label='Provider'
                         placeholder='Ryanair'

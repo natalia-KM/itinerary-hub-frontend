@@ -3,7 +3,7 @@ import { UserAvatar } from 'components/UserAvatar'
 import classnames from 'classnames'
 import classes from './PassengersTable.module.scss'
 import { useGetPassengers } from 'hooks/passengers/useGetPassengers/useGetPassengers'
-import { FormSchema } from 'pages/TripDetails/AddElementDrawer/formSchema'
+import { FormSchema } from 'pages/TripDetails/ElementDrawer/formSchema'
 import { useFormContext } from 'react-hook-form'
 
 interface PassengersTableProps {

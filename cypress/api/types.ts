@@ -1,3 +1,5 @@
+import { AccommodationType, ElementType } from 'hooks/elements'
+
 export type HttpMethod = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH'
 
 export interface InterceptOptions {
@@ -19,6 +21,8 @@ export interface TripsRequestOptions extends InterceptRequestOptions {
     optionId?: string
     elementId?: string
     passengerId?: string
+    elementType?: ElementType
+    accommType?: AccommodationType
 }
 
 export enum InterceptorAlias {
@@ -50,10 +54,17 @@ export enum InterceptorAlias {
     UPDATE_PASSENGER = 'updatePassenger',
     DELETE_PASSENGER = 'deletePassenger',
     GET_ELEMENTS = 'getElements',
+    GET_ELEMENT = 'getElement',
     GET_TRANSPORT_ELEMENT = 'getTransportElement',
+    GET_ACTIVITY_ELEMENT = 'getActivityElement',
+    GET_ACCOMM_ELEMENT = 'getAccommElement',
+    UPDATE_TRANSPORT_ELEMENT = 'updateTransportElement',
+    UPDATE_ACTIVITY_ELEMENT = 'updateActivityElement',
+    UPDATE_ACCOMM_ELEMENT = 'updateAccommElement',
     CREATE_TRANSPORT_ELEMENT = 'createTransportElement',
     CREATE_ACTIVITY_ELEMENT = 'createActivityElement',
-    CREATE_ACCOMM_ELEMENT = 'createAccommElement'
+    CREATE_ACCOMM_ELEMENT = 'createAccommElement',
+    DELETE_ELEMENT = 'deleteElement',
 }
 
 export type CypressThenable = (
