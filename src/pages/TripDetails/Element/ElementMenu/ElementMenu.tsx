@@ -7,11 +7,14 @@ import classNames from 'classnames'
 import classes from '../ElementCard/ElementCard.module.scss'
 import { EditElementDrawer } from 'pages/TripDetails/EditElementDrawer'
 import { useElementContext } from 'provider'
-import { DeleteElementModal } from '../DeleteElementModal/DeleteElementModal'
+import { DeleteElementModal } from '../DeleteElementModal'
 import DeleteIcon from '@mui/icons-material/Delete'
+import ContentCopyIcon from '@mui/icons-material/ContentCopy'
+import { CopyLinkModal } from '../CopyLinkModal'
 
-export const ElementMenu = () => {
+export const ElementMenu = ({ link }: { link?: string }) => {
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
+    const [copyLinkModalOpen, setCopyLinkModalOpen] = useState(false)
     const [editElementOpen, setEditElementOpen] = useState(false)
     const [deleteElementOpen, setDeleteElementOpen] = useState(false)
 
@@ -53,6 +56,22 @@ export const ElementMenu = () => {
                             Add Element Below
                         </ListItemText>
                     </MenuItem>
+                    {link && (
+                            <MenuItem
+                                data-testid={'copy-link-button'}
+                                onClick={() => {
+                                    setCopyLinkModalOpen(true)
+                                    handleClose()
+                                }}
+                            >
+                                <ListItemIcon>
+                                    <ContentCopyIcon/>
+                                </ListItemIcon>
+                                <ListItemText>
+                                    Copy Link
+                                </ListItemText>
+                            </MenuItem>
+                    )}
                     <MenuItem
                         data-testid={'edit-element-button'}
                         onClick={() => {
@@ -83,13 +102,20 @@ export const ElementMenu = () => {
                     </MenuItem>
                 </Menu>
             )}
+            {link && (
+                <CopyLinkModal
+                    modalOpen={copyLinkModalOpen}
+                    setModalOpen={setCopyLinkModalOpen}
+                    link={link}
+                />
+            )}
             {editElementOpen && (
                 <EditElementDrawer
                     isOpen={editElementOpen}
                     handleClose={() => setEditElementOpen(false)}
                 />
             )}
-            <DeleteElementModal modalOpen={deleteElementOpen} setModalOpen={setDeleteElementOpen} />
+            <DeleteElementModal modalOpen={deleteElementOpen} setModalOpen={setDeleteElementOpen}/>
         </>
     )
 }

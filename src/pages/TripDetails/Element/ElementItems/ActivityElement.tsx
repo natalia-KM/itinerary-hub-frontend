@@ -48,6 +48,7 @@ export const ActivityElement = () => {
             elementId={elementId}
             price={prettifyPrice(userDetails?.currency ?? 'USD', elementDetails.price)}
             notes={elementDetails.notes}
+            link={elementDetails.link}
             elementStatus={elementDetails.status}
             passengerProps={elementDetails.passengerDetailsList.length > 0 ? passengerProps : undefined}
             additionalColumn={elementDetails.duration ? durationColumn : undefined}

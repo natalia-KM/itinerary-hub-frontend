@@ -65,6 +65,7 @@ export const TransportElement = () => {
             elementCategory={elementDetails.elementCategory}
             elementId={elementId}
             price={prettifyPrice(userDetails?.currency ?? 'USD', elementDetails.price)}
+            link={elementDetails.link}
             notes={elementDetails.notes}
             elementStatus={elementDetails.status}
             passengerProps={elementDetails.passengerDetailsList.length > 0 ? passengerProps : undefined}

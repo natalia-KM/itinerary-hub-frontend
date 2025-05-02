@@ -20,6 +20,7 @@ interface ElementCardProps {
     elementStatus?: ElementStatus
     price?: string
     notes?: string
+    link?: string
     additionalColumn?: InformationColumnProps
 }
 
@@ -29,6 +30,7 @@ export const ElementCard = ({
     elementCategory,
     price,
     notes,
+    link,
     elementStatus,
     passengerProps,
     additionalColumn
@@ -87,7 +89,7 @@ export const ElementCard = ({
                     )}
                 </Grid>
             </Box>
-            <ElementMenu/>
+            <ElementMenu link={link}/>
         </Box>
     )
 }

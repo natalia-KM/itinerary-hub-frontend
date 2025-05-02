@@ -24,7 +24,7 @@ import { elements } from 'cypress/fixtures/pages/Elements'
 import { topBar } from 'cypress/fixtures/pages/TopBar'
 import { modals } from 'cypress/fixtures/modules/Modals'
 
-describe('Edit Element', () => {
+describe('Element Actions', () => {
     beforeEach(() => {
         apiInterceptor.interceptGetUserDetails({ manualResolution: false })
         apiInterceptor.interceptGetSections({})
@@ -38,7 +38,7 @@ describe('Edit Element', () => {
         topBar.cookieBannerButton.click()
     })
 
-    describe('Happy paths', () => {
+    describe('Edit Element', () => {
         beforeEach(() => {
             apiInterceptor.interceptGetElements({})
 
@@ -56,7 +56,7 @@ describe('Edit Element', () => {
             elements.elementMenuButton(TRANSPORT_1).click()
 
             elements.elementMenu.should('be.visible')
-            elements.editElementButton().click()
+            elements.editElementButton.click()
 
             cy.wait(getElement)
 
@@ -186,7 +186,7 @@ describe('Edit Element', () => {
             elements.elementMenuButton(ACTIVITY_1).click()
 
             elements.elementMenu.should('be.visible')
-            elements.editElementButton().click()
+            elements.editElementButton.click()
 
             cy.wait(getElement)
 
@@ -284,7 +284,7 @@ describe('Edit Element', () => {
             elements.elementMenuButton(checkInElementId).click()
 
             elements.elementMenu.should('be.visible')
-            elements.editElementButton().click()
+            elements.editElementButton.click()
 
             cy.wait(getElement)
 
@@ -385,42 +385,90 @@ describe('Edit Element', () => {
             elements.accommPlace(checkInElementId).should('have.text', 'Four Seasons Hotel')
             elements.accommPlace(`${ACCOMMODATION_1}-check-out`).should('have.text', 'Four Seasons Hotel')
         })
+
+        it('should show toast on failed request', () => {
+            apiInterceptor.interceptGetElements({})
+            const { alias } = apiInterceptor.interceptUpdateTransportElement({ status: 500 })
+            const { alias: getElement } = apiInterceptor.interceptGetElement({ })
+
+            elements.element(TRANSPORT_1).should('be.visible')
+            elements.elementMenuButton(TRANSPORT_1).click()
+
+            elements.elementMenu.should('be.visible')
+            elements.editElementButton.click()
+
+            cy.wait(getElement)
+
+            elementDrawer.elementDrawer.should('be.visible')
+
+            elementDrawer.transportRadioBtn
+                .should('be.visible')
+                .should('have.attr', 'aria-pressed', 'true')
+                .should('be.disabled')
+
+            elementDrawer.originPlaceInput
+                .should('have.value', 'London Heathrow Airport (LHR)')
+                .clear()
+                .type('London')
+
+            drawer.confirmButton.click()
+            elementDrawer.passengersLabel.should('have.text', 'Passengers')
+
+            drawer.confirmButton.click()
+            cy.wait(alias)
+
+            elementDrawer.updateElementErrorToast
+                .should('be.visible')
+                .should('have.text', 'Couldn\'t update an element. Try again later.')
+        })
     })
 
-    it('should show toast on failed request', () => {
-        apiInterceptor.interceptGetElements({})
-        const { alias } = apiInterceptor.interceptUpdateTransportElement({ status: 500 })
-        const { alias: getElement } = apiInterceptor.interceptGetElement({ })
+    describe('Copy link', () => {
 
-        elements.element(TRANSPORT_1).should('be.visible')
-        elements.elementMenuButton(TRANSPORT_1).click()
+        it('should copy link', () => {
+            cy.mockClipboard('https://britishairways.com/booking/123')
 
-        elements.elementMenu.should('be.visible')
-        elements.editElementButton().click()
+            elements.element(TRANSPORT_1).should('be.visible')
+            elements.elementMenuButton(TRANSPORT_1).click()
 
-        cy.wait(getElement)
+            elements.elementMenu.should('be.visible')
+            elements.copyElementButton.click()
 
-        elementDrawer.elementDrawer.should('be.visible')
+            elements.copyLinkModal.should('be.visible')
 
-        elementDrawer.transportRadioBtn
-            .should('be.visible')
-            .should('have.attr', 'aria-pressed', 'true')
-            .should('be.disabled')
+            elements.copyLinkModalInput
+                .should('be.visible')
+                .should('have.value', 'https://britishairways.com/booking/123')
 
-        elementDrawer.originPlaceInput
-            .should('have.value', 'London Heathrow Airport (LHR)')
-            .clear()
-            .type('London')
+            elements.copyLinkModalIcon.click()
+            elements.copyLinkToast
+                .should('be.visible')
+                .should('have.text', 'Link copied to clipboard')
 
-        drawer.confirmButton.click()
-        elementDrawer.passengersLabel.should('have.text', 'Passengers')
+            cy.window().then((win) => win.navigator.clipboard.readText())
+                .should('equal', 'https://britishairways.com/booking/123')
+        })
 
-        drawer.confirmButton.click()
-        cy.wait(alias)
+        it('should show toast on fail', () => {
+            cy.rejectClipboard()
 
-        elementDrawer.updateElementErrorToast
-            .should('be.visible')
-            .should('have.text', 'Couldn\'t update an element. Try again later.')
+            elements.element(TRANSPORT_1).should('be.visible')
+            elements.elementMenuButton(TRANSPORT_1).click()
+
+            elements.elementMenu.should('be.visible')
+            elements.copyElementButton.click()
+
+            elements.copyLinkModal.should('be.visible')
+
+            elements.copyLinkModalInput
+                .should('be.visible')
+                .should('have.value', 'https://britishairways.com/booking/123')
+
+            elements.copyLinkModalIcon.click()
+            elements.copyLinkToast
+                .should('be.visible')
+                .should('have.text', 'Couldn\'t copy link. Try again later.')
+        })
     })
 
     describe('Delete Element', () => {

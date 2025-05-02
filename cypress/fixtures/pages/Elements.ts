@@ -26,13 +26,34 @@ export class Elements {
         return cy.getById('element-menu')
     }
 
-    editElementButton() {
+    get editElementButton() {
         return cy.getById('edit-element-button')
+    }
+
+    get copyElementButton() {
+        return cy.getById('copy-link-button')
+    }
+
+    get copyLinkModal() {
+        return cy.getById('copy-link-modal')
+    }
+
+    get copyLinkModalInput() {
+        return cy.getById('copy-link-input')
+    }
+
+    get copyLinkModalIcon() {
+        return cy.getById('copy-link-icon')
+    }
+
+    get copyLinkToast() {
+        return cy.get('#copy-link-toast')
     }
 
     get deleteElementButton() {
         return cy.getById('delete-element-button')
     }
+
     get deleteElementModal() {
         return cy.getById('delete-element-modal')
     }
