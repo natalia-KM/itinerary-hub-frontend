@@ -88,7 +88,7 @@ describe('Element Actions', () => {
                 .type('23042025')
 
             elementDrawer.originTime
-                .should('have.value', '09:45')
+                .should('have.value', '08:45')
                 .clear()
                 .type('1000')
 
@@ -103,7 +103,7 @@ describe('Element Actions', () => {
                 .type('23042025')
 
             elementDrawer.destTime
-                .should('have.value', '12:30')
+                .should('have.value', '11:30')
                 .clear()
                 .type('2000')
 
@@ -220,7 +220,7 @@ describe('Element Actions', () => {
                 .clear()
                 .type('23042025') // 23/04/2025
             elementDrawer.activityStartTimeInput
-                .should('have.value', '10:00')
+                .should('have.value', '09:00')
                 .clear()
                 .type('1400') // 14:00
 
@@ -312,7 +312,7 @@ describe('Element Actions', () => {
                 .clear()
                 .type('23042025') // 23/04/2025
             elementDrawer.checkInTime
-                .should('have.value', '16:00')
+                .should('have.value', '15:00')
                 .clear()
                 .type('0900') // 09:00
 
@@ -321,7 +321,7 @@ describe('Element Actions', () => {
                 .clear()
                 .type('26042025') // 26/04/2025
             elementDrawer.checkOutTime
-                .should('have.value', '18:00')
+                .should('have.value', '17:00')
                 .clear()
                 .type('1630') // 16:30
 

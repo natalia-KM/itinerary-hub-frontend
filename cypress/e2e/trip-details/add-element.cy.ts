@@ -363,15 +363,15 @@ describe('Add Element', () => {
         tripDetailsPage.optionTab(S1_OPTION_2_ID)
             .should('be.visible')
 
-        elements.element('tr-element-2').should('be.visible')
-        elements.element('tr-element-4').should('be.visible')
+        elements.element(TRANSPORT_2).should('be.visible')
+        elements.element(TRANSPORT_4).should('be.visible')
 
         elements.elementsList(S1_OPTION_2_ID)
             .should('be.visible')
             .children()
             .should('have.length', 2)
 
-        elements.categoryBadgeIcon('tr-element-4', 'Custom Transport')
+        elements.categoryBadgeIcon(TRANSPORT_4, 'Custom Transport')
             .should('be.visible')
             .trigger('mouseover')
 
