@@ -39,12 +39,12 @@ export const TripQuickActions = () => {
                     }}
                 />
                 <SpeedDialAction
-                    data-testid={'download-pdf-button'}
+                    data-testid={'download-itinerary-button'}
                     onClick={handleDownloadPDF}
                     icon={<SpeedDialIcon/>}
                     slotProps={{
                         tooltip: {
-                            title: 'Download PDF',
+                            title: 'Download Itinerary',
                             open: true
                         },
                         staticTooltipLabel: {
