@@ -1,6 +1,14 @@
 export interface TopBarProps {
     /**
-     * Whether to show 'Home' button rather then help page button
+     * Whether to show 'Home' button
      */
     showHomeButton?: boolean
+    /**
+     * Whether to show 'Help' button
+     */
+    showHelpButton?: boolean
+    /**
+     * Whether to show 'Account' button
+     */
+    showAccountButton?: boolean
 }

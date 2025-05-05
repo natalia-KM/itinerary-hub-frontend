@@ -82,6 +82,7 @@ export const AddSectionModal = ({
                     size={'small'}
                     variant={'outlined'}
                     error={Boolean(error)}
+                    autoFocus
                     fullWidth
                     slotProps={{
                         htmlInput: { 'data-testid': 'add-section-name-input' }

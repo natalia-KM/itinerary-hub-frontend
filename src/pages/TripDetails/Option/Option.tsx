@@ -5,15 +5,15 @@ import React, { useEffect, useState } from 'react'
 import classes from './Option.module.scss'
 import { OptionTab } from './ManageOptionsModal/OptionTab'
 import { getOptions } from 'hooks/options'
-import { useSectionContext } from 'provider/SectionProvider/SectionContext'
 import { ElementsList } from '../Element/ElementsList'
+import { useTripStateContext } from 'provider/TripStateProvider/TripStateContext'
 
 interface OptionProps {
     sectionId: string
 }
 
 export const Option = ({ sectionId }: OptionProps) => {
-    const { setOpenOptionId } = useSectionContext()
+    const { setSelectedOption } = useTripStateContext()
      const { data: optionIds, isPending, isRefetching } = useQuery<string[]>({
         queryKey: ['sectionOptionIds', sectionId],
         queryFn: () => getOptions(sectionId)
@@ -25,11 +25,20 @@ export const Option = ({ sectionId }: OptionProps) => {
     const [openTab, setOpenTab] = useState(0)
 
     useEffect(() => {
-        setOpenOptionId(optionIds?.at(openTab))
-    }, [openTab, optionIds, setOpenOptionId])
+        const optionId = optionIds?.at(openTab ?? -1)
+        if (optionId) {
+            setSelectedOption(sectionId, optionId)
+        }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [openTab, optionIds]) // infinite loop if anything else is added to dependency array
 
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
         setOpenTab(newValue)
+
+        const optionId = optionIds?.at(newValue ?? -1)
+        if (optionId) {
+            setSelectedOption(sectionId, optionId)
+        }
     }
 
     if (isPending || isRefetching || !optionIds) {

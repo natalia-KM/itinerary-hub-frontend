@@ -6,7 +6,9 @@ import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined'
 import { TopBarProps } from './types'
 
 export const TopBar = ({
-    showHomeButton = false
+    showHomeButton = false,
+    showHelpButton = true,
+    showAccountButton = true
 }: TopBarProps) => {
     const redirectToHome = () => {
         window.location.href = '/dashboard'
@@ -25,7 +27,7 @@ export const TopBar = ({
                 <Box sx={{ flexGrow: 1 }} />
                 <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
 
-                    {showHomeButton ? (
+                    {showHomeButton && (
                         <IconButton
                             size="large"
                             aria-label="Home button"
@@ -35,10 +37,13 @@ export const TopBar = ({
                         >
                             <HomeOutlinedIcon/>
                         </IconButton>
-                    ) : (
+                    )}
+                    {showHelpButton && (
                         <HelpBar />
                     )}
-                    <AccountBar />
+                    {showAccountButton && (
+                        <AccountBar />
+                    )}
                 </Box>
             </Toolbar>
         </AppBar>

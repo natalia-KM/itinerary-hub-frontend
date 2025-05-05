@@ -7,6 +7,10 @@ export class TripDetailsFab {
         return cy.getById('add-section-button')
     }
 
+    get downloadItineraryButton() {
+        return cy.getById('download-itinerary-button')
+    }
+
     get addSectionModal() {
         return cy.getById('add-section-modal')
     }

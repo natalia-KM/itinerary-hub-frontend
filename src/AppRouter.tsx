@@ -5,6 +5,8 @@ import { TripsView } from './pages/TripsView/TripsView'
 import { HelpPage } from './pages/HelpPage/HelpPage'
 import { TripDetailsPage } from './pages/TripDetails/TripDetailsPage'
 import { Components } from './pages/Components'
+import { PrintableTripPage } from './pages/PrintableTripPage/PrintableTripPage'
+import { TripStateProvider } from './provider/TripStateProvider/TripStateProvider'
 
 export const AppRouter = () => {
     return (
@@ -15,7 +17,12 @@ export const AppRouter = () => {
                 <Route path="/login" element={<Login/>}/>
                 <Route path="/logout" element={<Login/>}/>
                 <Route path="/help" element={<HelpPage/>}/>
-                <Route path="/trip" element={<TripDetailsPage/>}/>
+                <Route path="/trip" element={
+                    <TripStateProvider>
+                        <TripDetailsPage/>
+                    </TripStateProvider>
+                }/>
+                <Route path="/trip/print" element={<PrintableTripPage />} />
                 <Route path="/components" element={<Components/>}/>
             </Routes>
         </BrowserRouter>
