@@ -1,7 +1,7 @@
 import { Box, Typography } from '@mui/material'
 import classes from './ElementStyles.module.scss'
 
-export const TimeLine = ({ testId, duration }: { testId: string, duration?: string }) => {
+export const TimeLine = ({ testId, duration }: { testId?: string, duration?: string }) => {
 
     return (
         <Box className={classes.TimeLineContainer}>

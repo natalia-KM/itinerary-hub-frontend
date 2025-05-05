@@ -1,4 +1,4 @@
-import { Accordion, AccordionDetails, AccordionSummary, Box, Button, Typography } from '@mui/material'
+import { Accordion, AccordionDetails, AccordionSummary, Box, Typography } from '@mui/material'
 import {
     accommCategories,
     activityCategories,
@@ -21,9 +21,6 @@ export const Components = () => {
             <Typography variant={'h4'} margin={'5vh'} textAlign={'center'}>
                 Components
             </Typography>
-            <Box sx={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
-                <Button onClick={() => setBackdropOpen(true)}>Show backdrop</Button>
-            </Box>
             <LoadingBackdrop isOpen={backdropOpen} testId={'test-backdrop'} onClick={() => setBackdropOpen(false)}/>
             <Box sx={{
                 display: 'flex',

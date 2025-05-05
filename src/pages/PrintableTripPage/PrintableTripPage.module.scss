@@ -1,0 +1,33 @@
+.Page {
+  background-color: $primary-bg;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+
+.TopBar {
+  background-color: $primary-bg-bar !important;
+  padding: 10px !important;
+
+  &__Logo {
+    cursor: pointer;
+  }
+}
+
+.Content {
+  padding: 5%;
+  width: 95%;
+}
+
+.TripHeader {
+  text-align: center;
+}
+
+.Section {
+  background-color: $white !important;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 3px 15px !important;
+
+  margin: 3% 0;
+  padding: 3% 3% 2%;
+  box-sizing: border-box;
+}

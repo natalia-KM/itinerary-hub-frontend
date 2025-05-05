@@ -6,6 +6,7 @@ interface UserAvatarProps {
     showTooltip? :boolean
     enablePaddingRight?: boolean
     testId?: string
+    small?: boolean
     // image?:string // TODO: to be implemented
 }
 
@@ -14,6 +15,7 @@ export const UserAvatar = ({
     lastName,
     showTooltip = false,
     enablePaddingRight = false,
+    small = false,
     testId
 }: UserAvatarProps) => {
     const initials = () => {
@@ -37,15 +39,15 @@ export const UserAvatar = ({
         <Tooltip title={name} hidden={showTooltip}>
             <Avatar
                 sx={{
-                    width: 24,
-                    height: 24,
+                    width: !small ? 24 : 18,
+                    height: !small ? 24 : 18,
                     border: '1px solid white',
                     marginRight: enablePaddingRight ? '8px' : 'none'
                 }}
                 data-testid={testId ?? 'user-avatar'}
             >
                 <Typography
-                    fontSize='10px'
+                    fontSize={!small ? '10px' : '8px'}
                     fontWeight='600'
                     letterSpacing={'0.1em'}
                     paddingLeft={'1px'}

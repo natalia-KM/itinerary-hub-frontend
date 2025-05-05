@@ -2,9 +2,19 @@ import { SpeedDial, SpeedDialAction, SpeedDialIcon } from '@mui/material'
 import classes from '../TripDetails.module.scss'
 import React, { useState } from 'react'
 import { AddSectionModal } from './AddSectionModal/AddSectionModal'
+import { useTripStateContext } from 'provider/TripStateProvider/TripStateContext'
+import { useTripId } from 'utils'
 
 export const TripQuickActions = () => {
     const [addSectionModalOpen, setAddSectionModalOpen] = useState(false)
+    const { tripId } = useTripId()
+    const { selectedOptions } = useTripStateContext()
+
+    const handleDownloadPDF = () => {
+        sessionStorage.setItem('selectedOptions', JSON.stringify(selectedOptions))
+
+        window.open(`/trip/print?tripId=${tripId}`, '_blank')
+    }
 
     return (
         <>
@@ -21,6 +31,20 @@ export const TripQuickActions = () => {
                     slotProps={{
                         tooltip: {
                             title: 'Add Section',
+                            open: true
+                        },
+                        staticTooltipLabel: {
+                            sx: { maxWidth: 'none', width: 'max-content' }
+                        }
+                    }}
+                />
+                <SpeedDialAction
+                    data-testid={'download-pdf-button'}
+                    onClick={handleDownloadPDF}
+                    icon={<SpeedDialIcon/>}
+                    slotProps={{
+                        tooltip: {
+                            title: 'Download PDF',
                             open: true
                         },
                         staticTooltipLabel: {

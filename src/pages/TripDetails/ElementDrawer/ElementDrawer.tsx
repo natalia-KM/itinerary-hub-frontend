@@ -12,7 +12,7 @@ import { ElementFormStepTwo } from './ElementFormStepTwo/ElementFormStepTwo'
 import classes from './ElementDrawer.module.scss'
 import { ElementType, useGetElements } from 'hooks/elements'
 import { toast } from 'react-toastify'
-import { useSectionContext } from 'provider/SectionProvider/SectionContext'
+import { useTripStateContext } from 'provider/TripStateProvider/TripStateContext'
 
 interface ElementDrawerProps {
     isOpen: boolean
@@ -37,7 +37,11 @@ export const ElementDrawer = ({
     sectionDetails,
     existingElement
 }: ElementDrawerProps) => {
-    const { openOptionId: optionId } = useSectionContext()
+    const { selectedOptions } = useTripStateContext()
+
+    const optionId = useMemo(() => {
+        return selectedOptions[sectionDetails.sectionId]
+    }, [sectionDetails.sectionId, selectedOptions])
 
     const initialValues = {
         elementType: ElementType.TRANSPORT,
