@@ -48,14 +48,6 @@ export const ElementMenu = ({ link }: { link?: string }) => {
                     onClose={handleClose}
                     data-testid={'element-menu'}
                 >
-                    <MenuItem>
-                        <ListItemIcon>
-                            <AddIcon/>
-                        </ListItemIcon>
-                        <ListItemText>
-                            Add Element Below
-                        </ListItemText>
-                    </MenuItem>
                     {link && (
                             <MenuItem
                                 data-testid={'copy-link-button'}

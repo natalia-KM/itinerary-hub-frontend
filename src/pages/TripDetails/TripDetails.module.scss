@@ -46,3 +46,14 @@
     bottom: 5vh;
   }
 }
+
+.EmptySection {
+  background-color: $white !important;
+  border-radius: 15px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 3px 15px !important;
+
+  margin: 3% 4%;
+  padding: 3% 3%;
+  box-sizing: border-box;
+  min-height: 50px;
+}

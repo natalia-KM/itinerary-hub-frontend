@@ -33,6 +33,7 @@ export const queryKeys = {
     updateTransportElement: 'updateTransportElement',
     updateActivityElement: 'updateActivityElement',
     updateAccommodationElement: 'updateAccommodationElement',
+    bulkUpdateElementOrder: 'bulkUpdateElementOrder',
     updateElementOrder: 'updateElementOrder',
     deleteElement: 'deleteElement',
     createPassenger: 'createPassenger',

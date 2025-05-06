@@ -1,0 +1,81 @@
+.SectionContainer {
+  padding: 0;
+  margin: 5px;
+  width: 100%;
+}
+
+.InputContainer {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.AddItemButton {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  color: $primary-bg-button !important;
+  padding: 7px 20px !important;
+  transition: background-color 0.1s ease-in-out;
+  cursor: pointer;
+  background-color: $dirty-white !important;
+
+  &:hover {
+    background-color: $lightest-gray !important;
+    color: $white;
+  }
+}
+
+.ListItem {
+  padding: 10px 20px;
+  width: 100%;
+  margin: 7px 0;
+  list-style-type: none;
+  border: 1px solid #CCC;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 2px 5px;
+  color: #333;
+  border-radius: 5px;
+  z-index: 99999;
+  box-sizing: border-box;
+}
+
+.ItemContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  width: 100%;
+  align-items: center;
+}
+
+.Button {
+  border: none;
+  margin: 0 10px 0 0;
+  padding: 0;
+  width: auto;
+  overflow: visible;
+  color: $lighter-gray;
+  cursor: pointer;
+  background: transparent;
+
+  &:hover {
+    color: $selected-button-border;
+  }
+}
+
+.UpdateIcon {
+  cursor: pointer;
+
+  &:hover {
+    color: $primary-bg-button !important;
+  }
+}
+
+.DeleteIcon {
+  cursor: pointer;
+  color: $error !important;
+
+  &:hover {
+    color: $bg-drop !important;
+  }
+}

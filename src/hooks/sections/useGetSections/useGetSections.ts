@@ -1,6 +1,6 @@
 import webClient from 'config/clientConfig'
 import { SectionDetails } from '../types'
-import { useMutation } from '@tanstack/react-query'
+import { useQuery } from '@tanstack/react-query'
 import { queryKeys } from 'config/queryKeys'
 
 export const getSections = async (tripId: string) => {
@@ -10,9 +10,9 @@ export const getSections = async (tripId: string) => {
 
 export const useGetSections = (tripId: string) => {
 
-    return useMutation({
-        mutationKey: [queryKeys.getSections, tripId],
-        mutationFn: () => getSections(tripId)
+    return useQuery({
+        queryKey: [queryKeys.getSections, tripId],
+        queryFn: () => getSections(tripId)
     })
 
 }
