@@ -1,4 +1,4 @@
-import { Box, Grid } from '@mui/material'
+import { Box, Grid, Typography } from '@mui/material'
 import React from 'react'
 import { InformationColumnProps, PassengersColumnProps } from '../types'
 import { InformationColumn } from '../InformationColumn'
@@ -11,6 +11,7 @@ import classNames from 'classnames'
 import { elementCategoryIcons, IconConfig } from 'pages/TripDetails/ElementDrawer'
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome'
 import { ElementMenu } from '../ElementMenu/ElementMenu'
+import { prettifyDateWithTime } from 'utils'
 
 interface ElementCardProps {
     children: React.ReactNode
@@ -18,6 +19,7 @@ interface ElementCardProps {
     elementCategory: string
     passengerProps?: PassengersColumnProps
     elementStatus?: ElementStatus
+    lastUpdated: string
     price?: string
     notes?: string
     link?: string
@@ -28,6 +30,7 @@ export const ElementCard = ({
     children,
     elementId,
     elementCategory,
+    lastUpdated,
     price,
     notes,
     link,
@@ -49,6 +52,7 @@ export const ElementCard = ({
 
     return (
         <Box className={classes.ElementCard} data-testid={`element-${elementId}`}>
+            <div className={classes.ElementCard__MainBody}>
             <Box>
                 <ElementBadge Icon={ElementCategoryIcon} tooltipText={elementCategory} color={config.color} whiteIcon={config.whiteIcon} testId={`${testOptionId}-category-badge`} />
                 {elementStatus && (
@@ -90,6 +94,10 @@ export const ElementCard = ({
                 </Grid>
             </Box>
             <ElementMenu link={link}/>
+            </div>
+            <Typography variant="body2" className={classes.ElementCard__LastUpdatedAtText}>
+                Last updated at: {prettifyDateWithTime(new Date(lastUpdated))}
+            </Typography>
         </Box>
     )
 }

@@ -8,6 +8,12 @@ export const prettifyDate = (date?: Date) => {
     return dayjs(date).format('DD/MM/YYYY')
 }
 
+export const prettifyDateWithTime = (date?: Date) => {
+    const dateLabel =  dayjs(date).format('DD/MM/YYYY')
+    const timeLabel = dayjs(date).format('HH:mm')
+    return `${dateLabel} ${timeLabel}`
+}
+
 export const getDatesText = (startDate?: Date, endDate?: Date) => {
     if (startDate && endDate) {
         return `${prettifyDate(startDate)} - ${prettifyDate(endDate)}`

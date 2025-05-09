@@ -52,6 +52,7 @@ export const AccommElement = ({
         <ElementCard
             elementCategory={elementDetails.elementCategory}
             elementId={elementId}
+            lastUpdated={elementDetails.lastUpdatedAt}
             price={prettifyPrice(userDetails?.currency ?? 'USD', elementDetails.price)}
             notes={elementDetails.notes}
             link={elementDetails.link}
