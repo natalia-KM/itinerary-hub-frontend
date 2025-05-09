@@ -42,8 +42,8 @@ export const SortableElementWrapper = ({
 
     return (
         <div ref={setNodeRef} style={style}>
-            <div style={{ cursor: 'grab', display: 'flex', alignItems: 'center' }} {...attributes} {...listeners}>
-                <DragIndicatorIcon />
+            <div style={{ cursor: 'grab', display: 'flex', alignItems: 'center', position: 'relative' }} {...attributes} {...listeners} data-testid={`${details.elementId}-drag-icon`}>
+                <DragIndicatorIcon/>
             </div>
             <ElementContextProvider
                 elementId={details.elementId}

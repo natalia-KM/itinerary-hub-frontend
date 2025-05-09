@@ -64,6 +64,7 @@ export enum InterceptorAlias {
     CREATE_TRANSPORT_ELEMENT = 'createTransportElement',
     CREATE_ACTIVITY_ELEMENT = 'createActivityElement',
     CREATE_ACCOMM_ELEMENT = 'createAccommElement',
+    BULK_UPDATE_ELEMENT_ORDER = 'bulkUpdateElementOrder',
     DELETE_ELEMENT = 'deleteElement',
 }
 

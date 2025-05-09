@@ -1,5 +1,5 @@
 import { apiInterceptor } from 'cypress/api/ApiInterceptor'
-import { SECTION_1_ID, SECTION_2_ID, TRIP_ID } from 'testUtils/mockValues'
+import { SECTION_1_ID, SECTION_2_ID, SECTION_3_ID, TRIP_ID } from 'testUtils/mockValues'
 import { tripDetailsPage } from 'cypress/fixtures/pages/TripDetails'
 import { tripDetailsFab } from 'cypress/fixtures/pages/TripDetailsFab'
 import { modals } from 'cypress/fixtures/modules/Modals'
@@ -9,13 +9,14 @@ describe('Sections', () => {
     beforeEach(() => {
         apiInterceptor.interceptGetUserDetails({ manualResolution: false })
         const { alias } = apiInterceptor.interceptGetTrip({})
+        apiInterceptor.interceptGetPassengers({})
         apiInterceptor.interceptGetSections({})
         cy.visit(`http://localhost:3000/trip?tripId=${TRIP_ID}`)
 
         cy.wait(alias)
     })
 
-    describe('Section Name', () => {
+    describe('Rename Section', () => {
         it('should successfully update section name', () => {
             tripDetailsPage.sectionNameText(SECTION_1_ID)
                 .should('be.visible')
@@ -308,6 +309,153 @@ describe('Sections', () => {
             modals.confirmDeleteModal.should('be.visible')
             modals.modalCancelButton.click()
             modals.confirmDeleteModal.should('not.exist')
+        })
+    })
+
+    describe('Manage Sections', () => {
+        beforeEach(() => {
+            tripDetailsFab.fab
+                .should('be.visible')
+                .click({ force: true })
+
+            tripDetailsFab.manageSectionsButton
+                .should('be.visible')
+                .click()
+
+            tripDetailsFab.manageSectionsModal.should('be.visible')
+            tripDetailsFab.manageSectionsModalList
+                .should('be.visible')
+                .children()
+                .should('have.length', 2)
+        })
+
+        it('should close the modal on cancel', () => {
+            modals.modalConfirmButton
+                .should('be.visible')
+                .click()
+
+            tripDetailsFab.manageSectionsModalList
+                .should('not.exist')
+        })
+
+        it('should successfully add a section', () => {
+            const { alias } = apiInterceptor.interceptCreateSection({})
+
+            apiInterceptor.interceptGetSections({
+                responseBody: [
+                    useGetSectionResponses[SECTION_1_ID],
+                    useGetSectionResponses[SECTION_2_ID],
+                    useGetSectionResponses[SECTION_3_ID]
+                ]
+            })
+
+            tripDetailsFab.addNewSectionButton.click()
+            tripDetailsFab.addNewSectionInputField
+                .should('be.visible')
+                .type('My Section')
+
+            tripDetailsFab.confirmNewSectionButton.click()
+
+            cy.wait(alias).then((interception) => {
+                expect(interception.request.body).to.deep.equal({
+                    sectionName: 'My Section',
+                    order: 3
+                })
+            })
+
+            tripDetailsFab.manageSectionsModalList
+                .should('be.visible')
+                .children()
+                .should('have.length', 3)
+        })
+
+        it('should successfully move section', () => {
+            const { alias } = apiInterceptor.interceptUpdateSectionOrder({})
+            apiInterceptor.interceptGetSections({
+                responseBody: [
+                    useGetSectionResponses[SECTION_2_ID],
+                    useGetSectionResponses[SECTION_1_ID]
+                ]
+            })
+
+            tripDetailsFab.manageSectionsModalList
+                .should('be.visible')
+                .children()
+                .should('have.length', 2)
+                .each(($el, index) => {
+                    const expectedTexts = [
+                        'Section 1',
+                        'Section 2',
+                    ]
+                    cy.wrap($el).should('contain.text', expectedTexts[index])
+                })
+
+            tripDetailsFab.sectionItemDragHandle(SECTION_1_ID)
+                .should('be.visible')
+                .realMouseDown({ position: 'center' })
+                .realMouseMove(0, 100, { position: 'center' })
+                .realMouseUp()
+
+            cy.wait(alias)
+
+            tripDetailsFab.manageSectionsModalList
+                .should('be.visible')
+                .children()
+                .should('have.length', 2)
+                .each(($el, index) => {
+                    const expectedTexts = [
+                        'Section 2',
+                        'Section 1'
+                    ]
+                    cy.wrap($el).should('contain.text', expectedTexts[index])
+                })
+        })
+
+        it('should successfully edit section name', () => {
+            const { alias } = apiInterceptor.interceptUpdateSection({})
+            apiInterceptor.interceptGetSections({
+                responseBody: [
+                    {
+                        ...useGetSectionResponses[SECTION_1_ID],
+                        sectionName: 'Updated Section'
+                    },
+                    useGetSectionResponses[SECTION_2_ID],
+                ]
+            })
+
+            tripDetailsFab.sectionListItem(SECTION_1_ID).should('be.visible')
+            tripDetailsFab.sectionItemEditIcon(SECTION_1_ID).click()
+
+            tripDetailsFab.sectionNameEditInput(SECTION_1_ID)
+                .should('be.visible')
+                .should('have.value', 'Section 1')
+                .clear()
+                .type('Updated Section')
+
+            tripDetailsFab.sectionItemCheckIcon(SECTION_1_ID).click()
+
+            cy.wait(alias).then((interception) => {
+                expect(interception.request.body).to.deep.equal({
+                    sectionName: 'Updated Section'
+                })
+            })
+
+            tripDetailsFab.sectionListItem(SECTION_1_ID).should('contain.text', 'Updated Section')
+        })
+
+        it('should successfully delete section', () => {
+            apiInterceptor.interceptDeleteSection({})
+            apiInterceptor.interceptGetSections({
+                responseBody: [
+                    useGetSectionResponses[SECTION_2_ID]
+                ]
+            })
+            tripDetailsFab.sectionItemDeleteIcon(SECTION_1_ID).click()
+
+            tripDetailsFab.manageSectionsModalList
+                .should('be.visible')
+                .children()
+                .should('have.length', 1)
         })
     })
 })
