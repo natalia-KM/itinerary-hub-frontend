@@ -407,6 +407,19 @@ export class ApiInterceptor extends ApiInterceptorBase {
         })
     }
 
+    interceptBulkElementOrderUpdate({
+        status = 204,
+        manualResolution
+    }: TripsRequestOptions): ApiInterceptorResponse {
+        return apiInterceptor.interceptRequest({
+            url: 'http://localhost:8080/v1/elements',
+            status,
+            method: 'PUT',
+            alias: InterceptorAlias.BULK_UPDATE_ELEMENT_ORDER,
+            manualResolution
+        })
+    }
+
     interceptGetElement({
         status = 200,
         manualResolution,

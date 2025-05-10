@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Button, Paper, Typography } from '@mui/material'
+import { Button, Link, Paper, Typography } from '@mui/material'
 import classes from './CookieBanner.module.scss'
 
 export const CookieBanner = () => {
@@ -29,6 +29,8 @@ export const CookieBanner = () => {
             <Typography variant="body2">
                 We use only essential cookies to ensure the website functions correctly.
                 By continuing to use this site, you agree to our use of necessary cookies.
+                {' '}
+                <Link href={'/privacy-policy'}>Learn more</Link>
             </Typography>
             <Button variant="contained" onClick={handleAccept} data-testid={'cookie-banner-btn'}>
                 OK

@@ -7,7 +7,7 @@ import {
     S2_OPTION_1_ID,
     SECTION_1_ID,
     SECTION_2_ID, TRANSPORT_1, TRANSPORT_2, TRANSPORT_3,
-    TRIP_ID, TRIP_ID_2
+    TRIP_ID, TRIP_ID_2, TRIP_ID_3
 } from 'testUtils/mockValues'
 import { useGetSectionResponses } from 'hooks/sections'
 import { useGetOptionResponses } from 'hooks/options'
@@ -97,6 +97,30 @@ export const useGetTripResponses: Record<string, TripDO> = {
                 ]
             }
         ]
+    },
+    [TRIP_ID_3]: {
+        tripDetails: useGetTripDetailsResponses[TRIP_ID_2],
+        sections: [
+            {
+                sectionDetails: useGetSectionResponses[SECTION_1_ID],
+                options: [
+                    {
+                        optionDetails: useGetOptionResponses[S1_OPTION_1_ID],
+                        baseElementDetails: [
+                            useGetTransportElementResponses[TRANSPORT_1],
+                            useGetAccommodationElementPairResponses[ACCOMMODATION_1][0],
+                            useGetActivityElementResponses[ACTIVITY_1],
+                            useGetAccommodationElementPairResponses[ACCOMMODATION_1][1]
+                        ]
+                    },
+                    {
+                        optionDetails: useGetOptionResponses[S1_OPTION_2_ID],
+                        baseElementDetails: [
+                            useGetTransportElementResponses[TRANSPORT_2]
+                        ]
+                    }
+                ]
+            }
+        ]
     }
-
 }

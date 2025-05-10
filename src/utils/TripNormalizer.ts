@@ -18,6 +18,7 @@ export interface NormalizedSection {
 export interface ElementInfo {
     baseElementId: string
     elementType: ElementType
+    order: number
     accommodationType?: AccommodationType
 }
 
@@ -59,7 +60,7 @@ export function normalizeTripData(tripData: TripDO) {
 
             for (const element of option.baseElementDetails) {
                 const type = isAccommElement(element) ? element.accommodationType : undefined
-                normalized.options[option.optionDetails.optionId].elementInfo[element.elementID] = { baseElementId: element.baseElementID, elementType: element.elementType, accommodationType: type }
+                normalized.options[option.optionDetails.optionId].elementInfo[element.elementID] = { baseElementId: element.baseElementID, elementType: element.elementType, order: element.order, accommodationType: type }
                 normalized.elements[element.elementID] = { ...element }
             }
         }

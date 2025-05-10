@@ -15,11 +15,22 @@ export const HelpMenu = ({
         window.open('/help')
     }
 
+    const redirectToPrivacyPolicy = () => {
+        closeMenu()
+        window.open('/privacy-policy')
+    }
+
     return (
         <Paper className={classes.HelpMenu} data-testid='top-bar-help-menu'>
             <MenuList>
                 <MenuItem onClick={redirectToHelpPage} data-testid='top-bar-help-redirect-btn'>
-                    <ListItemText>Open Help Page in a new tab</ListItemText>
+                    <ListItemText>Help Page</ListItemText>
+                    <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                        <OpenInNewIcon fontSize='small'/>
+                    </Typography>
+                </MenuItem>
+                <MenuItem onClick={redirectToPrivacyPolicy} data-testid='top-bar-policy-redirect-btn'>
+                    <ListItemText>Privacy Policy</ListItemText>
                     <Typography variant="body2" sx={{ color: 'text.secondary' }}>
                         <OpenInNewIcon fontSize='small'/>
                     </Typography>

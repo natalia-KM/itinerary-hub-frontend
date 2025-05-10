@@ -1,0 +1,22 @@
+.SectionTitle {
+  font-size: 1.8rem !important;
+}
+
+.Subtitle {
+  font-size: 1.3rem !important;
+  padding-top: 18px !important;
+  padding-bottom: 6px !important;
+  color: $primary-bg-bar !important;
+  margin-bottom: 0 !important;
+}
+
+.Content {
+  letter-spacing: 0.05rem !important;
+}
+
+.Image {
+  padding-top: 4px;
+  width: auto;
+  height: auto;
+  object-fit: cover;
+}

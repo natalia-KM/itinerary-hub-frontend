@@ -22,7 +22,14 @@ export const CustomModal = ({
     size = 'medium'
 }: CustomModalProps) => {
     return (
-        <Modal open={isOpen}>
+        <Modal
+            open={isOpen}
+            onKeyDown={(e) => {
+                if (e.key.toLowerCase() !== 'escape') {
+                    e.stopPropagation()
+                }
+            }}
+        >
             <Box
                 data-testid={testId}
                 className={classnames(

@@ -22,6 +22,14 @@ export class Elements {
         return cy.getById(`${elementId}-element-menu-button`)
     }
 
+    elementDragHandle(elementId: string) {
+        return cy.getById(`${elementId}-drag-icon`)
+    }
+
+    get reorderElementsErrorToast() {
+        return cy.get('#reorder-element-error-toast')
+    }
+
     get elementMenu() {
         return cy.getById('element-menu')
     }

@@ -7,6 +7,7 @@ import { TripDetailsPage } from './pages/TripDetails/TripDetailsPage'
 import { Components } from './pages/Components'
 import { PrintableTripPage } from './pages/PrintableTripPage/PrintableTripPage'
 import { TripStateProvider } from './provider/TripStateProvider/TripStateProvider'
+import { PrivacyPolicyPage } from './pages/PrivacyPolicy'
 
 export const AppRouter = () => {
     return (
@@ -17,6 +18,7 @@ export const AppRouter = () => {
                 <Route path="/login" element={<Login/>}/>
                 <Route path="/logout" element={<Login/>}/>
                 <Route path="/help" element={<HelpPage/>}/>
+                <Route path="/privacy-policy" element={<PrivacyPolicyPage/>}/>
                 <Route path="/trip" element={
                     <TripStateProvider>
                         <TripDetailsPage/>
