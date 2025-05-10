@@ -1,0 +1,61 @@
+.Page {
+  background-color: $primary-bg;
+  min-height: 100vh;
+}
+
+.Header {
+  padding: 20px;
+
+  &__Title {
+    padding-left: 220px;
+    font-size: 2.3rem !important;
+    padding-bottom: 1vh;
+  }
+
+  &__TextWithLink {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 24px;
+    padding-left: 5%;
+    gap: 3px;
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
+      color: $primary-bg-button;
+    }
+  }
+}
+
+.TabContainer {
+  width: 80vw;
+  max-width: 1500px;
+  min-height: 500px;
+  height: 60vh;
+  display: flex;
+  flex-direction: row;
+
+  background-color: white !important;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 3px 15px !important;
+  border-radius: 0 7px 7px 0;
+}
+
+.TreeView {
+  margin-top: 10px !important;
+  min-width: 220px;
+
+  & > * {
+    padding: 2px 0 !important;
+  }
+}
+.Tab {
+  padding-left: 25px !important;
+}
+
+.Panel {
+  flex-grow: 1;
+  padding: 32px !important;
+  padding-right: 5vw !important;
+  overflow-y: auto;
+}
