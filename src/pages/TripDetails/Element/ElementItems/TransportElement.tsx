@@ -50,7 +50,7 @@ export const TransportElement = () => {
             return `${hours}h`
         }
 
-        return `${hours}.${minutes}h`
+        return `${hours}h ${minutes}m`
     }
 
     const passengerProps: PassengersColumnProps = {
