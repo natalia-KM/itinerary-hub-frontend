@@ -51,6 +51,7 @@ export const SortableElementWrapper = ({
                 elementType={details.elementType}
                 optionId={optionId}
                 otherAccommElementId={accommPairedElementId}
+                accommodationType={details.accommodationType}
             >
                 <ElementWrapper />
             </ElementContextProvider>

@@ -1,7 +1,7 @@
 import { IconButton, ListItemIcon, ListItemText, Menu, MenuItem } from '@mui/material'
 import React, { useState } from 'react'
 import EditIcon from '@mui/icons-material/Edit'
-import AddIcon from '@mui/icons-material/Add'
+import OpenWithIcon from '@mui/icons-material/OpenWith'
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz'
 import classNames from 'classnames'
 import classes from '../ElementCard/ElementCard.module.scss'
@@ -11,10 +11,12 @@ import { DeleteElementModal } from '../DeleteElementModal'
 import DeleteIcon from '@mui/icons-material/Delete'
 import ContentCopyIcon from '@mui/icons-material/ContentCopy'
 import { CopyLinkModal } from '../CopyLinkModal'
+import { MoveElementModal } from '../MoveElementModal/MoveElementModal'
 
 export const ElementMenu = ({ link }: { link?: string }) => {
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
     const [copyLinkModalOpen, setCopyLinkModalOpen] = useState(false)
+    const [moveElementOpen, setMoveElementOpen] = useState(false)
     const [editElementOpen, setEditElementOpen] = useState(false)
     const [deleteElementOpen, setDeleteElementOpen] = useState(false)
 
@@ -65,6 +67,20 @@ export const ElementMenu = ({ link }: { link?: string }) => {
                             </MenuItem>
                     )}
                     <MenuItem
+                        data-testid={'move-element-button'}
+                        onClick={() => {
+                            setMoveElementOpen(true)
+                            handleClose()
+                        }}
+                    >
+                        <ListItemIcon>
+                            <OpenWithIcon/>
+                        </ListItemIcon>
+                        <ListItemText>
+                            Move
+                        </ListItemText>
+                    </MenuItem>
+                    <MenuItem
                         data-testid={'edit-element-button'}
                         onClick={() => {
                             setEditElementOpen(true)
@@ -75,7 +91,7 @@ export const ElementMenu = ({ link }: { link?: string }) => {
                             <EditIcon/>
                         </ListItemIcon>
                         <ListItemText>
-                            Edit Element
+                            Edit
                         </ListItemText>
                     </MenuItem>
                     <MenuItem
@@ -89,7 +105,7 @@ export const ElementMenu = ({ link }: { link?: string }) => {
                             <DeleteIcon/>
                         </ListItemIcon>
                         <ListItemText>
-                            Delete Element
+                            Delete
                         </ListItemText>
                     </MenuItem>
                 </Menu>
@@ -99,6 +115,12 @@ export const ElementMenu = ({ link }: { link?: string }) => {
                     modalOpen={copyLinkModalOpen}
                     setModalOpen={setCopyLinkModalOpen}
                     link={link}
+                />
+            )}
+            {moveElementOpen && (
+                <MoveElementModal
+                    modalOpen={moveElementOpen}
+                    setModalOpen={() => setMoveElementOpen(false)}
                 />
             )}
             {editElementOpen && (
