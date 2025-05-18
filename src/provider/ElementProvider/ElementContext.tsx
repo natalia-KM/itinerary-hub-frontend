@@ -1,5 +1,5 @@
 import { createContext, useContext } from 'react'
-import { ElementType } from 'hooks/elements'
+import { AccommodationType, ElementType } from 'hooks/elements'
 
 export type ElementContextType = {
     elementId: string
@@ -7,6 +7,7 @@ export type ElementContextType = {
     elementType: ElementType
     optionId: string
     otherAccommElementId?: string
+    accommodationType?: AccommodationType
 }
 
 export const ElementContext = createContext<ElementContextType | null>(null)

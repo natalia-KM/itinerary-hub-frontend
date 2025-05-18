@@ -21,7 +21,7 @@ export const ActivityElement = () => {
 
     if (isPending || isRefetching) {
         return (
-            <Skeleton/>
+            <Skeleton width={'100%'} height={'150px'} />
         )
     }
 

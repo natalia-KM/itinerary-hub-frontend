@@ -1,6 +1,6 @@
 import { ElementContext } from './ElementContext'
 import { ReactNode } from 'react'
-import { ElementType } from 'hooks/elements'
+import { AccommodationType, ElementType } from 'hooks/elements'
 
 interface ElementContextProviderProps {
     elementId: string
@@ -8,6 +8,7 @@ interface ElementContextProviderProps {
     optionId: string
     elementType: ElementType
     otherAccommElementId?: string
+    accommodationType?: AccommodationType
     children: ReactNode
 }
 
@@ -17,6 +18,7 @@ export const ElementContextProvider = ({
     optionId,
     elementType,
     otherAccommElementId,
+    accommodationType,
     children
 }: ElementContextProviderProps) => {
 
@@ -27,7 +29,8 @@ export const ElementContextProvider = ({
                 baseElementId,
                 optionId,
                 elementType,
-                otherAccommElementId
+                otherAccommElementId,
+                accommodationType
             }}
         >
             {children}
