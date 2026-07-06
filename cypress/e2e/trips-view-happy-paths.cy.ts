@@ -12,17 +12,14 @@ describe('Trips View - Happy Paths', () => {
         apiInterceptor.interceptGetAllTrips({})
         apiInterceptor.interceptGetPassengers({})
 
-        cy.visit('http://localhost:3000/dashboard')
+        cy.visit('/dashboard')
     })
 
     // very flaky, to fix
     it.skip('should show loading backdrop when loading trips', () => {
         const { resolve } = apiInterceptor.interceptGetAllTrips({ manualResolution: true })
 
-        cy.visit('http://localhost:3000/dashboard')
-
-        // eslint-disable-next-line cypress/no-unnecessary-waiting
-        cy.wait(2000)
+        cy.visit('/dashboard')
 
         tripsViewPage.tripsViewLoading
             .should('be.visible')
@@ -80,7 +77,7 @@ describe('Trips View - Happy Paths', () => {
             responseBody: []
         })
 
-        cy.visit('http://localhost:3000/dashboard')
+        cy.visit('/dashboard')
 
         tripsViewPage.addTripCard
             .should('be.visible')
@@ -251,7 +248,7 @@ describe('Trips View - Happy Paths', () => {
 
         it('should show the trip in the list after editing it' ,() => {
             apiInterceptor.interceptGetAllTrips({ responseBody: useGetAllTripsResponses.oneTrip })
-            cy.visit('http://localhost:3000/dashboard')
+            cy.visit('/dashboard')
 
             tripsViewPage.tripCard(0).should('be.visible')
 
@@ -354,7 +351,7 @@ describe('Trips View - Happy Paths', () => {
 
         it('should successfully edit a trip with initial null values' ,() => {
             apiInterceptor.interceptGetAllTrips({ responseBody: useGetAllTripsResponses.withNullValues })
-            cy.visit('http://localhost:3000/dashboard')
+            cy.visit('/dashboard')
 
             tripsViewPage.tripCard(0).should('be.visible')
 

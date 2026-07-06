@@ -34,7 +34,7 @@ describe('Add Element', () => {
         apiInterceptor.interceptGetOptions({})
         apiInterceptor.interceptGetPassengers({})
         const { alias } = apiInterceptor.interceptGetTrip({})
-        cy.visit(`http://localhost:3000/trip?tripId=${TRIP_ID}`)
+        cy.visit(`/trip?tripId=${TRIP_ID}`)
 
         cy.wait(alias)
     })
@@ -102,7 +102,7 @@ describe('Add Element', () => {
                 .should('be.visible')
                 .click()
 
-            apiInterceptor.interceptGetElements({
+            const { alias: refreshElements } = apiInterceptor.interceptGetElements({
                 responseBody: [
                     useGetTransportElementResponses[TRANSPORT_1],
                     useGetAccommodationElementPairResponses[ACCOMMODATION_1][0],
@@ -134,8 +134,7 @@ describe('Add Element', () => {
                 })
             })
 
-            // eslint-disable-next-line cypress/no-unnecessary-waiting
-            cy.wait(2000)
+            cy.wait(refreshElements)
 
             tripDetailsPage.optionTab(S1_OPTION_1_ID)
                 .should('be.visible')
@@ -181,7 +180,7 @@ describe('Add Element', () => {
                 .should('be.visible')
                 .click()
 
-            apiInterceptor.interceptGetElements({
+            const { alias: refreshElements } = apiInterceptor.interceptGetElements({
                 responseBody: [
                     useGetTransportElementResponses[TRANSPORT_1],
                     useGetAccommodationElementPairResponses[ACCOMMODATION_1][0],
@@ -211,8 +210,7 @@ describe('Add Element', () => {
                 })
             })
 
-            // eslint-disable-next-line cypress/no-unnecessary-waiting
-            cy.wait(2000)
+            cy.wait(refreshElements)
 
             tripDetailsPage.optionTab(S1_OPTION_1_ID)
                 .should('be.visible')
@@ -250,7 +248,7 @@ describe('Add Element', () => {
 
             elementDrawer.passengersLabel.should('have.text', 'Guests')
 
-            apiInterceptor.interceptGetElements({
+            const { alias: refreshElements } = apiInterceptor.interceptGetElements({
                 responseBody: [
                     useGetTransportElementResponses[TRANSPORT_1],
                     useGetAccommodationElementPairResponses[ACCOMMODATION_1][0],
@@ -285,8 +283,7 @@ describe('Add Element', () => {
                 })
             })
 
-            // eslint-disable-next-line cypress/no-unnecessary-waiting
-            cy.wait(2000)
+            cy.wait(refreshElements)
 
             tripDetailsPage.optionTab(S1_OPTION_1_ID)
                 .should('be.visible')

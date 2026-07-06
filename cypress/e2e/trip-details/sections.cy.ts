@@ -11,7 +11,7 @@ describe('Sections', () => {
         const { alias } = apiInterceptor.interceptGetTrip({})
         apiInterceptor.interceptGetPassengers({})
         apiInterceptor.interceptGetSections({})
-        cy.visit(`http://localhost:3000/trip?tripId=${TRIP_ID}`)
+        cy.visit(`/trip?tripId=${TRIP_ID}`)
 
         cy.wait(alias)
     })

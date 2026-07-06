@@ -11,7 +11,7 @@ describe('Top Bar', () => {
     })
 
     it('should have all elements visible', () => {
-        cy.visit('http://localhost:3000/dashboard')
+        cy.visit('/dashboard')
 
         topBar.topBar.should('be.visible')
 
@@ -24,7 +24,7 @@ describe('Top Bar', () => {
 
 
     it('should show help menu on help icon click', () => {
-        cy.visit('http://localhost:3000/dashboard')
+        cy.visit('/dashboard')
 
         topBar.topBar.should('be.visible')
         topBar.accountButton.should('be.visible')
@@ -37,7 +37,7 @@ describe('Top Bar', () => {
     })
 
     it('should redirect to home on logo click', () => {
-        cy.visit('http://localhost:3000/help')
+        cy.visit('/help')
 
         topBar.logo
             .should('be.visible')
@@ -50,7 +50,7 @@ describe('Top Bar', () => {
     })
 
     it('should redirect to home on home btn click', () => {
-        cy.visit('http://localhost:3000/help')
+        cy.visit('/help')
 
         topBar.homeButton.should('be.visible').click()
 
@@ -64,7 +64,7 @@ describe('Top Bar', () => {
     describe('Account menu', () => {
         beforeEach(() => {
             apiInterceptor.interceptGetUserDetails({ manualResolution: false })
-            cy.visit('http://localhost:3000/dashboard')
+            cy.visit('/dashboard')
 
             topBar.topBar.should('be.visible')
 
@@ -141,7 +141,7 @@ describe('Top Bar', () => {
 
         beforeEach(() => {
             apiInterceptor.interceptGetUserDetails({})
-            cy.visit('http://localhost:3000/dashboard')
+            cy.visit('/dashboard')
 
             topBar.topBar.should('be.visible')
 
@@ -347,7 +347,7 @@ describe('Top Bar', () => {
                 responseBody: useGetUserDetailsResponses.Google,
                 manualResolution: false
             })
-            cy.visit('http://localhost:3000/dashboard')
+            cy.visit('/dashboard')
 
             topBar.topBar.should('be.visible')
 

@@ -65,11 +65,12 @@
     "build": "tsc && vite build",
     "serve": "vite preview",
     "test": "vitest",
-    "start:cy": "VITE_API_URL=http://localhost:8080 CYPRESS_RUN=true npm start",
+    "start:cy": "vite --mode cypress",
     "cypress:open": "cypress open",
     "cypress:run": "cypress run",
     "test:coverage": "vitest run --coverage --watch=false",
     "lint": "eslint \"**/*.{ts,tsx}\"",
+    "lint:ci": "eslint \"**/*.{ts,tsx}\" --max-warnings=0",
     "lint:fix": "eslint --fix \"**/*.{ts,tsx}\""
   },
   "eslintConfig": {

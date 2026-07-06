@@ -24,7 +24,7 @@ export class ApiInterceptor extends ApiInterceptorBase {
         manualResolution = false
     }: InterceptRequestOptions): ApiInterceptorResponse {
         return apiInterceptor.interceptRequest({
-            url: 'http://localhost:8080/v1/users',
+            url: '**/v1/users',
             status,
             method: 'GET',
             alias: InterceptorAlias.GET_USER_DETAILS,
@@ -38,7 +38,7 @@ export class ApiInterceptor extends ApiInterceptorBase {
         manualResolution
     }: InterceptRequestOptions): ApiInterceptorResponse {
         return apiInterceptor.interceptRequest({
-            url: 'http://localhost:8080/v1/users/guest',
+            url: '**/v1/users/guest',
             status,
             method: 'POST',
             alias: InterceptorAlias.CREATE_GUEST_USER,
@@ -51,7 +51,7 @@ export class ApiInterceptor extends ApiInterceptorBase {
         manualResolution
     }: InterceptRequestOptions): ApiInterceptorResponse {
         return apiInterceptor.interceptRequest({
-            url: 'http://localhost:8080/v1/users',
+            url: '**/v1/users',
             status,
             method: 'PUT',
             alias: InterceptorAlias.UPDATE_USER_DETAILS,
@@ -64,7 +64,7 @@ export class ApiInterceptor extends ApiInterceptorBase {
         manualResolution
     }: InterceptRequestOptions): ApiInterceptorResponse {
         return apiInterceptor.interceptRequest({
-            url: 'http://localhost:8080/logout',
+            url: '**/logout',
             status,
             method: 'GET',
             alias: InterceptorAlias.LOGOUT,
@@ -77,7 +77,7 @@ export class ApiInterceptor extends ApiInterceptorBase {
         manualResolution
     }: InterceptRequestOptions): ApiInterceptorResponse {
         return apiInterceptor.interceptRequest({
-            url: 'http://localhost:8080/v1/users',
+            url: '**/v1/users',
             status,
             method: 'DELETE',
             alias: InterceptorAlias.DELETE_ACCOUNT,
@@ -90,7 +90,7 @@ export class ApiInterceptor extends ApiInterceptorBase {
          manualResolution
      }: InterceptRequestOptions): ApiInterceptorResponse {
         return apiInterceptor.interceptRequest({
-            url: 'http://localhost:8080/v1/trips',
+            url: '**/v1/trips',
             status,
             method: 'POST',
             alias: InterceptorAlias.CREATE_TRIP,
@@ -104,7 +104,7 @@ export class ApiInterceptor extends ApiInterceptorBase {
         manualResolution
     }: TripsRequestOptions): ApiInterceptorResponse {
         return apiInterceptor.interceptRequest({
-            url: `http://localhost:8080/v1/trips/${tripId}`,
+            url: `**/v1/trips/${tripId}`,
             status,
             method: 'PUT',
             alias: InterceptorAlias.UPDATE_TRIP,
@@ -118,7 +118,7 @@ export class ApiInterceptor extends ApiInterceptorBase {
         manualResolution
     }: TripsRequestOptions): ApiInterceptorResponse {
         return apiInterceptor.interceptRequest({
-            url: `http://localhost:8080/v1/trips/${tripId}`,
+            url: `**/v1/trips/${tripId}`,
             status,
             method: 'DELETE',
             alias: InterceptorAlias.DELETE_TRIP,
@@ -132,7 +132,7 @@ export class ApiInterceptor extends ApiInterceptorBase {
         responseBody = useGetAllTripsResponses.multipleTrips
     }: InterceptRequestOptions): ApiInterceptorResponse {
         return apiInterceptor.interceptRequest({
-            url: 'http://localhost:8080/v1/trips',
+            url: '**/v1/trips',
             status,
             method: 'GET',
             alias: InterceptorAlias.GET_ALL_TRIPS,
@@ -148,7 +148,7 @@ export class ApiInterceptor extends ApiInterceptorBase {
         tripId = TRIP_ID
     }: TripsRequestOptions): ApiInterceptorResponse {
         return apiInterceptor.interceptRequest({
-            url: `http://localhost:8080/v1/trips/${tripId}`,
+            url: `**/v1/trips/${tripId}`,
             status,
             method: 'GET',
             alias: InterceptorAlias.GET_TRIP,
@@ -164,7 +164,7 @@ export class ApiInterceptor extends ApiInterceptorBase {
         tripId = TRIP_ID
     }: TripsRequestOptions): ApiInterceptorResponse {
         return apiInterceptor.interceptRequest({
-            url: `http://localhost:8080/v1/trips/${tripId}`,
+            url: `**/v1/trips/${tripId}`,
             status,
             method: 'GET',
             alias: InterceptorAlias.GET_TRIP_DETAILS,
@@ -181,7 +181,7 @@ export class ApiInterceptor extends ApiInterceptorBase {
         sectionId = SECTION_1_ID
     }: TripsRequestOptions): ApiInterceptorResponse {
         return apiInterceptor.interceptRequest({
-            url: `http://localhost:8080/v1/trips/${tripId}/sections/${sectionId}`,
+            url: `**/v1/trips/${tripId}/sections/${sectionId}`,
             status,
             method: 'GET',
             alias: InterceptorAlias.GET_SECTION,
@@ -197,7 +197,7 @@ export class ApiInterceptor extends ApiInterceptorBase {
         tripId = TRIP_ID
     }: TripsRequestOptions): ApiInterceptorResponse {
         return apiInterceptor.interceptRequest({
-            url: `http://localhost:8080/v1/trips/${tripId}/sections`,
+            url: `**/v1/trips/${tripId}/sections`,
             status,
             method: 'GET',
             alias: InterceptorAlias.GET_SECTIONS,
@@ -212,7 +212,7 @@ export class ApiInterceptor extends ApiInterceptorBase {
         tripId = TRIP_ID
     }: TripsRequestOptions): ApiInterceptorResponse {
         return apiInterceptor.interceptRequest({
-            url: `http://localhost:8080/v1/trips/${tripId}/sections`,
+            url: `**/v1/trips/${tripId}/sections`,
             status,
             method: 'POST',
             alias: InterceptorAlias.CREATE_SECTION,
@@ -227,7 +227,7 @@ export class ApiInterceptor extends ApiInterceptorBase {
         sectionId = SECTION_1_ID
     }: TripsRequestOptions): ApiInterceptorResponse {
         return apiInterceptor.interceptRequest({
-            url: `http://localhost:8080/v1/trips/${tripId}/sections/${sectionId}`,
+            url: `**/v1/trips/${tripId}/sections/${sectionId}`,
             status,
             method: 'PUT',
             alias: InterceptorAlias.UPDATE_SECTION,
@@ -242,7 +242,7 @@ export class ApiInterceptor extends ApiInterceptorBase {
         sectionId = SECTION_1_ID
     }: TripsRequestOptions): ApiInterceptorResponse {
         return apiInterceptor.interceptRequest({
-            url: `http://localhost:8080/v1/trips/${tripId}/sections/${sectionId}`,
+            url: `**/v1/trips/${tripId}/sections/${sectionId}`,
             status,
             method: 'DELETE',
             alias: InterceptorAlias.DELETE_SECTION,
@@ -256,7 +256,7 @@ export class ApiInterceptor extends ApiInterceptorBase {
         tripId = TRIP_ID
     }: TripsRequestOptions): ApiInterceptorResponse {
         return apiInterceptor.interceptRequest({
-            url: `http://localhost:8080/v1/trips/${tripId}/sections`,
+            url: `**/v1/trips/${tripId}/sections`,
             status,
             method: 'PUT',
             alias: InterceptorAlias.UPDATE_SECTION_ORDER,
@@ -272,7 +272,7 @@ export class ApiInterceptor extends ApiInterceptorBase {
         optionId = S1_OPTION_1_ID
     }: TripsRequestOptions): ApiInterceptorResponse {
         return apiInterceptor.interceptRequest({
-            url: `http://localhost:8080/v1/sections/${sectionId}/options/${optionId}`,
+            url: `**/v1/sections/${sectionId}/options/${optionId}`,
             status,
             method: 'GET',
             alias: InterceptorAlias.GET_OPTION,
@@ -288,7 +288,7 @@ export class ApiInterceptor extends ApiInterceptorBase {
         sectionId = SECTION_1_ID
     }: TripsRequestOptions): ApiInterceptorResponse {
         return apiInterceptor.interceptRequest({
-            url: `http://localhost:8080/v1/sections/${sectionId}/options`,
+            url: `**/v1/sections/${sectionId}/options`,
             status,
             method: 'GET',
             alias: InterceptorAlias.GET_OPTIONS,
@@ -304,7 +304,7 @@ export class ApiInterceptor extends ApiInterceptorBase {
         optionId = S1_OPTION_1_ID
     }: TripsRequestOptions): ApiInterceptorResponse {
         return apiInterceptor.interceptRequest({
-            url: `http://localhost:8080/v1/sections/${sectionId}/options/${optionId}`,
+            url: `**/v1/sections/${sectionId}/options/${optionId}`,
             status,
             method: 'PUT',
             alias: InterceptorAlias.UPDATE_OPTION,
@@ -318,7 +318,7 @@ export class ApiInterceptor extends ApiInterceptorBase {
         sectionId = SECTION_1_ID
     }: TripsRequestOptions): ApiInterceptorResponse {
         return apiInterceptor.interceptRequest({
-            url: `http://localhost:8080/v1/sections/${sectionId}/options`,
+            url: `**/v1/sections/${sectionId}/options`,
             status,
             method: 'PUT',
             alias: InterceptorAlias.UPDATE_OPTION_ORDER,
@@ -333,7 +333,7 @@ export class ApiInterceptor extends ApiInterceptorBase {
         sectionId = SECTION_1_ID
     }: TripsRequestOptions): ApiInterceptorResponse {
         return apiInterceptor.interceptRequest({
-            url: `http://localhost:8080/v1/trips/${tripId}/sections/${sectionId}/options`,
+            url: `**/v1/trips/${tripId}/sections/${sectionId}/options`,
             status,
             method: 'POST',
             alias: InterceptorAlias.CREATE_OPTION,
@@ -348,7 +348,7 @@ export class ApiInterceptor extends ApiInterceptorBase {
         optionId = S1_OPTION_1_ID
     }: TripsRequestOptions): ApiInterceptorResponse {
         return apiInterceptor.interceptRequest({
-            url: `http://localhost:8080/v1/sections/${sectionId}/options/${optionId}`,
+            url: `**/v1/sections/${sectionId}/options/${optionId}`,
             status,
             method: 'DELETE',
             alias: InterceptorAlias.DELETE_OPTION,
@@ -364,7 +364,7 @@ export class ApiInterceptor extends ApiInterceptorBase {
         responseBody = useGetTransportElementResponses[TRANSPORT_1]
     }: TripsRequestOptions): ApiInterceptorResponse {
         return apiInterceptor.interceptRequest({
-            url: `http://localhost:8080/v1/sections/${sectionId}/options/${optionId}/elements/transport`,
+            url: `**/v1/sections/${sectionId}/options/${optionId}/elements/transport`,
             status,
             method: 'POST',
             alias: InterceptorAlias.CREATE_TRANSPORT_ELEMENT,
@@ -381,7 +381,7 @@ export class ApiInterceptor extends ApiInterceptorBase {
         responseBody = useGetActivityElementResponses[ACTIVITY_1]
     }: TripsRequestOptions): ApiInterceptorResponse {
         return apiInterceptor.interceptRequest({
-            url: `http://localhost:8080/v1/sections/${sectionId}/options/${optionId}/elements/activity`,
+            url: `**/v1/sections/${sectionId}/options/${optionId}/elements/activity`,
             status,
             method: 'POST',
             alias: InterceptorAlias.CREATE_ACTIVITY_ELEMENT,
@@ -398,7 +398,7 @@ export class ApiInterceptor extends ApiInterceptorBase {
         responseBody = useGetAccommodationElementPairResponses[ACCOMMODATION_1]
     }: TripsRequestOptions): ApiInterceptorResponse {
         return apiInterceptor.interceptRequest({
-            url: `http://localhost:8080/v1/sections/${sectionId}/options/${optionId}/elements/accommodation`,
+            url: `**/v1/sections/${sectionId}/options/${optionId}/elements/accommodation`,
             status,
             method: 'POST',
             alias: InterceptorAlias.CREATE_ACCOMM_ELEMENT,
@@ -412,7 +412,7 @@ export class ApiInterceptor extends ApiInterceptorBase {
         manualResolution
     }: TripsRequestOptions): ApiInterceptorResponse {
         return apiInterceptor.interceptRequest({
-            url: 'http://localhost:8080/v1/elements',
+            url: '**/v1/elements',
             status,
             method: 'PUT',
             alias: InterceptorAlias.BULK_UPDATE_ELEMENT_ORDER,
@@ -431,7 +431,7 @@ export class ApiInterceptor extends ApiInterceptorBase {
         ]
     }: TripsRequestOptions): ApiInterceptorResponse {
         return apiInterceptor.interceptRequest({
-            url: `http://localhost:8080/v1/sections/${sectionId}/options/${optionId}/elements/${elementId}`,
+            url: `**/v1/sections/${sectionId}/options/${optionId}/elements/${elementId}`,
             status,
             method: 'GET',
             alias: InterceptorAlias.GET_ELEMENT,
@@ -452,7 +452,7 @@ export class ApiInterceptor extends ApiInterceptorBase {
         ]
     }: TripsRequestOptions): ApiInterceptorResponse {
         return apiInterceptor.interceptRequest({
-            url: `http://localhost:8080/v1/options/${optionId}/elements`,
+            url: `**/v1/options/${optionId}/elements`,
             status,
             method: 'GET',
             alias: InterceptorAlias.GET_ELEMENTS,
@@ -470,7 +470,7 @@ export class ApiInterceptor extends ApiInterceptorBase {
         responseBody = useGetTransportElementResponses[TRANSPORT_1]
     }: TripsRequestOptions): ApiInterceptorResponse {
         return apiInterceptor.interceptRequest({
-            url: `http://localhost:8080/v1/sections/${sectionId}/options/${optionId}/elements/${elementId}/transport`,
+            url: `**/v1/sections/${sectionId}/options/${optionId}/elements/${elementId}/transport`,
             status,
             method: 'GET',
             alias: InterceptorAlias.GET_TRANSPORT_ELEMENT,
@@ -488,7 +488,7 @@ export class ApiInterceptor extends ApiInterceptorBase {
         responseBody = useGetActivityElementResponses[ACTIVITY_1]
     }: TripsRequestOptions): ApiInterceptorResponse {
         return apiInterceptor.interceptRequest({
-            url: `http://localhost:8080/v1/sections/${sectionId}/options/${optionId}/elements/${elementId}/activity`,
+            url: `**/v1/sections/${sectionId}/options/${optionId}/elements/${elementId}/activity`,
             status,
             method: 'GET',
             alias: InterceptorAlias.GET_ACTIVITY_ELEMENT,
@@ -509,7 +509,7 @@ export class ApiInterceptor extends ApiInterceptorBase {
         const requestParam = `?type=${accommType}`
 
         return apiInterceptor.interceptRequest({
-            url: `http://localhost:8080/v1/sections/${sectionId}/options/${optionId}/elements/${elementId}/accommodation${requestParam}`,
+            url: `**/v1/sections/${sectionId}/options/${optionId}/elements/${elementId}/accommodation${requestParam}`,
             status,
             method: 'GET',
             alias: InterceptorAlias.GET_ACCOMM_ELEMENT,
@@ -527,7 +527,7 @@ export class ApiInterceptor extends ApiInterceptorBase {
         responseBody = useGetTransportElementResponses[TRANSPORT_1]
     }: TripsRequestOptions): ApiInterceptorResponse {
         return apiInterceptor.interceptRequest({
-            url: `http://localhost:8080/v1/sections/${sectionId}/options/${optionId}/elements/${elementId}/transport`,
+            url: `**/v1/sections/${sectionId}/options/${optionId}/elements/${elementId}/transport`,
             status,
             method: 'PUT',
             alias: InterceptorAlias.UPDATE_TRANSPORT_ELEMENT,
@@ -545,7 +545,7 @@ export class ApiInterceptor extends ApiInterceptorBase {
         responseBody = useGetActivityElementResponses[ACTIVITY_1]
     }: TripsRequestOptions): ApiInterceptorResponse {
         return apiInterceptor.interceptRequest({
-            url: `http://localhost:8080/v1/sections/${sectionId}/options/${optionId}/elements/${elementId}/activity`,
+            url: `**/v1/sections/${sectionId}/options/${optionId}/elements/${elementId}/activity`,
             status,
             method: 'PUT',
             alias: InterceptorAlias.UPDATE_ACTIVITY_ELEMENT,
@@ -563,7 +563,7 @@ export class ApiInterceptor extends ApiInterceptorBase {
         responseBody = useGetAccommodationElementPairResponses[ACCOMMODATION_1]
     }: TripsRequestOptions): ApiInterceptorResponse {
         return apiInterceptor.interceptRequest({
-            url: `http://localhost:8080/v1/sections/${sectionId}/options/${optionId}/elements/${elementId}/accommodation`,
+            url: `**/v1/sections/${sectionId}/options/${optionId}/elements/${elementId}/accommodation`,
             status,
             method: 'PUT',
             alias: InterceptorAlias.UPDATE_ACCOMM_ELEMENT,
@@ -581,7 +581,7 @@ export class ApiInterceptor extends ApiInterceptorBase {
         elementType = ElementType.TRANSPORT
     }: TripsRequestOptions): ApiInterceptorResponse {
         return apiInterceptor.interceptRequest({
-            url: `http://localhost:8080/v1/sections/${sectionId}/options/${optionId}/elements/${elementId}?type=${elementType}`,
+            url: `**/v1/sections/${sectionId}/options/${optionId}/elements/${elementId}?type=${elementType}`,
             status,
             method: 'DELETE',
             alias: InterceptorAlias.DELETE_ELEMENT,
@@ -595,7 +595,7 @@ export class ApiInterceptor extends ApiInterceptorBase {
         responseBody = useGetPassengersResponses
     }: TripsRequestOptions): ApiInterceptorResponse {
         return apiInterceptor.interceptRequest({
-            url: 'http://localhost:8080/v1/passengers',
+            url: '**/v1/passengers',
             status,
             method: 'GET',
             alias: InterceptorAlias.GET_PASSENGERS,
@@ -609,7 +609,7 @@ export class ApiInterceptor extends ApiInterceptorBase {
         manualResolution
     }: TripsRequestOptions): ApiInterceptorResponse {
         return apiInterceptor.interceptRequest({
-            url: 'http://localhost:8080/v1/passengers',
+            url: '**/v1/passengers',
             status,
             method: 'POST',
             alias: InterceptorAlias.CREATE_PASSENGER,
@@ -623,7 +623,7 @@ export class ApiInterceptor extends ApiInterceptorBase {
         passengerId
     }: TripsRequestOptions): ApiInterceptorResponse {
         return apiInterceptor.interceptRequest({
-            url: `http://localhost:8080/v1/passengers/${passengerId}`,
+            url: `**/v1/passengers/${passengerId}`,
             status,
             method: 'PUT',
             alias: InterceptorAlias.UPDATE_PASSENGER,
@@ -637,7 +637,7 @@ export class ApiInterceptor extends ApiInterceptorBase {
         passengerId
     }: TripsRequestOptions): ApiInterceptorResponse {
         return apiInterceptor.interceptRequest({
-            url: `http://localhost:8080/v1/passengers/${passengerId}`,
+            url: `**/v1/passengers/${passengerId}`,
             status,
             method: 'DELETE',
             alias: InterceptorAlias.DELETE_PASSENGER,

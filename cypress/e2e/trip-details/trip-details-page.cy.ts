@@ -15,7 +15,7 @@ describe('Trip Details Page', () => {
 
     it('should redirect to trips view on click', () => {
         const { alias } = apiInterceptor.interceptGetTrip({})
-        cy.visit(`http://localhost:3000/trip?tripId=${TRIP_ID}`)
+        cy.visit(`/trip?tripId=${TRIP_ID}`)
 
         cy.wait(alias)
 
@@ -37,7 +37,7 @@ describe('Trip Details Page', () => {
             tripId: TRIP_ID_2,
             responseBody: useGetTripResponses[TRIP_ID_2]
         })
-        cy.visit(`http://localhost:3000/trip?tripId=${TRIP_ID_2}`)
+        cy.visit(`/trip?tripId=${TRIP_ID_2}`)
         cy.wait(alias)
 
         tripDetailsPage.endDateText
@@ -65,7 +65,7 @@ describe('Trip Details Page', () => {
 
     it('should show loading state while loading data', () => {
         const { resolve } = apiInterceptor.interceptGetTrip({ manualResolution: true })
-        cy.visit(`http://localhost:3000/trip?tripId=${TRIP_ID}`)
+        cy.visit(`/trip?tripId=${TRIP_ID}`)
 
         tripDetailsPage.pageLoading
             .should('be.visible')
@@ -78,7 +78,7 @@ describe('Trip Details Page', () => {
         apiInterceptor.interceptGetAllTrips({})
 
         const { alias } = apiInterceptor.interceptGetTrip({ status: 500 })
-        cy.visit(`http://localhost:3000/trip?tripId=${TRIP_ID}`)
+        cy.visit(`/trip?tripId=${TRIP_ID}`)
 
         cy.wait(alias)
 
@@ -99,7 +99,7 @@ describe('Trip Details Page', () => {
 
     it('should redirect to print page and open print window on download PDF', () => {
         const { alias } = apiInterceptor.interceptGetTrip({})
-        cy.visit(`http://localhost:3000/trip?tripId=${TRIP_ID}`, {
+        cy.visit(`/trip?tripId=${TRIP_ID}`, {
             onBeforeLoad(win) {
                 cy.stub(win, 'open').as('tripPrintPage')
             }
@@ -128,7 +128,7 @@ describe('Trip Details Page', () => {
             SECTION_2_ID: S2_OPTION_1_ID
         }
 
-        cy.visit(`http://localhost:3000/trip/print?tripId=${TRIP_ID}`, {
+        cy.visit(`/trip/print?tripId=${TRIP_ID}`, {
             onBeforeLoad(win) {
                 win.sessionStorage.setItem('selectedOptions', JSON.stringify(selectedOptions))
                 cy.stub(win, 'print').as('print')

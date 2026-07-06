@@ -31,7 +31,7 @@ describe('Element Actions', () => {
         apiInterceptor.interceptGetOptions({})
         apiInterceptor.interceptGetPassengers({})
         const { alias } = apiInterceptor.interceptGetTrip({})
-        cy.visit(`http://localhost:3000/trip?tripId=${TRIP_ID}`)
+        cy.visit(`/trip?tripId=${TRIP_ID}`)
 
         cy.wait(alias)
 
@@ -138,7 +138,7 @@ describe('Element Actions', () => {
                 .should('be.visible')
                 .click()
 
-            apiInterceptor.interceptGetTransportElement({
+            const { alias: refreshElement } = apiInterceptor.interceptGetTransportElement({
                 responseBody: {
                     ...useGetTransportElementResponses[TRANSPORT_1],
                     originPlace: 'London' // just to check if the value was updated
@@ -166,8 +166,7 @@ describe('Element Actions', () => {
                 })
             })
 
-            // eslint-disable-next-line cypress/no-unnecessary-waiting
-            cy.wait(2000)
+            cy.wait(refreshElement)
 
             tripDetailsPage.optionTab(S1_OPTION_1_ID)
                 .should('be.visible')
@@ -234,7 +233,7 @@ describe('Element Actions', () => {
             elementDrawer.statusToggleItem(ElementStatus.BOOKED)
                 .should('have.attr', 'aria-pressed', 'true')
 
-            apiInterceptor.interceptGetActivityElement({
+            const { alias: refreshElement } = apiInterceptor.interceptGetActivityElement({
                 elementId: ACTIVITY_1,
                 responseBody: {
                     ...useGetActivityElementResponses[ACTIVITY_1],
@@ -262,8 +261,7 @@ describe('Element Actions', () => {
                 })
             })
 
-            // eslint-disable-next-line cypress/no-unnecessary-waiting
-            cy.wait(2000)
+            cy.wait(refreshElement)
 
             tripDetailsPage.optionTab(S1_OPTION_1_ID)
                 .should('be.visible')
@@ -335,7 +333,7 @@ describe('Element Actions', () => {
                 .should('have.value', 'Check-in after 3 PM')
                 .clear()
 
-            apiInterceptor.interceptGetAccommodationElement({
+            const { alias: refreshAccommodation } = apiInterceptor.interceptGetAccommodationElement({
                 elementId: ACCOMMODATION_1,
                 responseBody: {
                     ...useGetAccommodationElementPairResponses[ACCOMMODATION_1][0],
@@ -376,8 +374,8 @@ describe('Element Actions', () => {
                 })
             })
 
-            // eslint-disable-next-line cypress/no-unnecessary-waiting
-            cy.wait(2000)
+            cy.wait(refreshAccommodation)
+            cy.wait(refreshAccommodation)
 
             tripDetailsPage.optionTab(S1_OPTION_1_ID)
                 .should('be.visible')
