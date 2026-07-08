@@ -1,5 +1,6 @@
 import classes from './PrintableTripPage.module.scss'
 import { useEffect, useMemo, useRef } from 'react'
+import { useNavigate } from 'react-router'
 import { SelectedOptionsMap } from 'provider/TripStateProvider/TripStateContext'
 import { TripNotFoundError } from 'modules/TripNotFoundError'
 import { LoadingBackdrop } from 'modules/LoadingBackdrop'
@@ -18,6 +19,7 @@ import { PrintableAccommCard } from './PrintableElements/PrintableAccommCard'
 
 export const PrintableTripPage = () => {
 
+    const navigate = useNavigate()
     const { tripId } = useTripId()
     const { data: trip, isLoading, isError } = useGetTrip({ tripId: tripId })
 
@@ -52,7 +54,7 @@ export const PrintableTripPage = () => {
     }
 
     const redirectToHome = () => {
-        window.location.href = '/dashboard'
+        navigate('/dashboard')
     }
 
     return (

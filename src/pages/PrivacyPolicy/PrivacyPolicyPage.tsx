@@ -92,9 +92,9 @@ export const PrivacyPolicyPage = () => {
             </Box>
 
             <Box mb={4}>
-                <Typography variant="h6">7. Contact Us</Typography>
+                <Typography variant="h6">7. Managing Your Data</Typography>
                 <Typography>
-                    If you have questions or concerns about this policy or your data, please do not contact us at.
+                    All data access, update, and deletion actions are self-service via the account menu (see Section 3).
                 </Typography>
             </Box>
         </Box>
