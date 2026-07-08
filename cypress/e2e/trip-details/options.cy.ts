@@ -15,7 +15,7 @@ describe('Options', () => {
     beforeEach(() => {
         apiInterceptor.interceptGetUserDetails({ manualResolution: false })
         const { alias } = apiInterceptor.interceptGetTrip({})
-        cy.visit(`http://localhost:3000/trip?tripId=${TRIP_ID}`)
+        cy.visit(`/trip?tripId=${TRIP_ID}`)
 
         cy.wait(alias)
     })

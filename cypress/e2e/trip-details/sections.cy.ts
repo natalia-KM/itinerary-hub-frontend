@@ -11,7 +11,7 @@ describe('Sections', () => {
         const { alias } = apiInterceptor.interceptGetTrip({})
         apiInterceptor.interceptGetPassengers({})
         apiInterceptor.interceptGetSections({})
-        cy.visit(`http://localhost:3000/trip?tripId=${TRIP_ID}`)
+        cy.visit(`/trip?tripId=${TRIP_ID}`)
 
         cy.wait(alias)
     })
@@ -249,11 +249,6 @@ describe('Sections', () => {
     describe('Delete Section', () => {
         it('should successfully delete a section', () => {
             apiInterceptor.interceptDeleteSection({})
-            apiInterceptor.interceptGetSections({
-                responseBody: [
-                    useGetSectionResponses[SECTION_2_ID]
-                ]
-            })
 
             tripDetailsPage.sectionNameText(SECTION_1_ID).should('be.visible')
             tripDetailsPage.sectionMenuIcon(SECTION_1_ID)
@@ -269,6 +264,15 @@ describe('Sections', () => {
             modals.modalText
                 .should('contain.text', 'Are you sure you want to delete Section 1 and all its elements?')
                 .should('contain.text', 'This action cannot be undone')
+
+            // Stub the post-delete sections list only now: registering it any
+            // earlier lets a late initial GET /sections pick it up and unmount
+            // Section 1 before the test has interacted with it.
+            apiInterceptor.interceptGetSections({
+                responseBody: [
+                    useGetSectionResponses[SECTION_2_ID]
+                ]
+            })
 
             modals.modalConfirmButton.click()
 

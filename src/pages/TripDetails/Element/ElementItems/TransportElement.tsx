@@ -15,12 +15,14 @@ export const TransportElement = () => {
 
     const { userDetails } = useUserDetailsContext()
 
-    const { data: elementDetails, isPending, isRefetching } = useQuery<TransportElementDetails | undefined>({
+    const { data: elementDetails, isPending } = useQuery<TransportElementDetails | undefined>({
         queryKey: ['element', elementId],
         queryFn: () => getTransportElement({ sectionId, optionId, baseElementId })
     })
 
-    if (isPending || isRefetching) {
+    // Only skeleton on the initial load; background refetches keep showing the
+    // current card instead of unmounting it mid-interaction.
+    if (isPending) {
         return (
             <Skeleton width={'100%'} height={'150px'} />
         )

@@ -4,6 +4,13 @@ export class Elements {
         return cy.getById(`elements-list-${optionId}`)
     }
 
+    // Re-queries the list's direct children from the document root on every
+    // retry, so counting them stays reliable while the list re-renders (unlike
+    // chaining off `.children()`, whose subject can detach mid re-render).
+    elementsListItems(optionId: string) {
+        return cy.get(`[data-testid="elements-list-${optionId}"] > *`)
+    }
+
     element(elementId: string) {
         return cy.getById(`element-${elementId}`)
     }

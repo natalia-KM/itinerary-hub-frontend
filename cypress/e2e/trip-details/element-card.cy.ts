@@ -10,7 +10,7 @@ describe('Element Card', () => {
         apiInterceptor.interceptGetOptions({})
         apiInterceptor.interceptGetPassengers({})
         const { alias } = apiInterceptor.interceptGetTrip({})
-        cy.visit(`http://localhost:3000/trip?tripId=${TRIP_ID}`)
+        cy.visit(`/trip?tripId=${TRIP_ID}`)
 
         cy.wait(alias)
     })

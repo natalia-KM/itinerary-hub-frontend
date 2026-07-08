@@ -12,7 +12,7 @@ describe('Trips View - Sad Paths', () => {
     it('should not show any trips and display a toast on getTrips request error' ,() => {
         apiInterceptor.interceptGetAllTrips({ status: 500 })
 
-        cy.visit('http://localhost:3000/dashboard')
+        cy.visit('/dashboard')
 
         tripsViewPage.tripsViewFailErrorToast
             .should('be.visible')
@@ -27,7 +27,7 @@ describe('Trips View - Sad Paths', () => {
     describe('Add/Edit/Delete Trip', () => {
         beforeEach(() => {
             apiInterceptor.interceptGetAllTrips({ responseBody: useGetAllTripsResponses.oneTrip })
-            cy.visit('http://localhost:3000/dashboard')
+            cy.visit('/dashboard')
         })
 
         it('should validate trip name and not allow to confirm if the input is incorrect', () => {

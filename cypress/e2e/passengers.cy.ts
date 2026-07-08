@@ -12,7 +12,7 @@ describe('Passengers', () => {
         apiInterceptor.interceptGetAllTrips({})
         apiInterceptor.interceptGetPassengers({})
 
-        cy.visit('http://localhost:3000/dashboard')
+        cy.visit('/dashboard')
     })
 
 

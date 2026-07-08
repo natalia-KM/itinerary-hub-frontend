@@ -25,12 +25,14 @@ export const AccommElement = ({
     const { sectionId } = useSectionContext()
     const { elementId, baseElementId, optionId } = useElementContext()
 
-    const { data: elementDetails, isPending, isRefetching } = useQuery<AccommodationElementDetails | undefined>({
+    const { data: elementDetails, isPending } = useQuery<AccommodationElementDetails | undefined>({
         queryKey: ['element', elementId],
         queryFn: () => getAccommodationElement({ sectionId, optionId, baseElementId, type  })
     })
 
-    if (isPending || isRefetching) {
+    // Only skeleton on the initial load; background refetches keep showing the
+    // current card instead of unmounting it mid-interaction.
+    if (isPending) {
         return (
             <Skeleton width={'100%'} height={'150px'} />
         )

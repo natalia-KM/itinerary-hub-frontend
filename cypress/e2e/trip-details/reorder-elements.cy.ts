@@ -13,7 +13,7 @@ describe('Reorder Elements', () => {
         apiInterceptor.interceptGetOptions({ tripId: TRIP_ID_3 })
         apiInterceptor.interceptGetPassengers({ tripId: TRIP_ID_3 })
         const { alias } = apiInterceptor.interceptGetTrip({ tripId: TRIP_ID_3, responseBody: useGetTripResponses[TRIP_ID_3] })
-        cy.visit(`http://localhost:3000/trip?tripId=${TRIP_ID_3}`)
+        cy.visit(`/trip?tripId=${TRIP_ID_3}`)
 
         cy.wait(alias)
 

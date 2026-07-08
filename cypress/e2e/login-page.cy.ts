@@ -4,7 +4,7 @@ import { tripsViewPage } from 'cypress/fixtures/pages/TripsView'
 
 describe('Login Page', () => {
     beforeEach(() => {
-        cy.visit('http://localhost:3000/login')
+        cy.visit('/login')
 
     })
     it('should contain all elements', () => {
@@ -90,7 +90,7 @@ describe('Login Page', () => {
     it('should call getUser and redirect to app when valid cookies exist', () => {
         apiInterceptor.interceptGetUserDetails({})
 
-        cy.visit('http://localhost:3000')
+        cy.visit('')
 
         cy.location('pathname', { timeout: 60000 })
             .should('include', '/dashboard')
@@ -101,7 +101,7 @@ describe('Login Page', () => {
     it('should call getUser but not redirect to app when invalid cookies exist', () => {
         apiInterceptor.interceptGetUserDetails({ status: 401 })
 
-        cy.visit('http://localhost:3000')
+        cy.visit('')
 
         cy.location('pathname', { timeout: 60000 })
             .should('include', '/login')
