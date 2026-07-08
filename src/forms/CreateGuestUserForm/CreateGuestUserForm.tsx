@@ -7,19 +7,26 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import classes from './CreateGuestUserForm.module.scss'
 import { InputErrorMessage } from 'components/InputErrorMessage/InputErrorMessage'
 import { toast } from 'react-toastify'
+import { useNavigate } from 'react-router'
+import { useUserDetailsContext } from 'provider/UserDetailsProvider/useUserDetailsContext'
 
 export const CreateGuestUserForm = () => {
     const { register, handleSubmit, formState: { errors } } = useForm<CreateGuestUserFormFields>({
         resolver: yupResolver(schema)
     })
     const { mutateAsync: signUpAsGuest, isPending } = useSignUpAsGuest()
+    const { invalidateUserDetails } = useUserDetailsContext()
+    const navigate = useNavigate()
     const testIdKey = 'login-page'
 
     const createGuestUser = handleSubmit(
         async ({ firstName, lastName }) => {
             await signUpAsGuest({ firstName, lastName })
-                .then(() => {
-                    window.location.href = '/dashboard'
+                .then(async () => {
+                    // Refresh the (previously failed) user-details query before
+                    // navigating, so the auth redirect sees the new session.
+                    await invalidateUserDetails()
+                    navigate('/dashboard')
                 })
                 .catch(() => {
                     toast('Something went wrong! Unable to create a guest account.', {

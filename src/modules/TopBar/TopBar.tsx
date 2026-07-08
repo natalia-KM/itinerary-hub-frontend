@@ -4,14 +4,19 @@ import { AccountBar } from 'components/AccountBar'
 import { HelpBar } from 'components/HelpBar'
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined'
 import { TopBarProps } from './types'
+import { useNavigate } from 'react-router'
+import { useUserDetailsContext } from 'provider/UserDetailsProvider/useUserDetailsContext'
 
 export const TopBar = ({
     showHomeButton = false,
     showHelpButton = true,
     showAccountButton = true
 }: TopBarProps) => {
+    const navigate = useNavigate()
+    const { userDetails } = useUserDetailsContext()
+
     const redirectToHome = () => {
-        window.location.href = '/dashboard'
+        navigate('/dashboard')
     }
     return(
         <AppBar className={classes.TopBar} data-testid='top-bar' sx={{ position: 'sticky', zIndex: (theme) => theme.zIndex.drawer + 1 }}>
@@ -41,7 +46,9 @@ export const TopBar = ({
                     {showHelpButton && (
                         <HelpBar />
                     )}
-                    {showAccountButton && (
+                    {/* The account menu is meaningless without a logged-in user
+                        (e.g. an unauthenticated visitor on a public page). */}
+                    {showAccountButton && userDetails && (
                         <AccountBar />
                     )}
                 </Box>

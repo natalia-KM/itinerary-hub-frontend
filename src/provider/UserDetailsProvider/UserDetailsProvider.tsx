@@ -8,6 +8,9 @@ interface UserDetailsProviderProps {
     children: React.ReactNode
 }
 
+// Pages that are viewable without being logged in.
+const PUBLIC_PATHS = ['/login', '/privacy-policy', '/help']
+
 export const UserDetailsProvider = ({ children }: UserDetailsProviderProps) => {
     const { data: userDetails, isSuccess, isError } = useGetUserDetails()
     const queryClient = useQueryClient()
@@ -17,7 +20,7 @@ export const UserDetailsProvider = ({ children }: UserDetailsProviderProps) => {
             window.location.href = '/dashboard'
         }
 
-        if (isError && window.location.pathname !== '/login') {
+        if (isError && !PUBLIC_PATHS.includes(window.location.pathname)) {
             window.location.href = '/login'
         }
     }, [isSuccess, isError])
