@@ -14,7 +14,7 @@ interface OptionProps {
 
 export const Option = ({ sectionId }: OptionProps) => {
     const { setSelectedOption } = useTripStateContext()
-     const { data: optionIds, isPending, isRefetching } = useQuery<string[]>({
+     const { data: optionIds, isPending } = useQuery<string[]>({
         queryKey: ['sectionOptionIds', sectionId],
         queryFn: () => getOptions(sectionId)
             .then((response) => {
@@ -41,7 +41,9 @@ export const Option = ({ sectionId }: OptionProps) => {
         }
     }
 
-    if (isPending || isRefetching || !optionIds) {
+    // Only bail out on the initial load; background refetches keep showing the
+    // current data instead of unmounting the tabs mid-interaction.
+    if (isPending || !optionIds) {
         return null
     }
 

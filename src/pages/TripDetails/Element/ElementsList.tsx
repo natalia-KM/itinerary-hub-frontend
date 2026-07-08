@@ -24,7 +24,7 @@ export const ElementsList = ({
     optionId
 }: ElementsListProps) => {
     const { mutateAsync: updateElementsOrder } = useBulkUpdateOrder()
-    const { data: elementInfo, isPending, isRefetching } = useQuery<Record<string, ElementInfo>>({
+    const { data: elementInfo, isPending } = useQuery<Record<string, ElementInfo>>({
         queryKey: ['elementInfo', optionId],
         queryFn: () => getElements(optionId)
             .then((response) =>
@@ -67,7 +67,9 @@ export const ElementsList = ({
         })
     )
 
-    if(isPending || isRefetching) {
+    // Only skeleton on the initial load; background refetches keep showing the
+    // current list instead of unmounting it mid-interaction.
+    if(isPending) {
         return (
             <Skeleton/>
         )

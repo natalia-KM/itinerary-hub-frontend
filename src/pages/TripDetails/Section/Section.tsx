@@ -28,7 +28,7 @@ export const Section = ({
     const { mutateAsync: updateSectionCall } = useUpdateSection()
     const { tripId } = useTripId()
 
-    const { data: section, isPending, isRefetching } = useQuery<SectionDetails>({
+    const { data: section, isPending } = useQuery<SectionDetails>({
         queryKey: ['sectionDetails', sectionId],
         queryFn: () => getSection({ tripId, sectionId })
     })
@@ -42,7 +42,9 @@ export const Section = ({
         setSectionName(section?.sectionName)
     }, [section?.sectionName])
 
-    if (isPending || isRefetching) {
+    // Only skeleton on the initial load; background refetches keep showing the
+    // current data instead of unmounting the whole section mid-interaction.
+    if (isPending) {
         return (
             <Skeleton/>
         )
