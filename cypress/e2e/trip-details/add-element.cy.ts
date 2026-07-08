@@ -43,9 +43,7 @@ describe('Add Element', () => {
         beforeEach(() => {
             apiInterceptor.interceptGetElements({})
 
-            elements.elementsList(S1_OPTION_1_ID)
-                .should('be.visible')
-                .children()
+            elements.elementsListItems(S1_OPTION_1_ID)
                 .should('have.length', 4)
 
             tripDetailsPage.sectionMenuIcon(SECTION_1_ID)
@@ -139,9 +137,7 @@ describe('Add Element', () => {
             tripDetailsPage.optionTab(S1_OPTION_1_ID)
                 .should('be.visible')
 
-            elements.elementsList(S1_OPTION_1_ID)
-                .should('be.visible')
-                .children()
+            elements.elementsListItems(S1_OPTION_1_ID)
                 .should('have.length', 5)
         })
 
@@ -215,9 +211,7 @@ describe('Add Element', () => {
             tripDetailsPage.optionTab(S1_OPTION_1_ID)
                 .should('be.visible')
 
-            elements.elementsList(S1_OPTION_1_ID)
-                .should('be.visible')
-                .children()
+            elements.elementsListItems(S1_OPTION_1_ID)
                 .should('have.length', 5)
         })
 
@@ -288,9 +282,7 @@ describe('Add Element', () => {
             tripDetailsPage.optionTab(S1_OPTION_1_ID)
                 .should('be.visible')
 
-            elements.elementsList(S1_OPTION_1_ID)
-                .should('be.visible')
-                .children()
+            elements.elementsListItems(S1_OPTION_1_ID)
                 .should('have.length', 6)
         })
     })
@@ -310,9 +302,7 @@ describe('Add Element', () => {
             .should('be.visible')
             .click()
 
-        elements.elementsList(S1_OPTION_2_ID)
-            .should('be.visible')
-            .children()
+        elements.elementsListItems(S1_OPTION_2_ID)
             .should('have.length', 1)
 
         tripDetailsPage.sectionMenuIcon(SECTION_1_ID)
@@ -341,8 +331,9 @@ describe('Add Element', () => {
         drawer.confirmButton.click()
 
         elementDrawer.passengersLabel.should('have.text', 'Passengers')
-        drawer.confirmButton.click()
 
+        // Register the refetch intercepts before submitting so the post-create
+        // GET requests can never race ahead of their stubs under CI load.
         apiInterceptor.interceptGetTransportElement({
             optionId: S1_OPTION_2_ID,
             elementId: TRANSPORT_4,
@@ -355,6 +346,9 @@ describe('Add Element', () => {
                 useGetTransportElementResponses[TRANSPORT_4]
             ]
         })
+
+        drawer.confirmButton.click()
+
         cy.wait(alias)
 
         tripDetailsPage.optionTab(S1_OPTION_2_ID)
@@ -363,9 +357,7 @@ describe('Add Element', () => {
         elements.element(TRANSPORT_2).should('be.visible')
         elements.element(TRANSPORT_4).should('be.visible')
 
-        elements.elementsList(S1_OPTION_2_ID)
-            .should('be.visible')
-            .children()
+        elements.elementsListItems(S1_OPTION_2_ID)
             .should('have.length', 2)
 
         elements.categoryBadgeIcon(TRANSPORT_4, 'Custom Transport')
