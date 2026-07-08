@@ -2,7 +2,7 @@ import { CustomModal } from 'components/CustomModal'
 import { ModalProps, useTripId } from 'utils'
 import { useElementContext, useSectionContext } from 'provider'
 import { useGetSections } from 'hooks/sections'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { Autocomplete, TextField, Typography } from '@mui/material'
 import { OptionsDropdown } from './OptionsDropdown'
 import { MoveElementRequest, useMoveElement } from 'hooks/elements/useMoveElement'
@@ -27,14 +27,6 @@ export const MoveElementModal = ({
 
     const [selectedSectionId, setSelectedSectionId] = useState<string | null>(sectionId)
     const [selectedOptionId, setSelectedOptionId] = useState<string | null>(optionId)
-
-    useEffect(() => {
-        console.log('selectedSectionId: ', selectedSectionId)
-    }, [selectedSectionId])
-
-    useEffect(() => {
-        console.log('selectedOptionId: ', selectedOptionId)
-    }, [selectedOptionId])
 
     if(!sections) {
         return null

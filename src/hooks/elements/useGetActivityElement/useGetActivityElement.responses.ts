@@ -22,7 +22,7 @@ export const useGetActivityElementResponses: Record<string, ActivityElementDetai
         order: 3,
         activityName: 'Snorkeling Adventure',
         location: 'Great Barrier Reef, Australia',
-        startsAt: '2025-05-01T09:00:00Z',
+        startsAt: '2025-05-01T09:00:00',
         duration: 120,
         link: 'https://example.com/snorkeling-tour',
         price: 75,
@@ -43,7 +43,7 @@ export const useGetActivityElementResponses: Record<string, ActivityElementDetai
         order: 3,
         activityName: 'Snorkeling Adventure',
         location: 'Great Barrier Reef, Australia',
-        startsAt: '2025-05-01T09:00:00Z',
+        startsAt: '2025-05-01T09:00:00',
         passengerDetailsList: [
             useGetPassengerResponses[PASSENGER_1],
             useGetPassengerResponses[PASSENGER_2],
