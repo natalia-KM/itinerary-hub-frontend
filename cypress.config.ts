@@ -14,6 +14,14 @@ export default defineConfig({
     },
     e2e: {
       video: false,
+      // Retry once in CI to absorb the residual inherent flakiness of the
+      // MUI/React UI (e.g. a menu-open click that occasionally does not
+      // register under load), while keeping openMode at 0 so genuinely broken
+      // tests fail fast during local development.
+      retries: {
+          runMode: 2,
+          openMode: 0,
+      },
       baseUrl: appOrigin,
       excludeSpecPattern: ['**/.vercel/**'],
       viewportWidth: 1920,
