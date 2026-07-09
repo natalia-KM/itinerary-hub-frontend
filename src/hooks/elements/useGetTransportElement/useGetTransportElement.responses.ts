@@ -21,8 +21,8 @@ export const useGetTransportElementResponses: Record<string, TransportElementDet
         order: 1,
         originPlace: 'London Heathrow Airport (LHR)',
         destinationPlace: 'John F. Kennedy Airport (JFK)',
-        originDateTime: '2025-06-10T08:45:00Z',
-        destinationDateTime: '2025-06-10T11:30:00Z',
+        originDateTime: '2025-06-10T08:45:00',
+        destinationDateTime: '2025-06-10T11:30:00',
         provider: 'British Airways',
         link: 'https://britishairways.com/booking/123',
         price: 420,
@@ -40,8 +40,8 @@ export const useGetTransportElementResponses: Record<string, TransportElementDet
         order: 2,
         originPlace: 'London Heathrow Airport (LHR)',
         destinationPlace: 'John F. Kennedy Airport (JFK)',
-        originDateTime: '2025-06-10T08:45:00Z',
-        destinationDateTime: '2025-06-10T11:30:00Z',
+        originDateTime: '2025-06-10T08:45:00',
+        destinationDateTime: '2025-06-10T11:30:00',
         link: 'https://britishairways.com/booking/123',
         price: 420,
         passengerDetailsList: []
@@ -57,8 +57,8 @@ export const useGetTransportElementResponses: Record<string, TransportElementDet
         order: 2,
         originPlace: 'London Heathrow Airport (LHR)',
         destinationPlace: 'John F. Kennedy Airport (JFK)',
-        originDateTime: '2025-06-10T08:45:00Z',
-        destinationDateTime: '2025-06-10T11:30:00Z',
+        originDateTime: '2025-06-10T08:45:00',
+        destinationDateTime: '2025-06-10T11:30:00',
         passengerDetailsList: []
     },
     [TRANSPORT_4]: { // not used in default response
@@ -72,8 +72,8 @@ export const useGetTransportElementResponses: Record<string, TransportElementDet
         order: 2,
         originPlace: 'London Heathrow',
         destinationPlace: 'JFK',
-        originDateTime: '2025-06-10T08:45:00Z',
-        destinationDateTime: '2025-06-10T11:30:00Z',
+        originDateTime: '2025-06-10T08:45:00',
+        destinationDateTime: '2025-06-10T11:30:00',
         passengerDetailsList: []
     }
 }

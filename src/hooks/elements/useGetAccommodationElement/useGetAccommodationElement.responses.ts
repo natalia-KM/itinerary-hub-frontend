@@ -15,7 +15,7 @@ export const useGetAccommodationElementPairResponses: Record<string, Accommodati
             place: 'Cozy Mountain Lodge',
             location: 'Aspen, Colorado',
             accommodationType: AccommodationType.CHECK_IN,
-            dateTime: '2025-04-20T15:00:00Z',
+            dateTime: '2025-04-20T15:00:00',
             link: 'https://example.com/hotel',
             price: 199.99,
             notes: 'Check-in after 3 PM',
@@ -33,7 +33,7 @@ export const useGetAccommodationElementPairResponses: Record<string, Accommodati
             place: 'Cozy Mountain Lodge',
             location: 'Aspen, Colorado',
             accommodationType: AccommodationType.CHECK_OUT,
-            dateTime: '2025-04-23T17:00:00Z',
+            dateTime: '2025-04-23T17:00:00',
             link: 'https://example.com/hotel',
             price: 199.99,
             notes: 'Check-in after 3 PM',
@@ -52,7 +52,7 @@ export const useGetAccommodationElementPairResponses: Record<string, Accommodati
             order: 1,
             place: 'Cozy Mountain Lodge',
             accommodationType: AccommodationType.CHECK_IN,
-            dateTime: '2025-04-20T15:00:00Z',
+            dateTime: '2025-04-20T15:00:00',
             passengerDetailsList: [
                 useGetPassengerResponses[PASSENGER_1]
             ]
@@ -67,7 +67,7 @@ export const useGetAccommodationElementPairResponses: Record<string, Accommodati
             order: 5,
             place: 'Cozy Mountain Lodge',
             accommodationType: AccommodationType.CHECK_OUT,
-            dateTime: '2025-04-23T15:00:00Z',
+            dateTime: '2025-04-23T15:00:00',
             passengerDetailsList: [
                 useGetPassengerResponses[PASSENGER_1]
             ]

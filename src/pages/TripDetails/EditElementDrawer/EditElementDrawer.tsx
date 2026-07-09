@@ -72,7 +72,7 @@ export const EditElementDrawer = ({
         return (
             <CustomDrawer
                 isOpen={true}
-                setClosed={() => console.log()}
+                setClosed={() => undefined}
                 testId={'loading-edit-drawer'}>
                 <CircularProgress color="inherit" />
             </CustomDrawer>
