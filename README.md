@@ -1,16 +1,46 @@
 [![codecov](https://codecov.io/gh/natalia-KM/itinerary-hub-frontend/graph/badge.svg?token=JNNKI0JDvE)](https://codecov.io/gh/natalia-KM/itinerary-hub-frontend)
 
-# Itinerary Hub FE
+# Itinerary Hub Frontend
 
-The client for the Itinerary Hub
+Itinerary Hub is a React app for planning trips, comparing itinerary options, managing passengers, and printing a travel plan.
 
-### Start up the app
+## Tech Stack
 
-### `npm install`
+- React 19
+- Vite
+- TypeScript
+- MUI
+- TanStack Query
+- Vitest
+- Cypress
 
-### `npm start`
+## Local Setup
 
-### Notes
+Install dependencies:
 
-Sometimes Cypress tests fail due to vercel plugin for vite. 
-The plugin is unfortunately needed for deploys, so to run tests locally, remove 'vercel()' from plugins in vite config file
+```bash
+npm install
+```
+
+Create local environment values:
+
+```bash
+cp .env.example .env.local
+```
+
+Start the app:
+
+```bash
+npm start
+```
+
+The app runs at `http://localhost:3000` by default.
+
+## Useful Commands
+
+```bash
+npm run lint
+npm run build
+npm test -- --run
+npm run cypress:run
+```
