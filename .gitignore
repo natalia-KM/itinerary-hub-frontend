@@ -8,14 +8,18 @@
 # testing
 /coverage
 /coverage-unit
+/.nyc_output
 
 /cypress/downloads
 
 # production
 /build
+/dist
+/.vercel
 
 # misc
 .DS_Store
+*~
 .env
 .env.local
 .env.development.local
